@@ -140,16 +140,21 @@ struct InfeasiblePath : public FunctionPass {
  * BlockQueryAnswerMap: BasicBlock -> Query -> Answers
  * QuerySubstituteMap: Query -> BasicBlock -> Query
  */
+
+/*
 static std::size_t substituteQuery(std::size_t QueryReference, std::vector<Query>& QueryRecord, BasicBlock* BB, std::unordered_map<BasicBlock*, std::unordered_map<std::size_t, std::unordered_set<QueryAnswer, std::hash<int>>>> &BlockQueryAnswerMap, std::unordered_map<std::size_t, std::unordered_map<BasicBlock*, std::size_t>> &QuerySubstituteMap) {
 
     return QueryReference;
 }
+*/
 
 /*
 static QueryAnswer resolveQuery(std::size_t QueryReference, std::vector<Query>& QueryRecord, BasicBlock* BB, std::unordered_map<BasicBlock*, std::unordered_map<std::size_t, std::unordered_set<QueryAnswer, std::hash<int>>>> &BlockQueryAnswerMap) {
     return QueryAnswer::UNAVAIL;
 }
 */
+
+
 
 
 namespace {
