@@ -97,6 +97,25 @@ struct InfeasiblePath : public FunctionPass {
             errs() << "Infeasible Path Pass: ";
             errs().write_escaped(F.getName()) << '\n';
 
+            // get all target instruction
+            std::vector<CmpInst*> TargetCmpInst;
+            for (Function::iterator BB = F.begin(), BBE = F.end(); BB != BBE; ++BB) {
+                for (BasicBlock::iterator IN = BB->begin(), INE = BB->end(); IN != INE; ++IN) {
+                    if (!whetherTargetCompInst(&*IN)) {
+                        continue;
+                    }
+                    CmpInst* CompInst = cast<CmpInst>(&*IN);
+                    TargetCmpInst.push_back(CompInst);
+                }
+            }
+
+            outs().write_escaped(F.getName()) << '\n';
+            for (auto& Inst : TargetCmpInst) {
+                outs() << *Inst << '\n';
+            }
+            outs() << '\n';
+
+
             // isa<Argument>(V) value*, cast<Instruction>(V)
 
             // step 1: query
@@ -114,14 +133,23 @@ struct InfeasiblePath : public FunctionPass {
 };
 } // namespace
 
-static std::size_t substituteQuery(BasicBlock* BB, std::size_t QueryReference, std::vector<Query>& QueryRecord, std::unordered_map<std::size_t, std::unordered_set<std::size_t>>& QueryMap, std::unordered_map<std::size_t, std::unordered_set<BasicBlock*>>& QueryBlockMap) {
+/*
+ * QueryReference: position in vector
+ * QueryRecord: vector storing queries
+ * BB: current basic block
+ * BlockQueryAnswerMap: BasicBlock -> Query -> Answers
+ * QuerySubstituteMap: Query -> BasicBlock -> Query
+ */
+static std::size_t substituteQuery(std::size_t QueryReference, std::vector<Query>& QueryRecord, BasicBlock* BB, std::unordered_map<BasicBlock*, std::unordered_map<std::size_t, std::unordered_set<QueryAnswer, std::hash<int>>>> &BlockQueryAnswerMap, std::unordered_map<std::size_t, std::unordered_map<BasicBlock*, std::size_t>> &QuerySubstituteMap) {
 
     return QueryReference;
 }
 
-static QueryAnswer resolveQuery(std::size_t QueryReference, std::vector<Query>& QueryRecord, std::unordered_map<std::size_t, std::unordered_set<std::size_t>>& QueryMap) {
+/*
+static QueryAnswer resolveQuery(std::size_t QueryReference, std::vector<Query>& QueryRecord, BasicBlock* BB, std::unordered_map<BasicBlock*, std::unordered_map<std::size_t, std::unordered_set<QueryAnswer, std::hash<int>>>> &BlockQueryAnswerMap) {
     return QueryAnswer::UNAVAIL;
 }
+*/
 
 
 namespace {
