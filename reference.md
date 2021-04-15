@@ -9,3 +9,7 @@ https://stackoverflow.com/questions/41959551/how-do-i-print-out-an-instruction-i
 1. LLVM generate IR
 
 bin/clang -S -emit-llvm -O1 -Xclang -disable-llvm-passes ../llvm/lib/Transforms/InfeasiblePath/test/sample.c -o ../llvm/lib/Transforms/InfeasiblePath/test/sample.ll
+bin/clang -S -emit-llvm ../llvm/lib/Transforms/InfeasiblePath/test/sample.c -o ../llvm/lib/Transforms/InfeasiblePath/test/sample-no.ll
+
+2. LLVM run pass
+bin/opt -load lib/LLVMInfeasiblePath.so -MetaInfo -disable-output ../llvm/lib/Transforms/InfeasiblePath/test/sample-no.ll

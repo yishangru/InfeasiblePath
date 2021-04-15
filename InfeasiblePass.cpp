@@ -31,7 +31,7 @@ struct InfeasiblePath : public FunctionPass {
 }
 
 char InfeasiblePath::ID = 0;
-static RegisterPass<InfeasiblePath> X("Infeasible Path", "Infeasible Path Pass");
+static RegisterPass<InfeasiblePath> X("InfeasiblePath", "Infeasible Path Pass");
 
 
 namespace {
@@ -53,8 +53,8 @@ struct CheckMetaFuncInfo : public ModulePass {
             uint64_t
 
             */
-            for (Module::iterator f = M.begin(), e = M.end(); f != e; ++i) {
-            	errs().write_escaped(f->getName()) << '\n';
+            for (Module::iterator F = M.begin(), E = M.end(); F != E; ++F) {
+            	errs().write_escaped(F->getName()) << '\n';
             }
             return false;
 	}
@@ -62,4 +62,4 @@ struct CheckMetaFuncInfo : public ModulePass {
 }
 
 char CheckMetaFuncInfo::ID = 1;
-static RegisterPass<CheckMetaFuncInfo> Y("Meta Info", "Function Meta Pass");
+static RegisterPass<CheckMetaFuncInfo> Y("MetaInfo", "Function Meta Pass");
