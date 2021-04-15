@@ -174,12 +174,23 @@ struct Query {
  * QuerySubstituteMap: Query -> BasicBlock -> Query
  */
 
-void correlationDetect(Function *F, CmpInst* CompInst) {
-  std::vector<Query> QueryRecord(100);
+std::size_t addQuery(std::vector<Query>& QueryRecord, Value* Operand1, Value* Operand2, CmpInst::Predicate QueryPredicate) {
+  std::size_t Id = QueryRecord.size();
+  if (isa<ConstantInt>(Operand1)) {
+
+  }
+  QueryRecord.push_back({Operand1, Operand2, QueryPredicate});
+  return Id;
+}
+
+void correlationDetect(Function *F, CmpInst* CompInst, std::unordered_map<BasicBlock*, std::unordered_set<Instruction*>>& BlockInstMap) {
+  std::vector<Query> QueryRecord(150);
   std::unordered_map<BasicBlock*, std::unordered_map<std::size_t, std::unordered_set<QueryAnswer, std::hash<int>>>> BlockQueryAnswerMap;
   std::unordered_map<std::size_t, std::unordered_map<BasicBlock*, std::size_t>> QuerySubstituteMap;
 
-  // step 1: query
+  // step 1: query correlation detection
+  std::size_t InitialQueryID = addQuery(QueryRecord, CompInst->getOperand(0), CompInst->getOperand(1), CompInst->getPredicate());
+
 
   // step 2: global query answer
 
@@ -201,43 +212,54 @@ void resolveQuery(std::size_t QueryReference, std::vector<Query>& QueryRecord, B
 
 // Infeasible Pass - The first implementation, without getAnalysisUsage.
 struct InfeasiblePath : public FunctionPass {
-  	static char ID; // Pass identification, replacement for typeid
-  	InfeasiblePath() : FunctionPass(ID) {}
+    static char ID; // Pass identification, replacement for typeid
+    InfeasiblePath() : FunctionPass(ID) {}
 
-  	bool runOnFunction(Function &F) override {
-            errs() << "Infeasible Path Pass: ";
-            errs().write_escaped(F.getName()) << '\n';
+    bool runOnFunction(Function &F) override {
+        errs() << "Infeasible Path Pass: ";
+        errs().write_escaped(F.getName()) << '\n';
 
-            // get all target instruction
-            std::vector<CmpInst*> TargetCmpInst;
-            for (Function::iterator BB = F.begin(), BBE = F.end(); BB != BBE; ++BB) {
-                for (BasicBlock::iterator IN = BB->begin(), INE = BB->end(); IN != INE; ++IN) {
-                    if (!whetherTargetCompInst(&*IN)) {
-                        continue;
-                    }
-                    CmpInst* CompInst = cast<CmpInst>(&*IN);
-                    TargetCmpInst.push_back(CompInst);
+        // all target instruction
+        std::vector<CmpInst*> TargetCmpInst;
+        // generate block -> inst
+        std::unordered_map<BasicBlock*, std::unordered_set<Instruction*>> BlockInstMap;
+
+        for (Function::iterator BB = F.begin(), BBE = F.end(); BB != BBE; ++BB) {
+
+            BasicBlock* BlockInFunc = &*BB;
+
+            BlockInstMap[BlockInFunc] = std::unordered_set<Instruction*>();
+            for (BasicBlock::iterator IN = BB->begin(), INE = BB->end(); IN != INE; ++IN) {
+
+                Instruction* InstInBlock = &*IN;
+
+                BlockInstMap[BlockInFunc].insert(InstInBlock);
+                if (!whetherTargetCompInst(InstInBlock)) {
+                    continue;
                 }
+                CmpInst* CompInst = cast<CmpInst>(InstInBlock);
+                TargetCmpInst.push_back(CompInst);
             }
+        }
 
-            // get all used compare branch, detect correlated query
-            outs().write_escaped(F.getName()) << '\n';
-            for (auto& Inst : TargetCmpInst) {
-                outs() << *Inst << '\n';
-                outs() << "Used:" << '\n';
-                for (auto *U : Inst->users()) {
-                    if (!isa<Instruction>(&*U)) {
-                        outs() << "Not A Instruction: " << *U << '\n';
-                        continue;
-                    }
-                    outs() << *cast<Instruction>(&*U) << '\n';
+        // get all used compare branch, detect correlated query
+        outs().write_escaped(F.getName()) << '\n';
+        for (auto& Inst : TargetCmpInst) {
+            outs() << *Inst << '\n';
+            outs() << "Used:" << '\n';
+            for (auto *U : Inst->users()) {
+                if (!isa<Instruction>(&*U)) {
+                    outs() << "Not A Instruction: " << *U << '\n';
+                    continue;
                 }
-                outs() << "End Used" << '\n' << '\n';
-                correlationDetect(&F, Inst);
+                outs() << *cast<Instruction>(&*U) << '\n';
             }
-            outs() << "\n" << "\n";
-            return false;
-  	}
+            outs() << "End Used" << '\n' << '\n';
+            correlationDetect(&F, Inst, BlockInstMap);
+        }
+        outs() << "\n" << "\n";
+        return false;
+    }
 };
 } // namespace
 
