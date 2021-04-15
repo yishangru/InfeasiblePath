@@ -1,0 +1,21 @@
+Here are 3 more benchmarks to try running your infeasible path detection on!
+
+infeasible_paths_test.c is my writeup of the example from the paper.
+bzip2 is from SPEC2006, so don't distribute that any farther.
+LULESH is from https://github.com/LLNL/LULESH , but I ripped the build system out because it was unnecessary ;)
+
+
+They're all easy to compile as well, as you can see from these example commands:
+
+clang infeasible_paths_test.c -o infeasible_paths_test
+
+cd spec_bzip2_src && clang *.c -o bzip
+cd ..
+
+cd LULESH && clang++ -DUSE_MPI=0 *.cc -o lulesh
+cd ..
+
+
+
+Good luck!
+-Nathan
