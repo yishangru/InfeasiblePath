@@ -161,6 +161,7 @@ enum QueryAnswer {
 };
 
 struct Query {
+  std::size_t Id;
   Value* Operand1;
   Value* Operand2;
   CmpInst::Predicate QueryPredicate;
@@ -169,39 +170,44 @@ struct Query {
 /*
  * QueryReference: position in vector
  * QueryRecord: vector storing queries
- * BB: current basic block
- * BlockQueryAnswerMap: BasicBlock -> Query -> Answers
- * QuerySubstituteMap: Query -> BasicBlock -> Query
+ * BlockQueryAnswerMap: Instruction -> Query -> Answers
+ * QuerySubstituteMap: Query Id -> Instruction -> Query
  */
 
 std::size_t addQuery(std::vector<Query>& QueryRecord, Value* Operand1, Value* Operand2, CmpInst::Predicate QueryPredicate) {
   std::size_t Id = QueryRecord.size();
-  if (isa<ConstantInt>(Operand1)) {
-
+  if (!isa<ConstantInt>(Operand2)) {
+      outs() << "Second Operand Not As Constant" << '\n';
   }
-  QueryRecord.push_back({Operand1, Operand2, QueryPredicate});
+  QueryRecord.push_back({Id, Operand1, Operand2, QueryPredicate});
   return Id;
 }
 
-void correlationDetect(Function *F, CmpInst* CompInst, std::unordered_map<BasicBlock*, std::unordered_set<Instruction*>>& BlockInstMap) {
+void correlationDetect(Function *F, CmpInst* CompInst) {
   std::vector<Query> QueryRecord(150);
-  std::unordered_map<BasicBlock*, std::unordered_map<std::size_t, std::unordered_set<QueryAnswer, std::hash<int>>>> BlockQueryAnswerMap;
-  std::unordered_map<std::size_t, std::unordered_map<BasicBlock*, std::size_t>> QuerySubstituteMap;
+  std::unordered_map<Instruction*, std::unordered_map<std::size_t, std::unordered_set<QueryAnswer, std::hash<int>>>> InstQueryAnswerMap;
+  std::unordered_map<std::size_t, std::unordered_map<Instruction*, std::size_t>> QuerySubstituteMap;
+
+  // swap for initial query
+  Value* Operand1 = CompInst->getOperand(0);
+  Value* Operand2 = CompInst->getOperand(1);
+  CmpInst::Predicate CompPredicate = CompInst->getPredicate();
+  if (isa<ConstantInt>(Operand1)) {
+    Value* Temp = Operand1;
+    Operand1 = Operand2;
+    Operand2 = Temp;
+    CompPredicate = CompInst->getSwappedPredicate();
+  }
 
   // step 1: query correlation detection
-  std::size_t InitialQueryID = addQuery(QueryRecord, CompInst->getOperand(0), CompInst->getOperand(1), CompInst->getPredicate());
-
+  std::size_t InitialQueryID = addQuery(QueryRecord, Operand1, Operand2, CompPredicate);
 
   // step 2: global query answer
 
   // step 3: generate infeasible path
-
-  // step 4: generate def-use pair
-
-  // delete un-used def-use pair
 }
 
-void substituteQuery(std::size_t QueryReference, std::vector<Query>& QueryRecord, BasicBlock* BB, std::unordered_map<BasicBlock*, std::unordered_map<std::size_t, std::unordered_set<QueryAnswer, std::hash<int>>>> &BlockQueryAnswerMap, std::unordered_map<std::size_t, std::unordered_map<BasicBlock*, std::size_t>> &QuerySubstituteMap) {
+void substituteQuery(std::size_t QueryReference, std::vector<Query>& QueryRecord, Instruction* IN, std::unordered_map<Instruction*, std::unordered_map<std::size_t, std::unordered_set<QueryAnswer, std::hash<int>>>> &InstQueryAnswerMap, std::unordered_map<std::size_t, std::unordered_map<Instruction*, std::size_t>> &QuerySubstituteMap) {
 
   return;
 }
@@ -221,19 +227,13 @@ struct InfeasiblePath : public FunctionPass {
 
         // all target instruction
         std::vector<CmpInst*> TargetCmpInst;
-        // generate block -> inst
-        std::unordered_map<BasicBlock*, std::unordered_set<Instruction*>> BlockInstMap;
 
         for (Function::iterator BB = F.begin(), BBE = F.end(); BB != BBE; ++BB) {
 
             BasicBlock* BlockInFunc = &*BB;
-
-            BlockInstMap[BlockInFunc] = std::unordered_set<Instruction*>();
             for (BasicBlock::iterator IN = BB->begin(), INE = BB->end(); IN != INE; ++IN) {
 
                 Instruction* InstInBlock = &*IN;
-
-                BlockInstMap[BlockInFunc].insert(InstInBlock);
                 if (!whetherTargetCompInst(InstInBlock)) {
                     continue;
                 }
@@ -255,7 +255,7 @@ struct InfeasiblePath : public FunctionPass {
                 outs() << *cast<Instruction>(&*U) << '\n';
             }
             outs() << "End Used" << '\n' << '\n';
-            correlationDetect(&F, Inst, BlockInstMap);
+            correlationDetect(&F, Inst);
         }
         outs() << "\n" << "\n";
         return false;
