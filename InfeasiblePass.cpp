@@ -1,6 +1,7 @@
 #include "llvm/IR/Function.h"
 #include "llvm/IR/Module.h"
 #include "llvm/Pass.h"
+#include "llvm/IR/InstrTypes.h"
 #include "llvm/Support/raw_ostream.h"
 using namespace llvm;
 
@@ -30,7 +31,7 @@ struct InfeasiblePath : public FunctionPass {
 }
 
 char InfeasiblePath::ID = 0;
-static RegisterPass<InfeasiblePath> ("Infeasible Path", "Infeasible Path Pass");
+static RegisterPass<InfeasiblePath> X("Infeasible Path", "Infeasible Path Pass");
 
 
 namespace {
@@ -42,20 +43,23 @@ struct CheckMetaFuncInfo : public ModulePass {
 	bool runOnModule(Module &M) override {
             errs() << "CheckMetaFuncInfo Pass: ";
 
-            /*
+            /* get all predicate
             for (Module::)
             errs().write_escaped(F.getName()) << '\n';
+
 
             // Instruction* ii = &*i;
             // errs() << *ii << "\n";
             uint64_t
 
             */
-
+            for (Module::iterator f = M.begin(), e = M.end(); f != e; ++i) {
+            	errs().write_escaped(f->getName()) << '\n';
+            }
             return false;
 	}
 };
 }
 
 char CheckMetaFuncInfo::ID = 1;
-static RegisterPass<CheckMetaFuncInfo> X("Meta Info", "Function Meta Pass");
+static RegisterPass<CheckMetaFuncInfo> Y("Meta Info", "Function Meta Pass");
