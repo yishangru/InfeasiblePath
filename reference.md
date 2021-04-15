@@ -16,3 +16,4 @@ bin/clang -S -emit-llvm ../llvm/lib/Transforms/InfeasiblePath/test/sample.c -o .
 
 2. LLVM run pass
 bin/opt -load lib/LLVMInfeasiblePath.so -MetaInfo -disable-output ../llvm/lib/Transforms/InfeasiblePath/test/sample-no.ll
+bin/opt -load lib/LLVMInfeasiblePath.so -InfeasiblePath -disable-output ../llvm/lib/Transforms/InfeasiblePath/test/sample-no.ll
