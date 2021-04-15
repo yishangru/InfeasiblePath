@@ -53,8 +53,18 @@ if.then9:                                         ; preds = %if.end7
   br label %if.end10
 
 if.end10:                                         ; preds = %if.then9, %if.end7
-  %4 = load i32, i32* %retval1, align 4
-  ret i32 %4
+  %4 = load i32, i32* %b, align 4
+  %5 = load i32, i32* %c, align 4
+  %cmp11 = icmp slt i32 %4, %5
+  br i1 %cmp11, label %if.then12, label %if.end13
+
+if.then12:                                        ; preds = %if.end10
+  store i32 25, i32* %retval1, align 4
+  br label %if.end13
+
+if.end13:                                         ; preds = %if.then12, %if.end10
+  %6 = load i32, i32* %retval1, align 4
+  ret i32 %6
 }
 
 ; Function Attrs: noinline nounwind optnone uwtable

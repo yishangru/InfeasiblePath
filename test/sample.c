@@ -20,6 +20,10 @@ int condition_branch () {
 		c = 5;
 	}
 
+        if (b < c) {
+                retval = 25;
+        }
+
 	return retval;
 }
 
