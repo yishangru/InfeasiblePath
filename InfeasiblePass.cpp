@@ -22,15 +22,6 @@ static std::unordered_map<CmpInst::Predicate, std::string, std::hash<unsigned in
     {CmpInst::Predicate::ICMP_SLE, "Less or Equal"},
 };
 
-static void printInfo(uint32_t BranchCount, uint32_t IntBranchCount, uint32_t IntTargetBranchCount, std::unordered_map<CmpInst::Predicate, uint32_t, std::hash<unsigned int>> & PredicateBranchCount) {
-  outs() << "Func Branch: " << BranchCount << "\n";
-  outs() << "Func Integer Branch: " << IntBranchCount << "\n";
-  outs() << "Func Target Integer Branch: " << IntTargetBranchCount << "\n";
-  for (auto& Pair : PredicateBranchCount) {
-    outs() << PredicateStringMap[Pair.first] << ": " << Pair.second << "\n";
-  }
-}
-
 static bool whetherCompInst(Instruction* InstructionCheck) {
     if (!isa<CmpInst>(InstructionCheck)) {
         return false;
@@ -72,6 +63,93 @@ static bool whetherTargetCompInst(Instruction* InstructionCheck) {
     return true;
 }
 
+namespace {
+// pass for collect information - function count, code length, etc.
+void printInfo(uint32_t BranchCount, uint32_t IntBranchCount, uint32_t IntTargetBranchCount, std::unordered_map<CmpInst::Predicate, uint32_t, std::hash<unsigned int>> & PredicateBranchCount) {
+  outs() << "Func Branch: " << BranchCount << "\n";
+  outs() << "Func Integer Branch: " << IntBranchCount << "\n";
+  outs() << "Func Target Integer Branch: " << IntTargetBranchCount << "\n";
+  for (auto& Pair : PredicateBranchCount) {
+    outs() << PredicateStringMap[Pair.first] << ": " << Pair.second << "\n";
+  }
+}
+
+struct CheckMetaFuncInfo : public ModulePass {
+  static char ID;
+  CheckMetaFuncInfo() : ModulePass(ID) {}
+
+  bool runOnModule(Module &M) override {
+    outs() << "CheckMetaFuncInfo Pass: " << "\n";
+
+    uint32_t ModuleBranchCount = 0;
+    uint32_t ModuleIntBranchCount = 0;
+    uint32_t ModuleIntTargetBranchCount = 0;
+    std::unordered_map<CmpInst::Predicate, uint32_t, std::hash<unsigned int>> ModulePredicateBranchCount;
+
+    // get all predicate
+    for (Module::iterator F = M.begin(), FE = M.end(); F != FE; ++F) {
+      outs().write_escaped(F->getName()) << '\n';
+
+      uint32_t FuncBranchCount = 0;
+      uint32_t FuncIntBranchCount = 0;
+      uint32_t FuncIntTargetBranchCount = 0;
+      std::unordered_map<CmpInst::Predicate, uint32_t, std::hash<unsigned int>> FuncPredicateBranchCount;
+
+      for (Function::iterator BB = F->begin(), BBE = F->end(); BB != BBE; ++BB) {
+        for (BasicBlock::iterator IN = BB->begin(), INE = BB->end(); IN != INE; ++IN) {
+          if (!whetherCompInst(&*IN)) {
+            continue;
+          }
+
+          outs() << *IN << "\n"; // print all branch
+          FuncBranchCount++;
+
+          if (!whetherIntCompInst(&*IN)) {
+            continue;
+          }
+
+          outs() << "Int predicate: " << "\n";
+          FuncIntBranchCount++;
+
+          if (!whetherTargetCompInst(&*IN)) {
+            continue;
+          }
+
+          FuncIntTargetBranchCount++;
+
+          // update predicate profile
+          CmpInst* CompInst = cast<CmpInst>(&*IN);
+          CmpInst::Predicate InstPredicate = CompInst->getPredicate();
+
+          if (FuncPredicateBranchCount.find(InstPredicate) == FuncPredicateBranchCount.end()) {
+            FuncPredicateBranchCount[InstPredicate] = 0;
+          }
+          FuncPredicateBranchCount[InstPredicate]++;
+        }
+      }
+
+      ModuleBranchCount += FuncBranchCount;
+      ModuleIntBranchCount += FuncIntBranchCount;
+      ModuleIntTargetBranchCount += FuncIntTargetBranchCount;
+      for (auto& Pair : FuncPredicateBranchCount) {
+        if (ModulePredicateBranchCount.find(Pair.first) == ModulePredicateBranchCount.end()) {
+          ModulePredicateBranchCount[Pair.first] = 0;
+        }
+        ModulePredicateBranchCount[Pair.first] += Pair.second;
+      }
+
+      printInfo(FuncBranchCount, FuncIntBranchCount, FuncIntTargetBranchCount, FuncPredicateBranchCount);
+      outs() << "End of Function: " << F->getName() << '\n' << '\n';
+    }
+
+    outs() << '\n' << '\n';
+    outs() << "Module Summary:" << '\n';
+    printInfo(ModuleBranchCount, ModuleIntBranchCount, ModuleIntTargetBranchCount, ModulePredicateBranchCount);
+
+    return false;
+  }
+};
+} // namespace
 
 namespace {
 
@@ -87,6 +165,39 @@ struct Query {
   Value* Operand2;
   CmpInst::Predicate QueryPredicate;
 };
+
+/*
+ * QueryReference: position in vector
+ * QueryRecord: vector storing queries
+ * BB: current basic block
+ * BlockQueryAnswerMap: BasicBlock -> Query -> Answers
+ * QuerySubstituteMap: Query -> BasicBlock -> Query
+ */
+
+void correlationDetect(Function *F, CmpInst* CompInst) {
+  std::vector<Query> QueryRecord(100);
+  std::unordered_map<BasicBlock*, std::unordered_map<std::size_t, std::unordered_set<QueryAnswer, std::hash<int>>>> BlockQueryAnswerMap;
+  std::unordered_map<std::size_t, std::unordered_map<BasicBlock*, std::size_t>> QuerySubstituteMap;
+
+  // step 1: query
+
+  // step 2: global query answer
+
+  // step 3: generate infeasible path
+
+  // step 4: generate def-use pair
+
+  // delete un-used def-use pair
+}
+
+void substituteQuery(std::size_t QueryReference, std::vector<Query>& QueryRecord, BasicBlock* BB, std::unordered_map<BasicBlock*, std::unordered_map<std::size_t, std::unordered_set<QueryAnswer, std::hash<int>>>> &BlockQueryAnswerMap, std::unordered_map<std::size_t, std::unordered_map<BasicBlock*, std::size_t>> &QuerySubstituteMap) {
+
+  return;
+}
+
+void resolveQuery(std::size_t QueryReference, std::vector<Query>& QueryRecord, BasicBlock* BB, std::unordered_map<BasicBlock*, std::unordered_map<std::size_t, std::unordered_set<QueryAnswer, std::hash<int>>>> &BlockQueryAnswerMap) {
+  return;
+}
 
 // Infeasible Pass - The first implementation, without getAnalysisUsage.
 struct InfeasiblePath : public FunctionPass {
@@ -109,7 +220,7 @@ struct InfeasiblePath : public FunctionPass {
                 }
             }
 
-            // get all used compare branch
+            // get all used compare branch, detect correlated query
             outs().write_escaped(F.getName()) << '\n';
             for (auto& Inst : TargetCmpInst) {
                 outs() << *Inst << '\n';
@@ -122,127 +233,13 @@ struct InfeasiblePath : public FunctionPass {
                     outs() << *cast<Instruction>(&*U) << '\n';
                 }
                 outs() << "End Used" << '\n' << '\n';
+                correlationDetect(&F, Inst);
             }
             outs() << "\n" << "\n";
-
-            // step 1: query
-
-            // step 2: global query answer
-
-            // step 3: generate infeasible path
-
-            // step 4: generate def-use pair
-
-            // delete un-used def-use pair
-
             return false;
   	}
 };
 } // namespace
-
-/*
- * QueryReference: position in vector
- * QueryRecord: vector storing queries
- * BB: current basic block
- * BlockQueryAnswerMap: BasicBlock -> Query -> Answers
- * QuerySubstituteMap: Query -> BasicBlock -> Query
- */
-
-/*
-static std::size_t substituteQuery(std::size_t QueryReference, std::vector<Query>& QueryRecord, BasicBlock* BB, std::unordered_map<BasicBlock*, std::unordered_map<std::size_t, std::unordered_set<QueryAnswer, std::hash<int>>>> &BlockQueryAnswerMap, std::unordered_map<std::size_t, std::unordered_map<BasicBlock*, std::size_t>> &QuerySubstituteMap) {
-
-    return QueryReference;
-}
-*/
-
-/*
-static QueryAnswer resolveQuery(std::size_t QueryReference, std::vector<Query>& QueryRecord, BasicBlock* BB, std::unordered_map<BasicBlock*, std::unordered_map<std::size_t, std::unordered_set<QueryAnswer, std::hash<int>>>> &BlockQueryAnswerMap) {
-    return QueryAnswer::UNAVAIL;
-}
-*/
-
-
-
-
-namespace {
-// pass for collect information - function count, code length, etc.
-struct CheckMetaFuncInfo : public ModulePass {
-	static char ID;
-	CheckMetaFuncInfo() : ModulePass(ID) {}
-
-	bool runOnModule(Module &M) override {
-            outs() << "CheckMetaFuncInfo Pass: " << "\n";
-
-            uint32_t ModuleBranchCount = 0;
-            uint32_t ModuleIntBranchCount = 0;
-            uint32_t ModuleIntTargetBranchCount = 0;
-            std::unordered_map<CmpInst::Predicate, uint32_t, std::hash<unsigned int>> ModulePredicateBranchCount;
-
-            // get all predicate
-            for (Module::iterator F = M.begin(), FE = M.end(); F != FE; ++F) {
-            	outs().write_escaped(F->getName()) << '\n';
-
-                uint32_t FuncBranchCount = 0;
-                uint32_t FuncIntBranchCount = 0;
-                uint32_t FuncIntTargetBranchCount = 0;
-                std::unordered_map<CmpInst::Predicate, uint32_t, std::hash<unsigned int>> FuncPredicateBranchCount;
-
-                for (Function::iterator BB = F->begin(), BBE = F->end(); BB != BBE; ++BB) {
-                    for (BasicBlock::iterator IN = BB->begin(), INE = BB->end(); IN != INE; ++IN) {
-                        if (!whetherCompInst(&*IN)) {
-                            continue;
-                        }
-
-                        outs() << *IN << "\n"; // print all branch
-                        FuncBranchCount++;
-
-                        if (!whetherIntCompInst(&*IN)) {
-                            continue;
-                        }
-
-                        outs() << "Int predicate: " << "\n";
-                        FuncIntBranchCount++;
-
-                        if (!whetherTargetCompInst(&*IN)) {
-                            continue;
-                        }
-
-                        FuncIntTargetBranchCount++;
-
-                        // update predicate profile
-                        CmpInst* CompInst = cast<CmpInst>(&*IN);
-                        CmpInst::Predicate InstPredicate = CompInst->getPredicate();
-
-                        if (FuncPredicateBranchCount.find(InstPredicate) == FuncPredicateBranchCount.end()) {
-                            FuncPredicateBranchCount[InstPredicate] = 0;
-                        }
-                        FuncPredicateBranchCount[InstPredicate]++;
-                    }
-                }
-
-                ModuleBranchCount += FuncBranchCount;
-                ModuleIntBranchCount += FuncIntBranchCount;
-                ModuleIntTargetBranchCount += FuncIntTargetBranchCount;
-                for (auto& Pair : FuncPredicateBranchCount) {
-                    if (ModulePredicateBranchCount.find(Pair.first) == ModulePredicateBranchCount.end()) {
-                        ModulePredicateBranchCount[Pair.first] = 0;
-                    }
-                    ModulePredicateBranchCount[Pair.first] += Pair.second;
-                }
-
-                printInfo(FuncBranchCount, FuncIntBranchCount, FuncIntTargetBranchCount, FuncPredicateBranchCount);
-                outs() << "End of Function: " << F->getName() << '\n' << '\n';
-            }
-
-            outs() << '\n' << '\n';
-            outs() << "Module Summary:" << '\n';
-            printInfo(ModuleBranchCount, ModuleIntBranchCount, ModuleIntTargetBranchCount, ModulePredicateBranchCount);
-
-            return false;
-	}
-};
-} // namespace
-
 
 // register pass
 char InfeasiblePath::ID = 0;
