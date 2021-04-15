@@ -300,23 +300,57 @@ struct InfeasiblePath : public FunctionPass {
         errs() << "Infeasible Path Pass: ";
         errs().write_escaped(F.getName()) << '\n';
 
+        LLVMContext& Context = F.getContext();
         // all target instruction
         std::vector<CmpInst*> TargetCmpInst;
-
         for (Function::iterator BB = F.begin(), BBE = F.end(); BB != BBE; ++BB) {
-
-            BasicBlock* BlockInFunc = &*BB;
             for (BasicBlock::iterator IN = BB->begin(), INE = BB->end(); IN != INE; ++IN) {
-
                 Instruction* InstInBlock = &*IN;
                 if (!whetherTargetCompInst(InstInBlock)) {
                     continue;
                 }
                 CmpInst* CompInst = cast<CmpInst>(InstInBlock);
                 TargetCmpInst.push_back(CompInst);
+
+                /* for test */
+                outs() << *CompInst << '\n';
+
+                Value* Operand1 = CompInst->getOperand(0);
+                Value* Operand2 = CompInst->getOperand(1);
+                CmpInst::Predicate CompPredicate = CompInst->getPredicate();
+                if (isa<ConstantInt>(Operand1)) {
+                  Value* Temp = Operand1;
+                  Operand1 = Operand2;
+                  Operand2 = Temp;
+                  CompPredicate = CompInst->getSwappedPredicate();
+                }
+
+                int64_t op2value = cast<ConstantInt>(Operand2)->getSExtValue();
+
+                Query Q1 = {Operand1, Operand2, CompPredicate};
+                Type *i32_type = IntegerType::getInt32Ty(Context);
+                Value* GenerateConst1 = ConstantInt::get(i32_type, op2value, true);
+                Value* GenerateConst2 = ConstantInt::get(i32_type, op2value + 20, true);
+
+                Query Same = {Operand1, GenerateConst1, CompPredicate};
+                CmpInst::Predicate DifferentPredicate = CmpInst::Predicate::ICMP_SGE;
+                if (CompPredicate == DifferentPredicate) {
+                    DifferentPredicate = CmpInst::Predicate::ICMP_NE;
+                }
+                Query PreChange = {Operand1, GenerateConst1, DifferentPredicate};
+                Query Op2Change = {Operand1, GenerateConst2, CompPredicate};
+                outs() << "Q1 Hash : " << QueryHashFunction{}(Q1);
+                outs() << "Same Hash : " << QueryHashFunction{}(Same);
+                outs() << "PreChange Hash : " << QueryHashFunction{}(PreChange);
+                outs() << "PreChange Hash : " << QueryHashFunction{}(Op2Change);
+                assert(Q1 == Same && QueryHashFunction{}(Q1) == QueryHashFunction{}(Same));
+                assert(!(Q1 == PreChange));
+                assert(!(Q1 == Op2Change));
+                assert(!(PreChange == Op2Change));
             }
         }
 
+        /*
         // get all used compare branch, detect correlated query
         outs().write_escaped(F.getName()) << '\n';
         for (auto& Inst : TargetCmpInst) {
@@ -332,6 +366,7 @@ struct InfeasiblePath : public FunctionPass {
             outs() << "End Used" << '\n' << '\n';
             correlationDetect(&F, Inst);
         }
+        */
         outs() << "\n" << "\n";
         return false;
     }
