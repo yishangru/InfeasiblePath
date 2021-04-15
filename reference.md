@@ -25,7 +25,7 @@ bin/opt -load lib/LLVMInfeasiblePath.so -InfeasiblePath -disable-output ../llvm/
 
 
 ## Addition Tests
-
+1. Hash Test
 ```c++
     LLVMContext& Context = F.getContext();
     
