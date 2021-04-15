@@ -109,14 +109,21 @@ struct InfeasiblePath : public FunctionPass {
                 }
             }
 
+            // get all used compare branch
             outs().write_escaped(F.getName()) << '\n';
             for (auto& Inst : TargetCmpInst) {
                 outs() << *Inst << '\n';
+                outs() << "Used:" << '\n';
+                for (auto *U : Inst->users()) {
+                    if (!isa<Instruction>(&*U)) {
+                        outs() << "Not A Instruction: " << *U << '\n';
+                        continue;
+                    }
+                    outs() << *cast<Instruction>(&*U) << '\n';
+                }
+                outs() << "End Used" << '\n' << '\n';
             }
-            outs() << '\n';
-
-
-            // isa<Argument>(V) value*, cast<Instruction>(V)
+            outs() << "\n" << "\n";
 
             // step 1: query
 
