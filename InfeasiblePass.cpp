@@ -11,26 +11,26 @@ struct InfeasiblePath : public FunctionPass {
   	InfeasiblePath() : FunctionPass(ID) {}
 
   	bool runOnFunction(Function &F) override {
-    	errs() << "Infeasible Path Pass: ";
-    	errs().write_escaped(F.getName()) << '\n';
+            errs() << "Infeasible Path Pass: ";
+            errs().write_escaped(F.getName()) << '\n';
 
-    	// step 1: query
+            // step 1: query
 
-    	// step 2: global query answer
+            // step 2: global query answer
 
-    	// step 3: generate infeasible path
+            // step 3: generate infeasible path
 
-    	// step 4: generate def-use pair
+            // step 4: generate def-use pair
 
-    	// delete un-used def-use pair
+            // delete un-used def-use pair
 
-    	return false;
+            return false;
   	}
 };
 }
 
 char InfeasiblePath::ID = 0;
-static RegisterPass<InfeasiblePath> X("Infeasible Path", "Infeasible Path Pass");
+static RegisterPass<InfeasiblePath> ("Infeasible Path", "Infeasible Path Pass");
 
 
 namespace {
@@ -40,19 +40,19 @@ struct CheckMetaFuncInfo : public ModulePass {
 	CheckMetaFuncInfo() : ModulePass(ID) {}
 
 	bool runOnModule(Module &M) override {
-		errs() << "CheckMetaFuncInfo Pass: ";
+            errs() << "CheckMetaFuncInfo Pass: ";
 
-		/*
-		for (Module::)
-		errs().write_escaped(F.getName()) << '\n';
+            /*
+            for (Module::)
+            errs().write_escaped(F.getName()) << '\n';
 
-		// Instruction* ii = &*i;
-		// errs() << *ii << "\n";
-		uint64_t 
+            // Instruction* ii = &*i;
+            // errs() << *ii << "\n";
+            uint64_t
 
-		*/
-		
-		return false;
+            */
+
+            return false;
 	}
 };
 }
