@@ -206,6 +206,8 @@ public:
   Value* QOperand2;
   CmpInst::Predicate QPredicate;
 
+  Query() {}
+
   Query(Value* Operand1, Value* Operand2, CmpInst::Predicate CmpPredicate) {
       assert(isa<ConstantInt>(Operand2));
       this->QOperand1 = Operand1;
@@ -379,6 +381,13 @@ private:
   }
 };
 
+static std::unordered_map<Query::QueryAnswer, std::string, std::hash<int>> QueryAnswerStringMap {
+    {Query::QueryAnswer::UNAVAIL, "Not Avail"},
+    {Query::QueryAnswer::FALSE, "False"},
+    {Query::QueryAnswer::TRUE, "True"},
+    {Query::QueryAnswer::UNDEF, "Undef"},
+};
+
 typedef std::unordered_set<Query::QueryAnswer, std::hash<int>> QueryAnswerSet;
 typedef std::unordered_map<Query, QueryAnswerSet, Query::QueryHashFunction> QueryAnswerMap;
 typedef std::unordered_map <Instruction *, QueryAnswerMap> InstQueryAnswerMap;
@@ -465,7 +474,7 @@ void substituteQuery(Function *F,
                      InstQuerySubstituteMap& CurrentInstQuerySubstituteMap,
                      InstQuerySubstituteMap& CurrentInstQuerySubstituteReverseMap) {
 
-  if (!isa<ConstantInt>(Q.QOperand1)) {
+  if (isa<ConstantInt>(Q.QOperand1)) {
       outs() << "Query Should Be Resolved At Previous Block" << '\n';
       assert(false);
   }
@@ -504,11 +513,7 @@ void substituteQuery(Function *F,
 
                       Query::QueryAnswer Answer = Query::resolveQuery(QueryUpdate);
                       assert(Answer == Query::QueryAnswer::TRUE || Answer == Query::QueryAnswer::FALSE);
-                      std::string AnswerString = "True";
-                      if (Answer == Query::QueryAnswer::FALSE) {
-                          AnswerString = "False";
-                      }
-                      outs() << "Query Resolve In Store: " << Query::queryString(QueryUpdate) << " " << '\n' << "At " << QOperandStoreInst->getParent()->getName() << " -- " << *QOperandStoreInst << '\n' << '\n';
+                      outs() << "Query Resolve In Store (" << QueryAnswerStringMap[Answer] << "): " << Query::queryString(QueryUpdate) << " " << '\n' << "At " << QOperandStoreInst->getParent()->getName() << " -- " << *QOperandStoreInst << '\n' << '\n';
                       updateQueryAnswerMap(QueryUpdate, Answer, PreviousInst, CurrentInstQueryAnswerMap);
 
                   } else {
@@ -553,8 +558,9 @@ void substituteQuery(Function *F,
               outs() << "Query Answer Set Not As Empty" << '\n';
               assert(false);
           }
-          outs() << "Query Resolve In Entry: " << Query::queryString(Q) << " UNDEF" << '\n' << "At " << CurrentInst->getParent()->getName() << " -- " << *CurrentInst << '\n' << '\n';
-          CurrentQueryAnswerSet.insert(Query::QueryAnswer::UNDEF);
+          Query::QueryAnswer CurAnswer = Query::QueryAnswer::UNDEF;
+          outs() << "Query Resolve In Entry: " << Query::queryString(Q) << QueryAnswerStringMap[CurAnswer] << '\n' << "At " << CurrentInst->getParent()->getName() << " -- " << *CurrentInst << '\n' << '\n';
+          CurrentQueryAnswerSet.insert(CurAnswer);
 
       } else {
           BasicBlock* CurrentBlock = CurrentInst->getParent();
@@ -590,13 +596,15 @@ void substituteQuery(Function *F,
                                 // false condition
                             }
                             //TODO: Query Inference with Subsuming
-                            outs() << "Query Resolve In Subsuming Constant: " << Query::queryString(Q) << " UNDEF" << '\n' << "At " << PredBranch->getParent()->getName() << " -- " << *PredBranch << '\n' << '\n';
-                            updateQueryAnswerMap(QueryUpdate, Query::QueryAnswer::UNDEF, PredBranch, CurrentInstQueryAnswerMap);
+                            Query::QueryAnswer CurAnswer = Query::QueryAnswer::UNDEF;
+                            outs() << "Query Resolve In Subsuming Constant (" << QueryAnswerStringMap[CurAnswer] << "): " << Query::queryString(Q) << '\n' << "At " << PredBranch->getParent()->getName() << " -- " << *PredBranch << '\n' << '\n';
+                            updateQueryAnswerMap(QueryUpdate, CurAnswer, PredBranch, CurrentInstQueryAnswerMap);
 
                         } else {
 
-                            outs() << "Query Resolve In Subsuming Non Constant: " << Query::queryString(Q) << " UNDEF" << '\n' << "At " << PredBranch->getParent()->getName() << " -- " << *PredBranch << '\n' << '\n';
-                            updateQueryAnswerMap(QueryUpdate, Query::QueryAnswer::UNDEF, PredBranch, CurrentInstQueryAnswerMap);
+                            Query::QueryAnswer CurAnswer = Query::QueryAnswer::UNDEF;
+                            outs() << "Query Resolve In Subsuming Non Constant (" << QueryAnswerStringMap[CurAnswer] << "): " << Query::queryString(Q) << '\n' << "At " << PredBranch->getParent()->getName() << " -- " << *PredBranch << '\n' << '\n';
+                            updateQueryAnswerMap(QueryUpdate, CurAnswer, PredBranch, CurrentInstQueryAnswerMap);
                         }
                     }
                     updateQuerySubstituteRelation(Q, QueryUpdate, CurrentInst, PredTerminator, CurrentInstQuerySubstituteMap, CurrentInstQuerySubstituteReverseMap);
@@ -649,7 +657,59 @@ struct InfeasiblePath : public FunctionPass {
       substituteQuery(F, TestQuery, CompInst, CurInstQueryAnswerMap, CurStep1WorkList, CurInstQuerySubstituteMap, CurReverseInstQuerySubstituteMap);
 
       while (!CurStep1WorkList.empty()) {
-              
+          // pick one
+          Instruction* CurrentInst;
+          Query CurrentQuery;
+          for (auto & QSetPair : CurStep1WorkList) {
+              CurrentInst = QSetPair.first;
+              auto & QSet = QSetPair.second;
+              assert(!QSet.empty());
+              // pick one query
+              for (auto & Q : QSet) {
+                  CurrentQuery = Q;
+                  break;
+              }
+              break;
+          }
+
+          // remove them
+          CurStep1WorkList[CurrentInst].erase(CurrentQuery);
+          if (CurStep1WorkList[CurrentInst].empty()) {
+              CurStep1WorkList.erase(CurrentInst);
+          }
+          outs() << "Work List Remove : [ " << CurrentInst->getParent()->getName() << " ] : " << *CurrentInst << " -- " << Query::queryString(CurrentQuery) << "\n\n";
+
+          Query::QueryAnswer CurQueryAnswer = Query::QueryAnswer::UNAVAIL;
+          if (CurInstQueryAnswerMap.find(CurrentInst) != CurInstQueryAnswerMap.end()) {
+              if (CurInstQueryAnswerMap[CurrentInst].find(CurrentQuery) != CurInstQueryAnswerMap[CurrentInst].end()) {
+                  auto& AVAnswerSet = CurInstQueryAnswerMap[CurrentInst][CurrentQuery];
+                  assert(AVAnswerSet.size() <= 1);
+                  if (AVAnswerSet.size() == 1) {
+                      if (AVAnswerSet.find(Query::QueryAnswer::TRUE) != AVAnswerSet.end()) {
+                          CurQueryAnswer = Query::QueryAnswer::TRUE;
+                      } else if (AVAnswerSet.find(Query::QueryAnswer::FALSE) != AVAnswerSet.end()) {
+                          CurQueryAnswer = Query::QueryAnswer::FALSE;
+                      } else if (AVAnswerSet.find(Query::QueryAnswer::UNDEF) != AVAnswerSet.end()) {
+                          CurQueryAnswer = Query::QueryAnswer::UNDEF;
+                      }
+                      assert(CurQueryAnswer != Query::QueryAnswer::UNAVAIL);
+                  }
+              }
+          }
+
+          if (CurQueryAnswer == Query::QueryAnswer::UNAVAIL) {
+              // raise query
+              CurQueryAnswer = Query::resolveQuery(CurrentQuery);
+              if (CurQueryAnswer == Query::QueryAnswer::UNAVAIL) {
+                  outs() << "Raise Query" << "\n";
+                  substituteQuery(F, CurrentQuery, CurrentInst, CurInstQueryAnswerMap, CurStep1WorkList, CurInstQuerySubstituteMap, CurReverseInstQuerySubstituteMap);
+              } else {
+                  outs() << "Query Already Resolved (" << QueryAnswerStringMap[CurQueryAnswer] << ")\n";
+                  updateQueryAnswerMap(CurrentQuery, CurQueryAnswer, CurrentInst, CurInstQueryAnswerMap);
+              }
+          } else {
+              outs() << "Query Already Resolved (" << QueryAnswerStringMap[CurQueryAnswer] << ")\n";
+          }
       }
 
       outs() << "WorkList Cleared, Step 1 Finish" << '\n';
