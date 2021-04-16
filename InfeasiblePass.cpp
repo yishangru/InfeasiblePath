@@ -391,21 +391,38 @@ typedef std::unordered_map<Instruction*, std::unordered_map<Instruction*, Substi
 typedef std::unordered_map<Instruction*, std::unordered_set<Query, Query::QueryHashFunction>> Step1WorkList;
 typedef std::unordered_map<Instruction*, std::unordered_set<Query, Query::QueryHashFunction>> Step2WorkList;
 
-// update worklist and query answer map
-void updateStep1WorklistAndQueryAnswerMap(Query& SubstituteQuery, Instruction* CandidateInst, InstQueryAnswerMap& CurInstQueryAnswerMap, Step1WorkList& CurWorkList) {
-  if (CurInstQueryAnswerMap.find(CandidateInst) == CurInstQueryAnswerMap.end()) {
-    CurInstQueryAnswerMap[CandidateInst] = QueryAnswerMap();
-  }
-  QueryAnswerMap& CandidateQueryAnswerMap = CurInstQueryAnswerMap[CandidateInst];
-  if (CandidateQueryAnswerMap.find(SubstituteQuery) == CandidateQueryAnswerMap.end()) {
-    // insert new query and update work list
-    CandidateQueryAnswerMap[SubstituteQuery] = QueryAnswerSet();
-    if (CurWorkList.find(CandidateInst) == CurWorkList.end()) {
-      CurWorkList[CandidateInst] = std::unordered_set<Query, Query::QueryHashFunction>();
+
+// update query answer
+void updateQueryAnswerMap(Query& SubstituteQuery, Query::QueryAnswer Answer, Instruction* CandidateInst, InstQueryAnswerMap& CurInstQueryAnswerMap) {
+    assert(Answer != Query::QueryAnswer::UNAVAIL);
+    if (CurInstQueryAnswerMap.find(CandidateInst) == CurInstQueryAnswerMap.end()) {
+      CurInstQueryAnswerMap[CandidateInst] = QueryAnswerMap();
     }
-    CurWorkList[CandidateInst].insert(SubstituteQuery);
+    QueryAnswerMap& CandidateQueryAnswerMap = CurInstQueryAnswerMap[CandidateInst];
+    if (CandidateQueryAnswerMap.find(SubstituteQuery) == CandidateQueryAnswerMap.end()) {
+      CandidateQueryAnswerMap[SubstituteQuery] = QueryAnswerSet();
+    }
+    CandidateQueryAnswerMap[SubstituteQuery].insert(Answer);
+}
+
+
+// update worklist and query answer map
+void updateStep1Worklist(Query& SubstituteQuery, Instruction* CandidateInst, InstQueryAnswerMap& CurInstQueryAnswerMap, Step1WorkList& CurWorkList) {
+    if (CurInstQueryAnswerMap.find(CandidateInst) == CurInstQueryAnswerMap.end()) {
+        CurInstQueryAnswerMap[CandidateInst] = QueryAnswerMap();
+    }
+    QueryAnswerMap& CandidateQueryAnswerMap = CurInstQueryAnswerMap[CandidateInst];
+    if (CandidateQueryAnswerMap.find(SubstituteQuery) == CandidateQueryAnswerMap.end()) {
+        // insert new query and update work list
+        CandidateQueryAnswerMap[SubstituteQuery] = QueryAnswerSet();
+
+        if (CurWorkList.find(CandidateInst) == CurWorkList.end()) {
+            CurWorkList[CandidateInst] = std::unordered_set<Query, Query::QueryHashFunction>();
+        }
+        CurWorkList[CandidateInst].insert(SubstituteQuery);
   }
 }
+
 
 // update substitute mapping relationship
 void updateQuerySubstituteRelation(Query& Before, Query& After, Instruction* SuccInst, Instruction* PredInst, InstQuerySubstituteMap& CurInstQuerySubstituteMap, InstQuerySubstituteMap& CurInstQuerySubstituteReverseMap) {
@@ -438,6 +455,8 @@ void updateQuerySubstituteRelation(Query& Before, Query& After, Instruction* Suc
     BeforeAfterMap[Before].insert(After);
 }
 
+
+// perform query substitute
 void substituteQuery(Function *F,
                      Query& Q,
                      Instruction* CurrentInst,
@@ -483,6 +502,15 @@ void substituteQuery(Function *F,
                       outs() << "Store Constant : " << ConstantValue->getSExtValue() << '\n';
                       QueryUpdate = {ConstantValue, Q.QOperand2, Q.QPredicate};
 
+                      Query::QueryAnswer Answer = Query::resolveQuery(QueryUpdate);
+                      assert(Answer == Query::QueryAnswer::TRUE || Answer == Query::QueryAnswer::FALSE);
+                      std::string AnswerString = "True";
+                      if (Answer == Query::QueryAnswer::FALSE) {
+                          AnswerString = "False";
+                      }
+                      outs() << "Query Resolve In Store: " << Query::queryString(QueryUpdate) << " " << '\n' << "At " << QOperandStoreInst->getParent()->getName() << " -- " << *QOperandStoreInst << '\n' << '\n';
+                      updateQueryAnswerMap(QueryUpdate, Answer, PreviousInst, CurrentInstQueryAnswerMap);
+
                   } else {
                       if (!isa<Instruction>(StoreValue)) {
                           outs() << "Store Neither Instruction" << '\n';
@@ -501,11 +529,12 @@ void substituteQuery(Function *F,
           assert(false);
       }
       updateQuerySubstituteRelation(Q, QueryUpdate, CurrentInst, PreviousInst, CurrentInstQuerySubstituteMap, CurrentInstQuerySubstituteReverseMap);
-      updateStep1WorklistAndQueryAnswerMap(QueryUpdate, PreviousInst, CurrentInstQueryAnswerMap, CurrentStep1WorkList);
+      updateStep1Worklist(QueryUpdate, PreviousInst, CurrentInstQueryAnswerMap, CurrentStep1WorkList);
 
   } else {
       // instruction is at the boundary - entry (no previous block) or br
       if (CurrentInst->getParent() == (&F->getEntryBlock())) {
+          //TODO: update for checks, replace with above method
 
           outs() << "Current Inst As Entry, Not Forward" << '\n';
           // undef current query
@@ -524,12 +553,47 @@ void substituteQuery(Function *F,
               outs() << "Query Answer Set Not As Empty" << '\n';
               assert(false);
           }
-          outs() << "Query: " << Query::queryString(Q) << " UNDEF" << '\n' << "At " << CurrentInst->getParent()->getName() << " -- " << *CurrentInst << '\n' << '\n';
+          outs() << "Query Resolve In Entry: " << Query::queryString(Q) << " UNDEF" << '\n' << "At " << CurrentInst->getParent()->getName() << " -- " << *CurrentInst << '\n' << '\n';
           CurrentQueryAnswerSet.insert(Query::QueryAnswer::UNDEF);
 
       } else {
-          for (BasicBlock *Pred : predecessors(CurrentInst->getParent())) {
+          BasicBlock* CurrentBlock = CurrentInst->getParent();
+          for (BasicBlock *Pred : predecessors(CurrentBlock)) {
                 // check terminator for query replacement
+                Query QueryUpdate(Q);
+                Instruction* PredTerminator = Pred->getTerminator();
+                if (!isa<BranchInst>(PredTerminator)) {
+                    outs() << "Predcessor Terminator Not Branch : " << *PredTerminator << '\n';
+                }
+
+                BranchInst* PredBranch = cast<BranchInst>(PredTerminator);
+
+                // check correlations
+                if (PredBranch->isConditional()) {
+                    Value *Condition = PredBranch->getCondition();
+                    if (isa<CmpInst>(Condition)) {
+                        CmpInst* ConditionCompare = cast<CmpInst>(Condition);
+                        Value * Operand1 = ConditionCompare->getOperand(0);
+                        Value * Operand2 = ConditionCompare->getOperand(1);
+
+                        if (Operand1 == Q.QOperand1 || Operand2 == Q.QOperand1) {
+                            if (Operand1 == Q.QOperand1) {
+                                if (isa<ConstantInt>(Operand2)) {
+
+                                }
+                                if (CurrentBlock == PredBranch->getSuccessor(0)) {
+                                    // true condition
+                                } else {
+                                    // false condition
+                                }
+                            } else {
+
+                            }
+                        }
+                    }
+                }
+                updateQuerySubstituteRelation(Q, QueryUpdate, CurrentInst, PreviousInst, CurrentInstQuerySubstituteMap, CurrentInstQuerySubstituteReverseMap);
+                updateStep1Worklist(QueryUpdate, PreviousInst, CurrentInstQueryAnswerMap, CurrentStep1WorkList);
           }
       }
   }
