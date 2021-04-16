@@ -244,39 +244,57 @@ private:
   }
 };
 
-/*
- * QueryReference: position in vector
- * QueryRecord: vector storing queries
- * BlockQueryAnswerMap: Instruction -> Query -> Answers
- * QuerySubstituteMap: Query Id -> Instruction -> Query
- */
+typedef std::unordered_set<Query::QueryAnswer, std::hash<int>> QueryAnswerSet;
+typedef std::unordered_map<Query, QueryAnswerSet, Query::QueryHashFunction> QueryAnswerMap;
+typedef std::unordered_map <Instruction *, QueryAnswerMap> InstQueryAnswerMap;
+typedef std::unordered_map<Instruction*, std::unordered_set<Query, Query::QueryHashFunction>> Step1WorkList;
 
-std::size_t addQuery(std::vector<Query>& QueryRecord, Value* Operand1, Value* Operand2, CmpInst::Predicate QueryPredicate) {
-  std::size_t Id = QueryRecord.size();
-  if (!isa<ConstantInt>(Operand2)) {
-      outs() << "Second Operand Not As Constant" << '\n';
-  }
-  QueryRecord.push_back({Operand1, Operand2, QueryPredicate});
-  return Id;
+// inst -> query -> query
+typedef std::unordered_map<Instruction*, std::unordered_map<Query, std::unordered_set<Query, Query::QueryHashFunction>, Query::QueryHashFunction>> InstQuerySubstituteMap;
+
+void updateWorklist(Query& SubstituteQuery, Instruction* CandidateInst, InstQueryAnswerMap& CurInstQueryAnswerMap, Step1WorkList& CurWorkList) {
+    if (CurInstQueryAnswerMap.find(CandidateInst) == CurInstQueryAnswerMap.end()) {
+      CurInstQueryAnswerMap[CandidateInst] = QueryAnswerMap();
+    }
+    QueryAnswerMap& CandidateQueryAnswerMap = CurInstQueryAnswerMap[CandidateInst];
+    if (CandidateQueryAnswerMap.find(SubstituteQuery) == CandidateQueryAnswerMap.end()) {
+        // insert new query and update work list
+        CandidateQueryAnswerMap[SubstituteQuery] = QueryAnswerSet();
+        if (CurWorkList.find(CandidateInst) == CurWorkList.end()) {
+            CurWorkList[CandidateInst] = std::unordered_set<Query, Query::QueryHashFunction>();
+        }
+        CurWorkList[CandidateInst].insert(SubstituteQuery);
+    }
 }
 
-std::unordered_set<Instruction*> getPredecessorInst(Instruction* CurrentInst) {
-  std::unordered_set<Instruction*> PredecessorInst;
+void substituteQuery(Query& Q,
+                     Instruction* CurrentInst,
+                     std::unordered_map<Instruction*, std::unordered_set<std::size_t>>& WorkList,
+                     InstQueryAnswerMap& InstQueryAnswerMap) {
+
   if (CurrentInst->getPrevNonDebugInstruction()) {
-      PredecessorInst.insert(CurrentInst->getPrevNonDebugInstruction());
-      return PredecessorInst;
+      // instruction still in BasicBlock
+      Instruction * PreviousInst = CurrentInst->getPrevNonDebugInstruction();
+
+
+  } else {
+      // instruction is at the boundary
+
   }
-  // the inst is already the head of basic block - treat for condition correlation
-  BasicBlock* CurrentBlock = CurrentInst->getParent();
-}
-
-void substituteQuery(std::size_t QueryReference, std::vector<Query>& QueryRecord, Instruction* IN, std::unordered_map<Instruction*, std::unordered_map<std::size_t, std::unordered_set<Query::QueryAnswer, std::hash<int>>>> &InstQueryAnswerMap, std::unordered_map<std::size_t, std::unordered_map<Instruction*,  std::unordered_set<std::size_t>>> &QuerySubstituteMap) {
   return;
 }
 
-void resolveQuery(std::size_t QueryReference, std::vector<Query>& QueryRecord, Instruction* IN, std::unordered_map<Instruction*, std::unordered_map<std::size_t, std::unordered_set<Query::QueryAnswer, std::hash<int>>>> &InstQueryAnswerMap) {
-  return;
+bool resolveQuery(Query& Q, Instruction* CurrentInst) {
+    // two constant to resolve
+    return false;
 }
+
+/*
+* QueryReference: position in vector
+* QueryRecord: vector storing queries
+* BlockQueryAnswerMap: Instruction -> Query -> Answers
+* QuerySubstituteMap: Query Id -> Instruction -> Query
+*/
 
 // Infeasible Pass - The first implementation, without getAnalysisUsage.
 struct InfeasiblePath : public FunctionPass {
@@ -303,7 +321,6 @@ struct InfeasiblePath : public FunctionPass {
       //std::size_t InitialQueryID = addQuery(QueryRecord, Operand1, Operand2, CompPredicate);
 
       // query substitution in predecessors
-      std::unordered_set<Instruction*> InitialInstPredecessor = getPredecessorInst(CompInst);
 
       /*
       while (!WorkList.empty()) {
@@ -321,7 +338,6 @@ struct InfeasiblePath : public FunctionPass {
         errs().write_escaped(F.getName()) << '\n';
 
         // all target instruction
-        LLVMContext& Context = F.getContext();
         std::vector<CmpInst*> TargetCmpInst;
         for (Function::iterator BB = F.begin(), BBE = F.end(); BB != BBE; ++BB) {
             for (BasicBlock::iterator IN = BB->begin(), INE = BB->end(); IN != INE; ++IN) {
@@ -331,53 +347,6 @@ struct InfeasiblePath : public FunctionPass {
                 }
                 CmpInst* CompInst = cast<CmpInst>(InstInBlock);
                 TargetCmpInst.push_back(CompInst);
-
-              /* for hash test */
-              outs() << *CompInst << '\n';
-
-              Value* Operand1 = CompInst->getOperand(0);
-              Value* Operand2 = CompInst->getOperand(1);
-              CmpInst::Predicate CompPredicate = CompInst->getPredicate();
-              if (isa<ConstantInt>(Operand1)) {
-                Value* Temp = Operand1;
-                Operand1 = Operand2;
-                Operand2 = Temp;
-                CompPredicate = CompInst->getSwappedPredicate();
-              }
-
-              int64_t op2value = cast<ConstantInt>(Operand2)->getSExtValue();
-
-              Query Q1 = {Operand1, Operand2, CompPredicate};
-              Type *i32_type = IntegerType::getInt32Ty(Context);
-              Value* GenerateConst1 = ConstantInt::get(i32_type, op2value, true);
-              Value* GenerateConst2 = ConstantInt::get(i32_type, op2value + 20, true);
-
-              Query Same = {Operand1, GenerateConst1, CompPredicate};
-              CmpInst::Predicate DifferentPredicate = CmpInst::Predicate::ICMP_SGE;
-              if (CompPredicate == DifferentPredicate) {
-                DifferentPredicate = CmpInst::Predicate::ICMP_NE;
-              }
-              Query PreChange = {Operand1, GenerateConst1, DifferentPredicate};
-              Query Op2Change = {Operand1, GenerateConst2, CompPredicate};
-              outs() << "Q1 Hash : " << Query::QueryHashFunction{}(Q1);
-              outs() << "Same Hash : " << Query::QueryHashFunction{}(Same);
-              outs() << "PreChange Hash : " << Query::QueryHashFunction{}(PreChange);
-              outs() << "PreChange Hash : " << Query::QueryHashFunction{}(Op2Change);
-              assert(Q1 == Same && Query::QueryHashFunction{}(Q1) == Query::QueryHashFunction{}(Same));
-              assert(!(Q1 == PreChange));
-              assert(!(Q1 == Op2Change));
-              assert(!(PreChange == Op2Change));
-
-              std::unordered_set<Query, Query::QueryHashFunction> Checks;
-              Checks.insert(Q1);
-              assert(Checks.find(Same) != Checks.end());
-              assert(Checks.find(PreChange) == Checks.end());
-              assert(Checks.find(Op2Change) == Checks.end());
-              Checks.insert(PreChange);
-              assert(Checks.find(PreChange) != Checks.end());
-              assert(Checks.find(Op2Change) == Checks.end());
-              Checks.insert(Op2Change);
-              assert(Checks.find(Op2Change) != Checks.end());
             }
         }
 
