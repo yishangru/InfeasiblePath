@@ -258,9 +258,26 @@ public:
 
   static Query::QueryAnswer resolveQuery(Query& Q) {
     // two constant to resolve
-    if ((!isa<ConstantInt>(Q.QOperand1)) || (!isa<ConstantInt>(Q.QOperand2))) {
-      return Query::QueryAnswer::UNAVAIL;
+
+    assert(isa<ConstantInt>(Q.QOperand2));
+    if (!isa<ConstantInt>(Q.QOperand1)) {
+      // check whether Operand1 comes from strange operation or call
+      if (isa<LoadInst>(Q.QOperand1)) {
+          return Query::QueryAnswer::UNAVAIL;
+      }
+      //TODO: else if (isa<BinaryOperator>(Q.QOperand1)) {
+      //    BinaryOperator* BinaryOperand = cast<BinaryOperator>(Q.QOperand1);
+      //    if (BinaryOperand->getOpcode())
+      //}
+      if (!isa<Instruction>(Q.QOperand1)) {
+          outs() << "Not Instruction In Operand1 [" << Q.QOperand1->getName() << '\n';
+          assert(false);
+      }
+      Instruction* OpInst = cast<Instruction>(Q.QOperand1);
+      outs() << "Can Not Resolve : [ " << OpInst->getParent()->getName() << " ] : " << *OpInst << '\n';
+      return Query::QueryAnswer::UNDEF;
     }
+
     ConstantInt* ConstOp1 = cast<ConstantInt>(Q.QOperand1);
     ConstantInt* ConstOp2 = cast<ConstantInt>(Q.QOperand2);
 
@@ -480,9 +497,8 @@ void substituteQuery(Function *F,
               }
           }
       } else {
-
-          // should be some operation
-
+          //TODO: should be some operation, possible inference
+          assert(false);
       }
       updateQuerySubstituteRelation(Q, QueryUpdate, CurrentInst, PreviousInst, CurrentInstQuerySubstituteMap, CurrentInstQuerySubstituteReverseMap);
       updateStep1WorklistAndQueryAnswerMap(QueryUpdate, PreviousInst, CurrentInstQueryAnswerMap, CurrentStep1WorkList);
@@ -555,9 +571,13 @@ struct InfeasiblePath : public FunctionPass {
       }
       */
 
+      outs() << "WorkList Cleared, Step 1 Finish" << '\n';
+
       // step 2: global query answer
 
+
       // step 3: generate infeasible path
+
     }
 
     bool runOnFunction(Function &F) override {
