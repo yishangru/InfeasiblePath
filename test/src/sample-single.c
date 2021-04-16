@@ -1,12 +1,10 @@
-// sample for constant propagation
-int constant_test () {
-	int a = 5;
-	int retval = 20;
+int assignment_test () {
+  int a = 5;
+  int retval = 20;
 
-	if (a > 10) {
-		retval = 10;
-	}
-	return retval;
+  int b = a;
+  if (b > 10) {
+    retval = 10;
+  }
+  return retval;
 }
-
-// complex case

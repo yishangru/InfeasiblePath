@@ -656,6 +656,9 @@ struct InfeasiblePath : public FunctionPass {
 
       substituteQuery(F, TestQuery, CompInst, CurInstQueryAnswerMap, CurStep1WorkList, CurInstQuerySubstituteMap, CurReverseInstQuerySubstituteMap);
 
+      outs() << "\n";
+      outs() << "Finish Initial Raise Query" << "\n";
+
       while (!CurStep1WorkList.empty()) {
           // pick one
           Instruction* CurrentInst;
@@ -710,6 +713,7 @@ struct InfeasiblePath : public FunctionPass {
           } else {
               outs() << "Query Already Resolved (" << QueryAnswerStringMap[CurQueryAnswer] << ")\n";
           }
+          outs() << "\n\n";
       }
 
       outs() << "WorkList Cleared, Step 1 Finish" << '\n';
