@@ -365,9 +365,17 @@ private:
 typedef std::unordered_set<Query::QueryAnswer, std::hash<int>> QueryAnswerSet;
 typedef std::unordered_map<Query, QueryAnswerSet, Query::QueryHashFunction> QueryAnswerMap;
 typedef std::unordered_map <Instruction *, QueryAnswerMap> InstQueryAnswerMap;
-typedef std::unordered_map<Instruction*, std::unordered_set<Query, Query::QueryHashFunction>> Step1WorkList;
 
-void updateStep1Worklist(Query& SubstituteQuery, Instruction* CandidateInst, InstQueryAnswerMap& CurInstQueryAnswerMap, Step1WorkList& CurWorkList) {
+// previous query -> after query, after query -> previous query
+typedef std::unordered_map<Query, std::unordered_set<Query, Query::QueryHashFunction>, Query::QueryHashFunction> SubstituteMap;
+typedef std::unordered_map<Instruction*, std::unordered_map<Instruction*, SubstituteMap>> InstQuerySubstituteMap;
+
+// inst -> query -> query
+typedef std::unordered_map<Instruction*, std::unordered_set<Query, Query::QueryHashFunction>> Step1WorkList;
+typedef std::unordered_map<Instruction*, std::unordered_set<Query, Query::QueryHashFunction>> Step2WorkList;
+
+// update worklist and query answer map
+void updateStep1WorklistAndQueryAnswerMap(Query& SubstituteQuery, Instruction* CandidateInst, InstQueryAnswerMap& CurInstQueryAnswerMap, Step1WorkList& CurWorkList) {
   if (CurInstQueryAnswerMap.find(CandidateInst) == CurInstQueryAnswerMap.end()) {
     CurInstQueryAnswerMap[CandidateInst] = QueryAnswerMap();
   }
@@ -382,10 +390,36 @@ void updateStep1Worklist(Query& SubstituteQuery, Instruction* CandidateInst, Ins
   }
 }
 
-// inst -> query -> query
-typedef std::unordered_map<Instruction*, std::unordered_set<Query, Query::QueryHashFunction>> Step2WorkList;
-// previous query -> after query, after query -> previous query
-typedef std::unordered_map<Instruction*, std::unordered_map<Query, std::unordered_set<Query, Query::QueryHashFunction>, Query::QueryHashFunction>> InstQuerySubstituteMap;
+// update substitute mapping relationship
+void updateQuerySubstituteRelation(Query& Before, Query& After, Instruction* SuccInst, Instruction* PredInst, InstQuerySubstituteMap& CurInstQuerySubstituteMap, InstQuerySubstituteMap& CurInstQuerySubstituteReverseMap) {
+    if (CurInstQuerySubstituteMap.find(SuccInst) == CurInstQuerySubstituteMap.end()) {
+        assert(CurInstQuerySubstituteReverseMap.find(SuccInst) == CurInstQuerySubstituteReverseMap.end());
+        CurInstQuerySubstituteMap[SuccInst] = std::unordered_map<Instruction*, SubstituteMap>();
+        CurInstQuerySubstituteReverseMap[SuccInst] = std::unordered_map<Instruction*, SubstituteMap>();
+    }
+
+    std::unordered_map<Instruction*, SubstituteMap>& AfterBefore = CurInstQuerySubstituteMap[SuccInst];
+    if (AfterBefore.find(PredInst) == AfterBefore.end()) {
+        AfterBefore[PredInst] = SubstituteMap();
+    }
+
+    SubstituteMap& AfterBeforeMap = AfterBefore[PredInst];
+    if (AfterBeforeMap.find(After) == AfterBeforeMap.end()) {
+        AfterBeforeMap[After] = std::unordered_set<Query, Query::QueryHashFunction>();
+    }
+    AfterBeforeMap[After].insert(Before);
+
+    std::unordered_map<Instruction*, SubstituteMap>& BeforeAfter = CurInstQuerySubstituteReverseMap[SuccInst];
+    if (BeforeAfter.find(PredInst) == BeforeAfter.end()) {
+        BeforeAfter[PredInst] = SubstituteMap();
+    }
+
+    SubstituteMap& BeforeAfterMap = BeforeAfter[PredInst];
+    if (BeforeAfterMap.find(Before) == BeforeAfterMap.end()) {
+        BeforeAfterMap[Before] = std::unordered_set<Query, Query::QueryHashFunction>();
+    }
+    BeforeAfterMap[Before].insert(After);
+}
 
 void substituteQuery(Function *F,
                      Query& Q,
@@ -404,25 +438,55 @@ void substituteQuery(Function *F,
       // instruction still in BasicBlock
       Query QueryUpdate(Q);
       Instruction * PreviousInst = CurrentInst->getPrevNonDebugInstruction();
+
+      outs() << "[" << PreviousInst->getParent()->getName() << " ]" << '\n';
       if (isa<LoadInst>(Q.QOperand1)) {
+
           // get the address that refer to
-          Value* TargetLoadPointer = cast<LoadInst>(Q.QOperand1)->getPointerOperand();
+          LoadInst* QOperandLoadInst = cast<LoadInst>(Q.QOperand1);
+          Value* TargetLoadPointer = QOperandLoadInst->getPointerOperand();
+
+          outs() << "Load Command : " << *QOperandLoadInst << "\n";
+
           if (isa<StoreInst>(PreviousInst)) {
-              outs() << "Load Command : " << *(cast<Instruction>(Q.QOperand1)) << "\n";
+
               outs() << "Store Command : " << *PreviousInst << "\n";
-              Value* TargetStorePointer = cast<StoreInst>(PreviousInst)->getPointerOperand();
+
+              StoreInst* QOperandStoreInst = cast<StoreInst>(PreviousInst);
+              Value* TargetStorePointer = QOperandStoreInst->getPointerOperand();
+
               if (TargetLoadPointer == TargetStorePointer) {
+
                   outs() << "Match" << '\n';
                   // update query
+                  Value* StoreValue = QOperandStoreInst->getValueOperand();
+                  if (isa<ConstantInt>(StoreValue)) {
+
+                      ConstantInt* ConstantValue = cast<ConstantInt>(StoreValue);
+                      outs() << "Store Constant : " << ConstantValue->getSExtValue() << '\n';
+                      QueryUpdate = {ConstantValue, Q.QOperand2, Q.QPredicate};
+
+                  } else {
+                      if (!isa<Instruction>(StoreValue)) {
+                          outs() << "Store Neither Instruction" << '\n';
+                          assert(false);
+                      }
+                      Instruction* NextQueryInstruction = cast<Instruction>(StoreValue);
+                      outs() << "Store Value : [ " << NextQueryInstruction->getParent()->getParent() << " ] " << *NextQueryInstruction << '\n';
+                      QueryUpdate = {NextQueryInstruction, Q.QOperand2, Q.QPredicate};
+                  }
+              } else {
+                  outs() << "MisMatch" << '\n';
               }
           }
       } else {
 
-      }
-      if (CurrentInstQuerySubstituteMap.find(PreviousInst) == CurrentInstQuerySubstituteMap.end()) {
+          // should be some operation
 
       }
-      updateStep1Worklist(QueryUpdate, PreviousInst, CurrentInstQueryAnswerMap, CurrentStep1WorkList);
+      updateQuerySubstituteRelation(Q, QueryUpdate, CurrentInst, PreviousInst, CurrentInstQuerySubstituteMap, CurrentInstQuerySubstituteReverseMap);
+      updateStep1WorklistAndQueryAnswerMap(QueryUpdate, PreviousInst, CurrentInstQueryAnswerMap, CurrentStep1WorkList);
+
   } else {
       // instruction is at the boundary - entry (no previous block) or br
       if (CurrentInst->getParent() == (&F->getEntryBlock())) {
