@@ -562,8 +562,10 @@ void substituteQuery(Function *F,
                 // check terminator for query replacement
                 Query QueryUpdate(Q);
                 Instruction* PredTerminator = Pred->getTerminator();
+
                 if (!isa<BranchInst>(PredTerminator)) {
                     outs() << "Predcessor Terminator Not Branch : " << *PredTerminator << '\n';
+                    assert(false);
                 }
 
                 BranchInst* PredBranch = cast<BranchInst>(PredTerminator);
@@ -571,29 +573,39 @@ void substituteQuery(Function *F,
                 // check correlations
                 if (PredBranch->isConditional()) {
                     Value *Condition = PredBranch->getCondition();
-                    if (isa<CmpInst>(Condition)) {
-                        CmpInst* ConditionCompare = cast<CmpInst>(Condition);
-                        Value * Operand1 = ConditionCompare->getOperand(0);
-                        Value * Operand2 = ConditionCompare->getOperand(1);
 
-                        if (Operand1 == Q.QOperand1 || Operand2 == Q.QOperand1) {
-                            if (Operand1 == Q.QOperand1) {
-                                if (isa<ConstantInt>(Operand2)) {
+                    CmpInst* ConditionCompare = cast<CmpInst>(Condition);
+                    Value * Operand1 = ConditionCompare->getOperand(0);
+                    Value * Operand2 = ConditionCompare->getOperand(1);
 
-                                }
-                                if (CurrentBlock == PredBranch->getSuccessor(0)) {
-                                    // true condition
-                                } else {
-                                    // false condition
-                                }
+                    // check for subsuming
+                    if (Operand1 == Q.QOperand1 || Operand2 == Q.QOperand1) {
+                        outs() << "Operand Find Equal: [ " << PredBranch->getParent()->getName() << " ] : " << *PredBranch << "\n";
+
+                        assert(Operand1 == Q.QOperand1);
+                        if (isa<ConstantInt>(Operand2)) {
+                            if (CurrentBlock == PredBranch->getSuccessor(0)) {
+                                // true condition
                             } else {
-
+                                // false condition
                             }
+                            //TODO: Query Inference with Subsuming
+                            outs() << "Query Resolve In Subsuming Constant: " << Query::queryString(Q) << " UNDEF" << '\n' << "At " << PredBranch->getParent()->getName() << " -- " << *PredBranch << '\n' << '\n';
+                            updateQueryAnswerMap(QueryUpdate, Query::QueryAnswer::UNDEF, PredBranch, CurrentInstQueryAnswerMap);
+
+                        } else {
+
+                            outs() << "Query Resolve In Subsuming Non Constant: " << Query::queryString(Q) << " UNDEF" << '\n' << "At " << PredBranch->getParent()->getName() << " -- " << *PredBranch << '\n' << '\n';
+                            updateQueryAnswerMap(QueryUpdate, Query::QueryAnswer::UNDEF, PredBranch, CurrentInstQueryAnswerMap);
                         }
                     }
+                    updateQuerySubstituteRelation(Q, QueryUpdate, CurrentInst, PredTerminator, CurrentInstQuerySubstituteMap, CurrentInstQuerySubstituteReverseMap);
+                    updateQuerySubstituteRelation(Q, QueryUpdate, PredTerminator, ConditionCompare, CurrentInstQuerySubstituteMap, CurrentInstQuerySubstituteReverseMap);
+                    updateStep1Worklist(QueryUpdate, ConditionCompare, CurrentInstQueryAnswerMap, CurrentStep1WorkList);
+                } else {
+                    updateQuerySubstituteRelation(Q, QueryUpdate, CurrentInst, PredTerminator, CurrentInstQuerySubstituteMap, CurrentInstQuerySubstituteReverseMap);
+                    updateStep1Worklist(QueryUpdate, PredTerminator, CurrentInstQueryAnswerMap, CurrentStep1WorkList);
                 }
-                updateQuerySubstituteRelation(Q, QueryUpdate, CurrentInst, PreviousInst, CurrentInstQuerySubstituteMap, CurrentInstQuerySubstituteReverseMap);
-                updateStep1Worklist(QueryUpdate, PreviousInst, CurrentInstQueryAnswerMap, CurrentStep1WorkList);
           }
       }
   }
@@ -623,17 +635,22 @@ struct InfeasiblePath : public FunctionPass {
           outs() << "Query Not As Load : " << *(cast<Instruction>(TestQuery.QOperand1)) << '\n';
           assert(false);
       }
-      outs() << "Query: " << Query::queryString(TestQuery) << '\n';
+
+      outs() << "Start" << "\n";
+      outs() << "Query: " << Query::queryString(TestQuery) << "\n\n";
 
       // step 1: query correlation detection
 
-      // query substitution in predecessors
+      InstQueryAnswerMap CurInstQueryAnswerMap = InstQueryAnswerMap();
+      InstQuerySubstituteMap CurInstQuerySubstituteMap = InstQuerySubstituteMap();
+      InstQuerySubstituteMap CurReverseInstQuerySubstituteMap = InstQuerySubstituteMap();
+      Step1WorkList CurStep1WorkList = Step1WorkList();
 
-      /*
-      while (!WorkList.empty()) {
+      substituteQuery(F, TestQuery, CompInst, CurInstQueryAnswerMap, CurStep1WorkList, CurInstQuerySubstituteMap, CurReverseInstQuerySubstituteMap);
 
+      while (!CurStep1WorkList.empty()) {
+              
       }
-      */
 
       outs() << "WorkList Cleared, Step 1 Finish" << '\n';
 
