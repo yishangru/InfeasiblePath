@@ -25,7 +25,7 @@ bin/opt -load lib/LLVMInfeasiblePath.so -InfeasiblePath -disable-output ../llvm/
 
 
 ## Addition Tests
-1. Hash Test
+- Hash Test
 ```c++
    LLVMContext& Context = F.getContext();
     
@@ -75,4 +75,52 @@ bin/opt -load lib/LLVMInfeasiblePath.so -InfeasiblePath -disable-output ../llvm/
    assert(Checks.find(Op2Change) == Checks.end());
    Checks.insert(Op2Change);
    assert(Checks.find(Op2Change) != Checks.end());
+```
+
+- Query Resolve Test
+```cpp
+    /* for query resolve test */
+    LLVMContext& Context = F.getContext();
+
+    int64_t OpValue = 60;
+
+    Type *I32Type = IntegerType::getInt32Ty(Context);
+    Value* GenerateConst1;
+    Value* GenerateConst2;
+    Value* GenerateConst3;
+    Value* GenerateConst4;
+
+    GenerateConst1 = ConstantInt::get(I32Type, OpValue, true);
+    GenerateConst2 = ConstantInt::get(I32Type, OpValue, true);
+    GenerateConst3 = ConstantInt::get(I32Type, OpValue - 10, true);
+    Query EQQuery1 = {GenerateConst1, GenerateConst2, CmpInst::Predicate::ICMP_EQ};
+    Query EQQuery2 = {GenerateConst1, GenerateConst3, CmpInst::Predicate::ICMP_EQ};
+    assert(Query::resolveQuery(EQQuery1) == Query::QueryAnswer::TRUE);
+    assert(Query::resolveQuery(EQQuery2) == Query::QueryAnswer::FALSE);
+
+    GenerateConst1 = ConstantInt::get(I32Type, OpValue, true);
+    GenerateConst2 = ConstantInt::get(I32Type, OpValue, true);
+    GenerateConst3 = ConstantInt::get(I32Type, OpValue - 10, true);
+    Query NEQuery1 = {GenerateConst1, GenerateConst2, CmpInst::Predicate::ICMP_NE};
+    Query NEQuery2 = {GenerateConst1, GenerateConst3, CmpInst::Predicate::ICMP_NE};
+    assert(Query::resolveQuery(NEQuery1) == Query::QueryAnswer::FALSE);
+    assert(Query::resolveQuery(NEQuery2) == Query::QueryAnswer::TRUE);
+
+
+    GenerateConst1 = ConstantInt::get(I32Type, OpValue, true);
+    GenerateConst2 = ConstantInt::get(I32Type, OpValue, true);
+    GenerateConst3 = ConstantInt::get(I32Type, OpValue + 10, true);
+    GenerateConst4 = ConstantInt::get(I32Type, OpValue - 10, true);
+    Query UGEQuery1 = {GenerateConst1, GenerateConst2, CmpInst::Predicate::ICMP_UGE};
+    Query UGEQuery2 = {GenerateConst1, GenerateConst3, CmpInst::Predicate::ICMP_UGE};
+    Query UGEQuery3 = {GenerateConst1, GenerateConst4, CmpInst::Predicate::ICMP_UGE};
+    Query GEQuery1 = {GenerateConst1, GenerateConst2, CmpInst::Predicate::ICMP_SGE};
+    Query GEQuery2 = {GenerateConst1, GenerateConst3, CmpInst::Predicate::ICMP_SGE};
+    Query GEQuery3 = {GenerateConst1, GenerateConst4, CmpInst::Predicate::ICMP_SGE};
+    assert(Query::resolveQuery(UGEQuery1) == Query::QueryAnswer::TRUE);
+    assert(Query::resolveQuery(UGEQuery2) == Query::QueryAnswer::FALSE);
+    assert(Query::resolveQuery(UGEQuery3) == Query::QueryAnswer::TRUE);
+    assert(Query::resolveQuery(GEQuery1) == Query::QueryAnswer::TRUE);
+    assert(Query::resolveQuery(GEQuery2) == Query::QueryAnswer::FALSE);
+    assert(Query::resolveQuery(GEQuery3) == Query::QueryAnswer::TRUE);
 ```
