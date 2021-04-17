@@ -27,11 +27,12 @@ int main() {
             y = w + 1;
         }
         if (v > 0) {
+            w = rand();
+            x = 2*w;
+        } else {
             z = x + y;
             break;
         }
-        w = rand();
-        x = 2*w;
     }
     printf("result was %d\n", w+y+v+x+z);
     return 0;
