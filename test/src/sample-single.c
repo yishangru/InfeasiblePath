@@ -1,10 +1,13 @@
-int assignment_test () {
-  int a = 5;
+// sample for condition inference change
+int condition_subsuming_change () {
+  int a = 15;
   int retval = 20;
 
-  int b = a;
-  if (b > 10) {
+  if (a > 10) {
     retval = 10;
+    if (a > 5) {
+      retval = 15;
+    }
   }
   return retval;
 }

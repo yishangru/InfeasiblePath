@@ -38,7 +38,7 @@ if.end:                                           ; preds = %if.then, %entry
   %call1 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([19 x i8], [19 x i8]* @.str, i64 0, i64 0))
   br label %while.body
 
-while.body:                                       ; preds = %if.end, %if.end15
+while.body:                                       ; preds = %if.end, %if.end17
   %call2 = call i32 @rand() #3
   %and3 = and i32 %call2, 1
   %cmp4 = icmp eq i32 %and3, 1
@@ -68,34 +68,37 @@ if.else:                                          ; preds = %while.body
 if.end11:                                         ; preds = %if.else, %if.end8
   %5 = load i32, i32* %v, align 4
   %cmp12 = icmp sgt i32 %5, 0
-  br i1 %cmp12, label %if.then13, label %if.end15
+  br i1 %cmp12, label %if.then13, label %if.else15
 
 if.then13:                                        ; preds = %if.end11
-  %6 = load i32, i32* %x, align 4
-  %7 = load i32, i32* %y, align 4
-  %add14 = add nsw i32 %6, %7
-  store i32 %add14, i32* %z, align 4
+  %call14 = call i32 @rand() #3
+  store i32 %call14, i32* %w, align 4
+  %6 = load i32, i32* %w, align 4
+  %mul = mul nsw i32 2, %6
+  store i32 %mul, i32* %x, align 4
+  br label %if.end17
+
+if.else15:                                        ; preds = %if.end11
+  %7 = load i32, i32* %x, align 4
+  %8 = load i32, i32* %y, align 4
+  %add16 = add nsw i32 %7, %8
+  store i32 %add16, i32* %z, align 4
   br label %while.end
 
-if.end15:                                         ; preds = %if.end11
-  %call16 = call i32 @rand() #3
-  store i32 %call16, i32* %w, align 4
-  %8 = load i32, i32* %w, align 4
-  %mul = mul nsw i32 2, %8
-  store i32 %mul, i32* %x, align 4
+if.end17:                                         ; preds = %if.then13
   br label %while.body
 
-while.end:                                        ; preds = %if.then13, %if.then7
+while.end:                                        ; preds = %if.else15, %if.then7
   %9 = load i32, i32* %w, align 4
   %10 = load i32, i32* %y, align 4
-  %add17 = add nsw i32 %9, %10
+  %add18 = add nsw i32 %9, %10
   %11 = load i32, i32* %v, align 4
-  %add18 = add nsw i32 %add17, %11
+  %add19 = add nsw i32 %add18, %11
   %12 = load i32, i32* %x, align 4
-  %add19 = add nsw i32 %add18, %12
+  %add20 = add nsw i32 %add19, %12
   %13 = load i32, i32* %z, align 4
-  %add20 = add nsw i32 %add19, %13
-  %call21 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @.str.2, i64 0, i64 0), i32 %add20)
+  %add21 = add nsw i32 %add20, %13
+  %call22 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([15 x i8], [15 x i8]* @.str.2, i64 0, i64 0), i32 %add21)
   ret i32 0
 }
 

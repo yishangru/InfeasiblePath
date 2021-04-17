@@ -51,7 +51,7 @@ static bool whetherTargetCompInst(Instruction* InstructionCheck) {
     CmpInst* CompInst = cast<CmpInst>(InstructionCheck);
     CmpInst::Predicate InstPredicate = CompInst->getPredicate();
     if (PredicateStringMap.find(InstPredicate) == PredicateStringMap.end()) {
-        outs() << "Predicate Not Find!" << "\n";
+      //outs() << "Predicate Not Find!" << "\n";
         return false;
     }
 
@@ -60,7 +60,7 @@ static bool whetherTargetCompInst(Instruction* InstructionCheck) {
     Value * Operand2 = CompInst->getOperand(1);
 
     if ((!isa<ConstantInt>(Operand1)) && (!isa<ConstantInt>(Operand2))) {
-        outs() << "None of operands are constant int!" << "\n";
+      //outs() << "None of operands are constant int!" << "\n";
         return false;
     }
     return true;
@@ -73,16 +73,16 @@ struct CheckMetaFuncInfo : public ModulePass {
   CheckMetaFuncInfo() : ModulePass(ID) {}
 
   static void printInfo(uint32_t BranchCount, uint32_t IntBranchCount, uint32_t IntTargetBranchCount, std::unordered_map<CmpInst::Predicate, uint32_t, std::hash<unsigned int>> & PredicateBranchCount) {
-    outs() << "Func Branch: " << BranchCount << "\n";
-    outs() << "Func Integer Branch: " << IntBranchCount << "\n";
-    outs() << "Func Target Integer Branch: " << IntTargetBranchCount << "\n";
+    errs() << "Func Branch: " << BranchCount << "\n";
+    errs() << "Func Integer Branch: " << IntBranchCount << "\n";
+    errs() << "Func Target Integer Branch: " << IntTargetBranchCount << "\n";
     for (auto& Pair : PredicateBranchCount) {
-      outs() << PredicateStringMap[Pair.first] << ": " << Pair.second << "\n";
+      errs() << PredicateStringMap[Pair.first] << ": " << Pair.second << "\n";
     }
   }
 
   bool runOnModule(Module &M) override {
-    outs() << "CheckMetaFuncInfo Pass: " << "\n";
+    errs() << "CheckMetaFuncInfo Pass: " << "\n";
 
     uint32_t ModuleBranchCount = 0;
     uint32_t ModuleIntBranchCount = 0;
@@ -90,8 +90,7 @@ struct CheckMetaFuncInfo : public ModulePass {
     std::unordered_map<CmpInst::Predicate, uint32_t, std::hash<unsigned int>> ModulePredicateBranchCount;
 
     // get all predicate
-    for (Module::iterator F = M.begin(), FE = M.end(); F != FE; ++F) {
-      outs().write_escaped(F->getName()) << '\n';
+    for (Module::iterator F = M.begin(), FE = M.end(); F != FE; ++F) {//outs() .write_escaped(F->getName()) << '\n';
 
       uint32_t FuncBranchCount = 0;
       uint32_t FuncIntBranchCount = 0;
@@ -101,14 +100,14 @@ struct CheckMetaFuncInfo : public ModulePass {
       for (Function::iterator BB = F->begin(), BBE = F->end(); BB != BBE; ++BB) {
 
         /*
-        outs() << "Current Block " << BB->getName() << "\n";
+//outs() << "Current Block " << BB->getName() << "\n";
         if (&*BB == &F->getEntryBlock()) {
-            outs() << "This Entry" << "\n";
+//outs() << "This Entry" << "\n";
         }
         for (BasicBlock * Pred : predecessors(&*BB)) {
-            outs() << "Pred -- " << Pred->getName() << "\n";
+//outs() << "Pred -- " << Pred->getName() << "\n";
         }
-        outs() << "\n";
+//outs() << "\n";
         */
 
         for (BasicBlock::iterator IN = BB->begin(), INE = BB->end(); IN != INE; ++IN) {
@@ -116,14 +115,14 @@ struct CheckMetaFuncInfo : public ModulePass {
             continue;
           }
 
-          outs() << *IN << "\n"; // print all branch
+          //outs() << *IN << "\n"; // print all branch
           FuncBranchCount++;
 
           if (!whetherIntCompInst(&*IN)) {
             continue;
           }
 
-          outs() << "Int predicate: " << "\n";
+          //outs() << "Int predicate: " << "\n";
           FuncIntBranchCount++;
 
           if (!whetherTargetCompInst(&*IN)) {
@@ -154,11 +153,12 @@ struct CheckMetaFuncInfo : public ModulePass {
       }
 
       printInfo(FuncBranchCount, FuncIntBranchCount, FuncIntTargetBranchCount, FuncPredicateBranchCount);
-      outs() << "End of Function: " << F->getName() << '\n' << '\n';
+      //outs() << "End of Function: " << F->getName() << '\n' << '\n';
     }
 
-    outs() << '\n' << '\n';
-    outs() << "Module Summary:" << '\n';
+    //outs() << '\n' << '\n';
+
+    errs() << "Module Summary:" << '\n';
     printInfo(ModuleBranchCount, ModuleIntBranchCount, ModuleIntTargetBranchCount, ModulePredicateBranchCount);
 
     return false;
@@ -233,7 +233,7 @@ public:
     return (compareValue(this->QOperand1, Q.QOperand1) && compareValue(this->QOperand2, Q.QOperand2));
   }
 
-  static std::string queryString(Query& Q) {
+  static std::string queryString(const Query& Q)  {
       std::string Operand1String;
       if (isa<ConstantInt>(Q.QOperand1)) {
         ConstantInt* ConstOp1 = cast<ConstantInt>(Q.QOperand1);
@@ -267,21 +267,23 @@ public:
       if (isa<LoadInst>(Q.QOperand1)) {
           return Query::QueryAnswer::UNAVAIL;
       } else if (isa<BinaryOperator>(Q.QOperand1)) {
+          /*
           BinaryOperator* BinaryInst = cast<BinaryOperator>(Q.QOperand1);
           if (isa<ConstantInt>(BinaryInst->getOperand(0)) || isa<ConstantInt>(BinaryInst->getOperand(1))) {
               if (BinaryInst->getOpcode() == llvm::Instruction::Add) {
                   return Query::QueryAnswer::UNAVAIL;
-              } else if (BinaryInst->getOpcode() == llvm::Instruction::Sub) {
+              }
+              else if (BinaryInst->getOpcode() == llvm::Instruction::Sub) {
                   return Query::QueryAnswer::UNAVAIL;
               }
           }
+          */
       }
       if (!isa<Instruction>(Q.QOperand1)) {
-          outs() << "Not Instruction In Operand1 [" << Q.QOperand1->getName() << '\n';
+        //outs() << "Not Instruction In Operand1 [" << Q.QOperand1->getName() << '\n';
           assert(false);
       }
-      Instruction* OpInst = cast<Instruction>(Q.QOperand1);
-      outs() << "Can Not Resolve : [ " << OpInst->getParent()->getName() << " ] : " << *OpInst << '\n';
+      //outs() << "Can Not Resolve : [ " << cast<Instruction>(Q.QOperand1)->getParent()->getName() << " ] : " << *(cast<Instruction>(Q.QOperand1)) << '\n';
       return Query::QueryAnswer::UNDEF;
     }
 
@@ -292,7 +294,7 @@ public:
     int64_t ConstValue2 = ConstOp2->getSExtValue();
 
     if (PredicateStringMap.find(Q.QPredicate) == PredicateStringMap.end()) {
-      outs() << "Unexpected Predicate - " << Q.QPredicate << '\n';
+      //outs() << "Unexpected Predicate - " << Q.QPredicate << '\n';
       assert(false);
     }
 
@@ -355,7 +357,7 @@ public:
     if (Answer == Query::QueryAnswer::TRUE) {
         ResolveString = "True";
     }
-    outs() << "Resolve Query - " << ConstValue1 << " ( " << PredicateStringMap[Q.QPredicate] << ") "<< ConstValue2 << " = " << ResolveString << '\n';
+    //outs() << "Resolve Query - " << ConstValue1 << " ( " << PredicateStringMap[Q.QPredicate] << ") "<< ConstValue2 << " = " << ResolveString << '\n';
     return Answer;
   }
 
@@ -363,11 +365,11 @@ private:
   std::size_t HashValue;
   static bool compareValue(Value* Value1, Value* Value2) {
     if ((!isa<ConstantInt>(Value1)) && (!isa<Instruction>(Value1))) {
-      outs() << "Value1 Not As Constant Or INST" << "\n";
+      //outs() << "Value1 Not As Constant Or INST" << "\n";
       assert(false);
     }
     if ((!isa<ConstantInt>(Value2)) && (!isa<Instruction>(Value2))) {
-      outs() << "Value2 Not As Constant Or INST" << "\n";
+      //outs() << "Value2 Not As Constant Or INST" << "\n";
       assert(false);
     }
     if (isa<ConstantInt>(Value1)) {
@@ -403,7 +405,6 @@ typedef std::unordered_map<Instruction*, std::unordered_map<Instruction*, Substi
 
 // inst -> query -> query
 typedef std::unordered_map<Instruction*, std::unordered_set<Query, Query::QueryHashFunction>> Step1WorkList;
-typedef std::unordered_map<Instruction*, std::unordered_set<Query, Query::QueryHashFunction>> Step2WorkList;
 
 
 // update query answer
@@ -480,7 +481,7 @@ void substituteQuery(Function *F,
                      InstQuerySubstituteMap& CurrentInstQuerySubstituteReverseMap) {
 
   if (isa<ConstantInt>(Q.QOperand1)) {
-      outs() << "Query Should Be Resolved At Previous Block" << '\n';
+    //outs() << "Query Should Be Resolved At Previous Block" << '\n';
       assert(false);
   }
 
@@ -491,54 +492,61 @@ void substituteQuery(Function *F,
       Query QueryUpdate(Q);
       Instruction * PreviousInst = CurrentInst->getPrevNonDebugInstruction();
 
-      outs() << "[" << PreviousInst->getParent()->getName() << " ]" << '\n';
+      //outs() << "[" << PreviousInst->getParent()->getName() << " ]" << '\n';
       if (isa<LoadInst>(Q.QOperand1)) {
 
           // get the address that refer to
           LoadInst* QOperandLoadInst = cast<LoadInst>(Q.QOperand1);
           Value* TargetLoadPointer = QOperandLoadInst->getPointerOperand();
 
-          outs() << "Load Command : " << *QOperandLoadInst << "\n";
+          //outs() << "Load Command : " << *QOperandLoadInst << "\n";
 
           if (isa<StoreInst>(PreviousInst)) {
 
-              outs() << "Store Command : " << *PreviousInst << "\n";
+            //outs() << "Store Command : " << *PreviousInst << "\n";
 
               StoreInst* QOperandStoreInst = cast<StoreInst>(PreviousInst);
               Value* TargetStorePointer = QOperandStoreInst->getPointerOperand();
 
               if (TargetLoadPointer == TargetStorePointer) {
 
-                  outs() << "Match" << '\n';
+                //outs() << "Match" << '\n';
                   // update query
                   Value* StoreValue = QOperandStoreInst->getValueOperand();
                   if (isa<ConstantInt>(StoreValue)) {
 
                       ConstantInt* ConstantValue = cast<ConstantInt>(StoreValue);
-                      outs() << "Store Constant : " << ConstantValue->getSExtValue() << '\n';
+                      //outs() << "Store Constant : " << ConstantValue->getSExtValue() << '\n';
                       QueryUpdate = {ConstantValue, Q.QOperand2, Q.QPredicate};
 
                       Query::QueryAnswer Answer = Query::resolveQuery(QueryUpdate);
                       assert(Answer == Query::QueryAnswer::TRUE || Answer == Query::QueryAnswer::FALSE);
-                      outs() << "Query Resolve In Store (" << QueryAnswerStringMap[Answer] << "): " << Query::queryString(QueryUpdate) << " " << '\n' << "At " << QOperandStoreInst->getParent()->getName() << " -- " << *QOperandStoreInst << '\n' << '\n';
+                      //outs() << "Query Resolve In Store (" << QueryAnswerStringMap[Answer] << "): " << Query::queryString(QueryUpdate) << " " << '\n' << "At " << QOperandStoreInst->getParent()->getName() << " -- " << *QOperandStoreInst << '\n' << '\n';
                       updateQueryAnswerMap(QueryUpdate, Answer, PreviousInst, CurrentInstQueryAnswerMap);
 
                   } else {
-                      if (!isa<Instruction>(StoreValue)) {
-                          outs() << "Store Neither Instruction" << '\n';
-                          assert(false);
+                      if (isa<Argument>(StoreValue)) {
+                          updateQueryAnswerMap(QueryUpdate, Query::QueryAnswer::UNDEF, PreviousInst, CurrentInstQueryAnswerMap);
+                      } else {
+                          if (!isa<Instruction>(StoreValue)) {
+                            //outs() << "Store Neither Instruction - " << *StoreValue << '\n';
+                            assert(false);
+                          }
+                          Instruction* NextQueryInstruction = cast<Instruction>(StoreValue);
+                          //outs() << "Store Value : [ " << NextQueryInstruction->getParent()->getParent() << " ] " << *NextQueryInstruction << '\n';
+                          QueryUpdate = {NextQueryInstruction, Q.QOperand2, Q.QPredicate};
                       }
-                      Instruction* NextQueryInstruction = cast<Instruction>(StoreValue);
-                      outs() << "Store Value : [ " << NextQueryInstruction->getParent()->getParent() << " ] " << *NextQueryInstruction << '\n';
-                      QueryUpdate = {NextQueryInstruction, Q.QOperand2, Q.QPredicate};
                   }
               } else {
-                  outs() << "MisMatch" << '\n';
+                //outs() << "MisMatch" << '\n';
               }
           }
-      } else if (isa<BinaryOperator>(Q.QOperand1)) {
+      }
+      /*
+      else if (isa<BinaryOperator>(Q.QOperand1)) {
           // try to resolve
           if (PreviousInst == Q.QOperand1) {
+
               BinaryOperator* BinaryInst = cast<BinaryOperator>(Q.QOperand1);
               assert(isa<ConstantInt>(BinaryInst->getOperand(0)) || isa<ConstantInt>(BinaryInst->getOperand(1)));
               assert(BinaryInst->getOpcode() == llvm::Instruction::Add || BinaryInst->getOpcode() == llvm::Instruction::Sub);
@@ -554,17 +562,19 @@ void substituteQuery(Function *F,
               }
 
               Type *I64Type = IntegerType::getInt64Ty(Context);
-              int64_t CurrentActualValue = cast<ConstantInt>(Q.QOperand2)->getSExtValue();
               int64_t Op1Value = cast<ConstantInt>(BinaryInst->getOperand(Op1))->getSExtValue();
+              int64_t CurrentActualValue = cast<ConstantInt>(Q.QOperand2)->getSExtValue();
 
               if (BinaryInst->getOpcode() == llvm::Instruction::Add) {
 
                   Value* GenerateConst = ConstantInt::get(I64Type, CurrentActualValue - Op1Value, true);
                   QueryUpdate = {BinaryInst->getOperand(Op0), GenerateConst, Q.QPredicate};
 
-              } else if (BinaryInst->getOpcode() == llvm::Instruction::Sub) {
+              }
+
+              else if (BinaryInst->getOpcode() == llvm::Instruction::Sub) {
                   if (Op0 == 1) {
-                      Value* GenerateConst = ConstantInt::get(I64Type, -1 * (CurrentActualValue - Op1Value), true);
+                      Value* GenerateConst = ConstantInt::get(I64Type, Op1Value-CurrentActualValue, true);
                       QueryUpdate = {BinaryInst->getOperand(Op0), GenerateConst, CmpInst::getSwappedPredicate(Q.QPredicate)};
                   } else {
                       Value* GenerateConst = ConstantInt::get(I64Type, CurrentActualValue + Op1Value, true);
@@ -580,8 +590,10 @@ void substituteQuery(Function *F,
                   updateQueryAnswerMap(QueryUpdate, CurAnswer, PreviousInst, CurrentInstQueryAnswerMap);
               }
           }
-      } else {
-          outs() << "Non Binary Or Load Inst Raised - " << Query::queryString(Q) << "\n";
+      }
+      */
+       else {
+          //outs() << "Non Binary Or Load Inst Raised - " << Query::queryString(Q) << "\n";
           assert(false);
       }
       updateQuerySubstituteRelation(Q, QueryUpdate, CurrentInst, PreviousInst, CurrentInstQuerySubstituteMap, CurrentInstQuerySubstituteReverseMap);
@@ -591,25 +603,25 @@ void substituteQuery(Function *F,
       // instruction is at the boundary - entry (no previous block) or br
       if (CurrentInst->getParent() == (&F->getEntryBlock())) {
 
-          outs() << "Current Inst As Entry, Not Forward" << '\n';
+        //outs() << "Current Inst As Entry, Not Forward" << '\n';
           // undef current query
           if (CurrentInstQueryAnswerMap.find(CurrentInst) == CurrentInstQueryAnswerMap.end()) {
-              outs() << "Inst Not Insert Into InstQueryAnswerMap" << '\n';
+            //outs() << "Inst Not Insert Into InstQueryAnswerMap" << '\n';
               assert(false);
           }
           QueryAnswerMap& CurrentQueryAnswerMap = CurrentInstQueryAnswerMap[CurrentInst];
           if (CurrentQueryAnswerMap.find(Q) == CurrentQueryAnswerMap.end()) {
-              outs() << "Query Not Insert Into QueryAnswerMap" << '\n';
+            //outs() << "Query Not Insert Into QueryAnswerMap" << '\n';
               assert(false);
           }
           // check current answer
           QueryAnswerSet& CurrentQueryAnswerSet = CurrentQueryAnswerMap[Q];
           if (CurrentQueryAnswerSet.size() != 0) {
-              outs() << "Query Answer Set Not As Empty" << '\n';
+            //outs() << "Query Answer Set Not As Empty" << '\n';
               assert(false);
           }
           Query::QueryAnswer CurAnswer = Query::QueryAnswer::UNDEF;
-          outs() << "Query Resolve In Entry: " << Query::queryString(Q) << QueryAnswerStringMap[CurAnswer] << '\n' << "At " << CurrentInst->getParent()->getName() << " -- " << *CurrentInst << '\n' << '\n';
+          //outs() << "Query Resolve In Entry: " << Query::queryString(Q) << QueryAnswerStringMap[CurAnswer] << '\n' << "At " << CurrentInst->getParent()->getName() << " -- " << *CurrentInst << '\n' << '\n';
           CurrentQueryAnswerSet.insert(CurAnswer);
 
       } else {
@@ -619,9 +631,18 @@ void substituteQuery(Function *F,
                 Query QueryUpdate(Q);
                 Instruction* PredTerminator = Pred->getTerminator();
 
+                if (isa<InvokeInst>(PredTerminator)) {
+                    InvokeInst* InvokeTerminator = cast<InvokeInst>(PredTerminator);
+                    if (Q.QOperand1 == InvokeTerminator) {
+                        updateQueryAnswerMap(QueryUpdate, Query::QueryAnswer::UNDEF, InvokeTerminator, CurrentInstQueryAnswerMap);
+                    }
+                }
+
                 if (!isa<BranchInst>(PredTerminator)) {
-                    outs() << "Predcessor Terminator Not Branch : " << *PredTerminator << '\n';
-                    assert(false);
+                    //outs() << "Predcessor Terminator Not Branch : " << *PredTerminator << '\n';
+                    updateQuerySubstituteRelation(Q, QueryUpdate, CurrentInst, PredTerminator, CurrentInstQuerySubstituteMap, CurrentInstQuerySubstituteReverseMap);
+                    updateStep1Worklist(QueryUpdate, PredTerminator, CurrentInstQueryAnswerMap, CurrentStep1WorkList);
+                    continue;
                 }
 
                 BranchInst* PredBranch = cast<BranchInst>(PredTerminator);
@@ -630,36 +651,82 @@ void substituteQuery(Function *F,
                 if (PredBranch->isConditional()) {
                     Value *Condition = PredBranch->getCondition();
 
-                    CmpInst* ConditionCompare = cast<CmpInst>(Condition);
-                    Value * Operand1 = ConditionCompare->getOperand(0);
-                    Value * Operand2 = ConditionCompare->getOperand(1);
+                    if (!isa<Instruction>(Condition)) {
+                      //outs() << "Condition Not As Instruction " << *Condition << "\n";
+                      assert(false);
+                    }
 
-                    // check for subsuming
-                    if (Operand1 == Q.QOperand1 || Operand2 == Q.QOperand1) {
-                        outs() << "Operand Find Equal: [ " << PredBranch->getParent()->getName() << " ] : " << *PredBranch << "\n";
+                    Instruction* ConditionInst = cast<Instruction>(Condition);
+
+                    if (isa<CmpInst>(CurrentInst)) {
+                      CmpInst* ConditionCompare = cast<CmpInst>(Condition);
+                      Value * Operand1 = ConditionCompare->getOperand(0);
+                      Value * Operand2 = ConditionCompare->getOperand(1);
+
+                      // check for subsuming
+                      if (Operand1 == Q.QOperand1 || Operand2 == Q.QOperand1) {
+                        //outs() << "Operand Find Equal: [ " << PredBranch->getParent()->getName() << " ] : " << *PredBranch << "\n";
 
                         assert(Operand1 == Q.QOperand1);
-                        if (isa<ConstantInt>(Operand2)) {
-                            if (CurrentBlock == PredBranch->getSuccessor(0)) {
-                                // true condition
-                            } else {
-                                // false condition
-                            }
-                            //TODO: Query Inference with Subsuming
-                            Query::QueryAnswer CurAnswer = Query::QueryAnswer::UNDEF;
-                            outs() << "Query Resolve In Subsuming Constant (" << QueryAnswerStringMap[CurAnswer] << "): " << Query::queryString(Q) << '\n' << "At " << PredBranch->getParent()->getName() << " -- " << *PredBranch << '\n' << '\n';
-                            updateQueryAnswerMap(QueryUpdate, CurAnswer, PredBranch, CurrentInstQueryAnswerMap);
 
-                        } else {
+                        // only check very limited cases
+                        if (Operand1 == Q.QOperand1) {
+                          if (isa<ConstantInt>(Operand2)) {
+                            if (CurrentBlock == PredBranch->getSuccessor(0)) {
+                              if (ConditionCompare->getPredicate() == Q.QPredicate) {
+
+                                int64_t ConstValue1 = cast<ConstantInt>(Operand2)->getSExtValue();
+                                int64_t ConstValue2 = cast<ConstantInt>(Q.QOperand2)->getSExtValue();
+
+                                Type *I64Type = IntegerType::getInt64Ty(Context);
+
+                                switch (Q.QPredicate) {
+                                case CmpInst::Predicate::ICMP_SGT:
+                                  if (ConstValue1 >= ConstValue2) {
+                                    Value* GenerateConst = ConstantInt::get(I64Type, ConstValue1, true);
+                                    QueryUpdate = {Q.QOperand1, GenerateConst, CmpInst::getSwappedPredicate(Q.QPredicate)};
+                                  }
+                                  break;
+                                case CmpInst::Predicate::ICMP_SGE:
+                                  if (ConstValue1 >= ConstValue2) {
+                                    Value* GenerateConst = ConstantInt::get(I64Type, ConstValue1, true);
+                                    QueryUpdate = {Q.QOperand1, GenerateConst, CmpInst::getSwappedPredicate(Q.QPredicate)};
+                                  }
+                                  break;
+                                case CmpInst::Predicate::ICMP_SLT:
+                                  if (ConstValue1 <= ConstValue2) {
+                                    Value* GenerateConst = ConstantInt::get(I64Type, ConstValue1, true);
+                                    QueryUpdate = {Q.QOperand1, GenerateConst, CmpInst::getSwappedPredicate(Q.QPredicate)};
+                                  }
+                                  break;
+                                case CmpInst::Predicate::ICMP_SLE:
+                                  if (ConstValue1 <= ConstValue2) {
+                                    Value* GenerateConst = ConstantInt::get(I64Type, ConstValue1, true);
+                                    QueryUpdate = {Q.QOperand1, GenerateConst, CmpInst::getSwappedPredicate(Q.QPredicate)};
+                                  }
+                                  break;
+                                default:
+                                  break;
+                                }
+                              }
+                            }
+                          }
+                        }
+
+                        /*
+                        if (!SubsumingSuccess) {
                             // follow some format, second as constant
                             Query::QueryAnswer CurAnswer = Query::QueryAnswer::UNDEF;
-                            outs() << "Query Resolve In Subsuming Non Constant (" << QueryAnswerStringMap[CurAnswer] << "): " << Query::queryString(Q) << '\n' << "At " << PredBranch->getParent()->getName() << " -- " << *PredBranch << '\n' << '\n';
+//outs() << "Query Resolve In Subsuming Deny (" << QueryAnswerStringMap[CurAnswer] << "): " << Query::queryString(Q) << '\n' << "At " << PredBranch->getParent()->getName() << " -- " << *PredBranch << '\n' << '\n';
                             updateQueryAnswerMap(QueryUpdate, CurAnswer, PredBranch, CurrentInstQueryAnswerMap);
                         }
+                        */
+                      }
                     }
+
                     updateQuerySubstituteRelation(Q, QueryUpdate, CurrentInst, PredTerminator, CurrentInstQuerySubstituteMap, CurrentInstQuerySubstituteReverseMap);
-                    updateQuerySubstituteRelation(Q, QueryUpdate, PredTerminator, ConditionCompare, CurrentInstQuerySubstituteMap, CurrentInstQuerySubstituteReverseMap);
-                    updateStep1Worklist(QueryUpdate, ConditionCompare, CurrentInstQueryAnswerMap, CurrentStep1WorkList);
+                    updateQuerySubstituteRelation(Q, QueryUpdate, PredTerminator, ConditionInst, CurrentInstQuerySubstituteMap, CurrentInstQuerySubstituteReverseMap);
+                    updateStep1Worklist(QueryUpdate, ConditionInst, CurrentInstQueryAnswerMap, CurrentStep1WorkList);
                 } else {
                     updateQuerySubstituteRelation(Q, QueryUpdate, CurrentInst, PredTerminator, CurrentInstQuerySubstituteMap, CurrentInstQuerySubstituteReverseMap);
                     updateStep1Worklist(QueryUpdate, PredTerminator, CurrentInstQueryAnswerMap, CurrentStep1WorkList);
@@ -689,13 +756,8 @@ struct InfeasiblePath : public FunctionPass {
       }
 
       Query TestQuery = {Operand1, Operand2, CompPredicate};
-      if (!isa<LoadInst>(TestQuery.QOperand1)) {
-          outs() << "Query Not As Load : " << *(cast<Instruction>(TestQuery.QOperand1)) << '\n';
-          assert(false);
-      }
-
-      outs() << "Start" << "\n";
-      outs() << "Query: " << Query::queryString(TestQuery) << "\n\n";
+      //outs() << "Start" << "\n";
+      //outs() << "Query: " << Query::queryString(TestQuery) << "\n\n";
 
       // step 1: query correlation detection
 
@@ -704,10 +766,20 @@ struct InfeasiblePath : public FunctionPass {
       InstQuerySubstituteMap CurReverseInstQuerySubstituteMap = InstQuerySubstituteMap();
       Step1WorkList CurStep1WorkList = Step1WorkList();
 
-      substituteQuery(F, TestQuery, CompInst, CurInstQueryAnswerMap, CurStep1WorkList, CurInstQuerySubstituteMap, CurReverseInstQuerySubstituteMap);
+      // initial query checks
+      Query::QueryAnswer IniQueryAnswer = Query::resolveQuery(TestQuery);
+      if (IniQueryAnswer == Query::QueryAnswer::UNAVAIL) {
+        //outs() << "Raise Query" << "\n";
+        substituteQuery(F, TestQuery, CompInst, CurInstQueryAnswerMap, CurStep1WorkList, CurInstQuerySubstituteMap, CurReverseInstQuerySubstituteMap);
+      } else {
+        //outs() << "Query Already Resolved (" << QueryAnswerStringMap[IniQueryAnswer] << ")\n";
+        updateQueryAnswerMap(TestQuery, IniQueryAnswer, CompInst, CurInstQueryAnswerMap);
+      }
 
-      outs() << "\n";
-      outs() << "Finish Initial Raise Query" << "\n";
+      //outs() << "\n";
+      //outs() << "Finish Initial Raise Query" << "\n";
+
+      std::size_t Counter = 100;
 
       while (!CurStep1WorkList.empty()) {
           // pick one
@@ -730,7 +802,16 @@ struct InfeasiblePath : public FunctionPass {
           if (CurStep1WorkList[CurrentInst].empty()) {
               CurStep1WorkList.erase(CurrentInst);
           }
-          outs() << "Work List Remove : [ " << CurrentInst->getParent()->getName() << " ] : " << *CurrentInst << " -- " << Query::queryString(CurrentQuery) << "\n\n";
+          //outs() << "Work List Remove : [ " << CurrentInst->getParent()->getName() << " ] : " << *CurrentInst << " -- " << Query::queryString(CurrentQuery) << "\n\n";
+
+          /*
+          Counter--;
+          if (Counter == 0) {
+              errs() << *CurrentInst << " --- " << Query::queryString(CurrentQuery);
+              errs() << "Work List Size : " << CurStep1WorkList.size() << "\n";
+              Counter = 100;
+          }
+          */
 
           Query::QueryAnswer CurQueryAnswer = Query::QueryAnswer::UNAVAIL;
           if (CurInstQueryAnswerMap.find(CurrentInst) != CurInstQueryAnswerMap.end()) {
@@ -754,29 +835,95 @@ struct InfeasiblePath : public FunctionPass {
               // raise query
               CurQueryAnswer = Query::resolveQuery(CurrentQuery);
               if (CurQueryAnswer == Query::QueryAnswer::UNAVAIL) {
-                  outs() << "Raise Query" << "\n";
+                //outs() << "Raise Query --- " << *CurrentInst << " --- "  << Query::queryString(CurrentQuery) << "\n";
                   substituteQuery(F, CurrentQuery, CurrentInst, CurInstQueryAnswerMap, CurStep1WorkList, CurInstQuerySubstituteMap, CurReverseInstQuerySubstituteMap);
               } else {
-                  outs() << "Query Already Resolved (" << QueryAnswerStringMap[CurQueryAnswer] << ")\n";
+                //outs() << "Query Already Resolved (" << QueryAnswerStringMap[CurQueryAnswer] << ")\n";
                   updateQueryAnswerMap(CurrentQuery, CurQueryAnswer, CurrentInst, CurInstQueryAnswerMap);
               }
           } else {
-              outs() << "Query Already Resolved (" << QueryAnswerStringMap[CurQueryAnswer] << ")\n";
+            //outs() << "Query Already Resolved (" << QueryAnswerStringMap[CurQueryAnswer] << ")\n";
           }
-          outs() << "\n\n";
+          //outs() << "\n\n";
       }
 
-      outs() << "WorkList Cleared, Step 1 Finish" << '\n';
+      //outs() << "WorkList Cleared, Step 1 Finish" << '\n';
+
+      // generate successor map based on previous query records
+      std::unordered_map<Instruction*, std::unordered_set<Instruction*>> SuccessorMap;
+      for (auto& InsQueryPair : CurInstQuerySubstituteMap) {
+          Instruction* Successor = InsQueryPair.first;
+          auto& PredcessorQueryMap = InsQueryPair.second;
+          for (auto& PredcessorQueryPair : PredcessorQueryMap) {
+              Instruction* Predcessor = PredcessorQueryPair.first;
+              if (SuccessorMap.find(Predcessor) == SuccessorMap.end()) {
+                  SuccessorMap[Predcessor] = std::unordered_set<Instruction*>();
+              }
+              SuccessorMap[Predcessor].insert(Successor);
+          }
+      }
+
+      // generate resolved query records
+      std::unordered_set<Instruction*> QueryResolveNodes;
+
+      std::unordered_set<Query, Query::QueryHashFunction> TotalQuery;
+      std::unordered_set<Query, Query::QueryHashFunction> ResolveQuery;
+
+      for (auto& InstQuerysPair : CurInstQueryAnswerMap) {
+          auto& Queries = InstQuerysPair.second;
+
+          //std::string ResolvedQuery;
+          for (auto& QueryAnswerPair : Queries) {
+              auto& InstQuery = QueryAnswerPair.first;
+              auto& Answers = QueryAnswerPair.second;
+              if (Answers.size() > 0) {
+                  assert(Answers.size() == 1);
+                  for (auto& Answer : Answers) {
+                      if (Answer == Query::QueryAnswer::TRUE) {
+                          ResolveQuery.insert(InstQuery);
+                      }
+                      if (Answer == Query::QueryAnswer::FALSE) {
+                          ResolveQuery.insert(InstQuery);
+                      }
+                  }
+              }
+              TotalQuery.insert(InstQuery);
+          }
+      }
+
+      errs() << "Total Query: " << TotalQuery.size() << " , " << "Resolved: " << ResolveQuery.size() << "\n";
+
+      //outs() << "\n\n";
 
       // step 2: global query answer
 
+      //outs() << "Step 2 Start" << "\n";
+
+      std::unordered_set<Instruction*> CurStep2WorkList;
+      for (auto& Inst : QueryResolveNodes) {
+          assert(SuccessorMap.find(Inst) != SuccessorMap.end());
+          for (auto& Succ : SuccessorMap[Inst]) {
+              CurStep2WorkList.insert(Succ);
+          }
+      }
+
+      while (!CurStep2WorkList.empty()) {
+          Instruction* CandInst;
+          for (auto& Inst : CurStep2WorkList) {
+              CandInst = Inst;
+              break;
+          }
+          CurStep2WorkList.erase(CandInst);
+
+      }
 
       // step 3: generate infeasible path
+
 
     }
 
     bool runOnFunction(Function &F) override {
-        errs() << "Infeasible Path Pass: ";
+        errs() << "Infeasible Path Pass:" << "\n";
         errs().write_escaped(F.getName()) << '\n';
 
         // all target instruction
@@ -792,23 +939,21 @@ struct InfeasiblePath : public FunctionPass {
             }
         }
 
-        // get all used compare branch, detect correlated query
-        outs().write_escaped(F.getName()) << '\n';
+        // get all used compare branch, detect correlated query//outs() .write_escaped(F.getName()) << '\n';
         for (auto& Inst : TargetCmpInst) {
-            outs() << *Inst << '\n';
-            outs() << "Used:" << '\n';
+          //outs() << *Inst << '\n';
+          //outs() << "Used:" << '\n';
             for (auto *U : Inst->users()) {
                 if (!isa<Instruction>(&*U)) {
-                    outs() << "Not A Instruction: " << *U << '\n';
+                  //outs() << "Not A Instruction: " << *U << '\n';
                     continue;
                 }
-                outs() << *cast<Instruction>(&*U) << '\n';
+                //outs() << *cast<Instruction>(&*U) << '\n';
             }
-            outs() << "End Used" << '\n' << '\n';
+            //outs() << "End Used" << '\n' << '\n';
             correlationDetect(&F, Inst);
         }
-        outs() << "\n" << "\n";
-
+        //outs() << "\n" << "\n";
         return false;
     }
 };

@@ -18,11 +18,19 @@ bin/clang -S -emit-llvm -O1 -Xclang -disable-llvm-passes ../llvm/lib/Transforms/
 bin/clang -S -emit-llvm ../llvm/lib/Transforms/InfeasiblePath/test/src/sample.c -o ../llvm/lib/Transforms/InfeasiblePath/test/ir/sample-no.ll
 bin/clang -S -emit-llvm ../llvm/lib/Transforms/InfeasiblePath/test/src/infeasible_paths_test.c -o ../llvm/lib/Transforms/InfeasiblePath/test/ir/infeasible_paths_test-no.ll
 
+~/cs6241/llvm-project/build/bin/clang++ -S -emit-llvm -O1 -Xclang -disable-llvm-passes -DUSE_MPI=0 *.cc
+~/cs6241/llvm-project/build/bin/llvm-link *.ll -o lulesh-single.ll
+
+bin/opt -reg2mem ../llvm/lib/Transforms/InfeasiblePath/test/src/spec_bzip2_src/spec-bzip-single.ll > ../llvm/lib/Transforms/InfeasiblePath/test/src/spec_bzip2_src/spec-bzip-final.ll
+bin/opt -reg2mem ../llvm/lib/Transforms/InfeasiblePath/test/src/LULESH/lulesh-single.ll > ../llvm/lib/Transforms/InfeasiblePath/test/src/LULESH/lulesh-final.ll
+
 3. LLVM run pass
 bin/opt -load lib/LLVMInfeasiblePath.so -MetaInfo -disable-output ../llvm/lib/Transforms/InfeasiblePath/test/ir/sample-no.ll
 bin/opt -load lib/LLVMInfeasiblePath.so -InfeasiblePath -disable-output ../llvm/lib/Transforms/InfeasiblePath/test/ir/sample-no.ll
-bin/opt -load lib/LLVMInfeasiblePath.so -InfeasiblePath -disable-output ../llvm/lib/Transforms/InfeasiblePath/test/ir/infeasible_paths_test-no.ll
 
+bin/opt -load lib/LLVMInfeasiblePath.so -InfeasiblePath -disable-output ../llvm/lib/Transforms/InfeasiblePath/test/ir/infeasible_paths_test-no.ll
+bin/opt -load lib/LLVMInfeasiblePath.so -InfeasiblePath -disable-output ../llvm/lib/Transforms/InfeasiblePath/test/src/LULESH/lulesh-final.ll
+bin/opt -load lib/LLVMInfeasiblePath.so -InfeasiblePath -disable-output ../llvm/lib/Transforms/InfeasiblePath/test/src/spec_bzip2_src/spec-bzip-final.ll
 
 ## Addition Tests
 - Hash Test

@@ -4,24 +4,30 @@ target datalayout = "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16
 target triple = "x86_64-unknown-linux-gnu"
 
 ; Function Attrs: noinline nounwind optnone uwtable
-define dso_local i32 @assignment_test() #0 {
+define dso_local i32 @condition_subsuming_change() #0 {
 entry:
   %a = alloca i32, align 4
   %retval1 = alloca i32, align 4
-  %b = alloca i32, align 4
-  store i32 5, i32* %a, align 4
+  store i32 15, i32* %a, align 4
   store i32 20, i32* %retval1, align 4
   %0 = load i32, i32* %a, align 4
-  store i32 %0, i32* %b, align 4
-  %1 = load i32, i32* %b, align 4
-  %cmp = icmp sgt i32 %1, 10
-  br i1 %cmp, label %if.then, label %if.end
+  %cmp = icmp sgt i32 %0, 10
+  br i1 %cmp, label %if.then, label %if.end4
 
 if.then:                                          ; preds = %entry
   store i32 10, i32* %retval1, align 4
+  %1 = load i32, i32* %a, align 4
+  %cmp2 = icmp sgt i32 %1, 5
+  br i1 %cmp2, label %if.then3, label %if.end
+
+if.then3:                                         ; preds = %if.then
+  store i32 15, i32* %retval1, align 4
   br label %if.end
 
-if.end:                                           ; preds = %if.then, %entry
+if.end:                                           ; preds = %if.then3, %if.then
+  br label %if.end4
+
+if.end4:                                          ; preds = %if.end, %entry
   %2 = load i32, i32* %retval1, align 4
   ret i32 %2
 }
