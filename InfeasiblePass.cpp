@@ -15,14 +15,14 @@ using namespace llvm;
 static std::unordered_map<CmpInst::Predicate, std::string, std::hash<unsigned int>> PredicateStringMap {
     {CmpInst::Predicate::ICMP_EQ, "Equal"},
     {CmpInst::Predicate::ICMP_NE, "NOT Equal"},
-    {CmpInst::Predicate::ICMP_UGT, "Unsigned Greater"},
-    {CmpInst::Predicate::ICMP_UGE, "Unsigned Greater Or Equal"},
-    {CmpInst::Predicate::ICMP_ULT, "Unsigned Less"},
-    {CmpInst::Predicate::ICMP_ULE, "Unsigned Less or Equal"},
     {CmpInst::Predicate::ICMP_SGT, "Greater"},
     {CmpInst::Predicate::ICMP_SGE, "Greater Or Equal"},
     {CmpInst::Predicate::ICMP_SLT, "Less"},
     {CmpInst::Predicate::ICMP_SLE, "Less or Equal"},
+    //{CmpInst::Predicate::ICMP_UGT, "Unsigned Greater"},
+    //{CmpInst::Predicate::ICMP_UGE, "Unsigned Greater Or Equal"},
+    //{CmpInst::Predicate::ICMP_ULT, "Unsigned Less"},
+    //{CmpInst::Predicate::ICMP_ULE, "Unsigned Less or Equal"},
 };
 
 static bool whetherCompInst(Instruction* InstructionCheck) {
@@ -266,11 +266,16 @@ public:
       // check whether Operand1 comes from strange operation or call
       if (isa<LoadInst>(Q.QOperand1)) {
           return Query::QueryAnswer::UNAVAIL;
+      } else if (isa<BinaryOperator>(Q.QOperand1)) {
+          BinaryOperator* BinaryInst = cast<BinaryOperator>(Q.QOperand1);
+          if (isa<ConstantInt>(BinaryInst->getOperand(0)) || isa<ConstantInt>(BinaryInst->getOperand(1))) {
+              if (BinaryInst->getOpcode() == llvm::Instruction::Add) {
+                  return Query::QueryAnswer::UNAVAIL;
+              } else if (BinaryInst->getOpcode() == llvm::Instruction::Sub) {
+                  return Query::QueryAnswer::UNAVAIL;
+              }
+          }
       }
-      //TODO: else if (isa<BinaryOperator>(Q.QOperand1)) {
-      //    BinaryOperator* BinaryOperand = cast<BinaryOperator>(Q.QOperand1);
-      //    if (BinaryOperand->getOpcode())
-      //}
       if (!isa<Instruction>(Q.QOperand1)) {
           outs() << "Not Instruction In Operand1 [" << Q.QOperand1->getName() << '\n';
           assert(false);
@@ -479,6 +484,8 @@ void substituteQuery(Function *F,
       assert(false);
   }
 
+  LLVMContext& Context = F->getContext();
+
   if (CurrentInst->getPrevNonDebugInstruction()) {
       // instruction still in BasicBlock
       Query QueryUpdate(Q);
@@ -529,8 +536,52 @@ void substituteQuery(Function *F,
                   outs() << "MisMatch" << '\n';
               }
           }
+      } else if (isa<BinaryOperator>(Q.QOperand1)) {
+          // try to resolve
+          if (PreviousInst == Q.QOperand1) {
+              BinaryOperator* BinaryInst = cast<BinaryOperator>(Q.QOperand1);
+              assert(isa<ConstantInt>(BinaryInst->getOperand(0)) || isa<ConstantInt>(BinaryInst->getOperand(1)));
+              assert(BinaryInst->getOpcode() == llvm::Instruction::Add || BinaryInst->getOpcode() == llvm::Instruction::Sub);
+
+              // generate new query
+
+              std::size_t Op0 = 0;  // operand
+              std::size_t Op1 = 1;  // some constant
+
+              if (isa<ConstantInt>(BinaryInst->getOperand(0))) {
+                  Op0 = 1;
+                  Op1 = 0;
+              }
+
+              Type *I64Type = IntegerType::getInt64Ty(Context);
+              int64_t CurrentActualValue = cast<ConstantInt>(Q.QOperand2)->getSExtValue();
+              int64_t Op1Value = cast<ConstantInt>(BinaryInst->getOperand(Op1))->getSExtValue();
+
+              if (BinaryInst->getOpcode() == llvm::Instruction::Add) {
+
+                  Value* GenerateConst = ConstantInt::get(I64Type, CurrentActualValue - Op1Value, true);
+                  QueryUpdate = {BinaryInst->getOperand(Op0), GenerateConst, Q.QPredicate};
+
+              } else if (BinaryInst->getOpcode() == llvm::Instruction::Sub) {
+                  if (Op0 == 1) {
+                      Value* GenerateConst = ConstantInt::get(I64Type, -1 * (CurrentActualValue - Op1Value), true);
+                      QueryUpdate = {BinaryInst->getOperand(Op0), GenerateConst, CmpInst::getSwappedPredicate(Q.QPredicate)};
+                  } else {
+                      Value* GenerateConst = ConstantInt::get(I64Type, CurrentActualValue + Op1Value, true);
+                      QueryUpdate = {BinaryInst->getOperand(Op0), GenerateConst, Q.QPredicate};
+                  }
+              }
+
+              Query::QueryAnswer CurAnswer = Query::resolveQuery(QueryUpdate);
+              assert(CurAnswer != Query::QueryAnswer::UNDEF);
+
+              // query solved
+              if (CurAnswer != Query::QueryAnswer::UNAVAIL) {
+                  updateQueryAnswerMap(QueryUpdate, CurAnswer, PreviousInst, CurrentInstQueryAnswerMap);
+              }
+          }
       } else {
-          //TODO: should be some operation, possible inference
+          outs() << "Non Binary Or Load Inst Raised - " << Query::queryString(Q) << "\n";
           assert(false);
       }
       updateQuerySubstituteRelation(Q, QueryUpdate, CurrentInst, PreviousInst, CurrentInstQuerySubstituteMap, CurrentInstQuerySubstituteReverseMap);
@@ -539,7 +590,6 @@ void substituteQuery(Function *F,
   } else {
       // instruction is at the boundary - entry (no previous block) or br
       if (CurrentInst->getParent() == (&F->getEntryBlock())) {
-          //TODO: update for checks, replace with above method
 
           outs() << "Current Inst As Entry, Not Forward" << '\n';
           // undef current query
@@ -601,7 +651,7 @@ void substituteQuery(Function *F,
                             updateQueryAnswerMap(QueryUpdate, CurAnswer, PredBranch, CurrentInstQueryAnswerMap);
 
                         } else {
-
+                            // follow some format, second as constant
                             Query::QueryAnswer CurAnswer = Query::QueryAnswer::UNDEF;
                             outs() << "Query Resolve In Subsuming Non Constant (" << QueryAnswerStringMap[CurAnswer] << "): " << Query::queryString(Q) << '\n' << "At " << PredBranch->getParent()->getName() << " -- " << *PredBranch << '\n' << '\n';
                             updateQueryAnswerMap(QueryUpdate, CurAnswer, PredBranch, CurrentInstQueryAnswerMap);

@@ -55,7 +55,7 @@ int assignment_addition_test () {
 	int a = 5;
 	int retval = 20;
 
-	int b = a + 10;
+	int b = 10 + a;
 	if (b > 10) {
 		retval = 10;
 	}

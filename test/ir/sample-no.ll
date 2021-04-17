@@ -119,7 +119,7 @@ entry:
   store i32 5, i32* %a, align 4
   store i32 20, i32* %retval1, align 4
   %0 = load i32, i32* %a, align 4
-  %add = add nsw i32 %0, 10
+  %add = add nsw i32 10, %0
   store i32 %add, i32* %b, align 4
   %1 = load i32, i32* %b, align 4
   %cmp = icmp sgt i32 %1, 10
