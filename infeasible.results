@@ -23,11 +23,11 @@ main
 		Total Generate Query: 6
 		Resolved: 3
 		False Infeasible Path:
-			if.then, if.end, while.body, if.then5, 
+			if.end, while.body, if.then5, 
 
 		True Infeasible Path:
-			entry, if.end, while.body, if.then5, 
-			if.end, while.body, if.then5, if.end8, if.end11, if.then13, if.end17, while.body, if.then5, 
+			if.end, while.body, if.then5, 
+			while.body, if.then5, if.end8, if.end11, if.then13, if.end17, while.body, if.then5, 
  ----------------------------------- 
 
  ----------------------------------- 
@@ -35,11 +35,11 @@ main
 		Total Generate Query: 6
 		Resolved: 3
 		False Infeasible Path:
-			if.end, while.body, if.then5, if.end8, if.end11, 
-			if.then, if.end, while.body, if.else, if.end11, 
+			while.body, if.then5, if.end8, if.end11, 
+			if.end, while.body, if.else, if.end11, 
 
 		True Infeasible Path:
-			entry, if.end, while.body, if.else, if.end11, 
+			if.end, while.body, if.else, if.end11, 
  ----------------------------------- 
 
 
