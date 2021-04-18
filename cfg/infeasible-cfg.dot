@@ -1,0 +1,33 @@
+digraph "CFG for 'main' function" {
+	label="CFG for 'main' function";
+
+	Node0x55f5dd152d10 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#dedcdb70",label="{entry:\l  %retval = alloca i32, align 4\l  %w = alloca i32, align 4\l  %y = alloca i32, align 4\l  %v = alloca i32, align 4\l  %x = alloca i32, align 4\l  %z = alloca i32, align 4\l  store i32 0, i32* %retval, align 4\l  store i32 1, i32* %w, align 4\l  store i32 3, i32* %y, align 4\l  store i32 0, i32* %v, align 4\l  store i32 0, i32* %x, align 4\l  store i32 0, i32* %z, align 4\l  %call = call i32 @rand() #3\l  %and = and i32 %call, 1\l  %cmp = icmp eq i32 %and, 1\l  br i1 %cmp, label %if.then, label %if.end\l|{<s0>T|<s1>F}}"];
+	Node0x55f5dd152d10:s0 -> Node0x55f5dd153ef0;
+	Node0x55f5dd152d10:s1 -> Node0x55f5dd153fc0;
+	Node0x55f5dd153ef0 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#bbd1f870",label="{if.then:                                          \l  store i32 5, i32* %v, align 4\l  %0 = load i32, i32* %y, align 4\l  %add = add nsw i32 %0, 1\l  store i32 %add, i32* %x, align 4\l  br label %if.end\l}"];
+	Node0x55f5dd153ef0 -> Node0x55f5dd153fc0;
+	Node0x55f5dd153fc0 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#dedcdb70",label="{if.end:                                           \l  %call1 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([19 x i8],\l... [19 x i8]* @.str, i64 0, i64 0))\l  br label %while.body\l}"];
+	Node0x55f5dd153fc0 -> Node0x55f5dd16c9d0;
+	Node0x55f5dd16c9d0 [shape=record,color="#b70d28ff", style=filled, fillcolor="#b70d2870",label="{while.body:                                       \l  %call2 = call i32 @rand() #3\l  %and3 = and i32 %call2, 1\l  %cmp4 = icmp eq i32 %and3, 1\l  br i1 %cmp4, label %if.then5, label %if.else\l|{<s0>T|<s1>F}}"];
+	Node0x55f5dd16c9d0:s0 -> Node0x55f5dd16cd30;
+	Node0x55f5dd16c9d0:s1 -> Node0x55f5dd16cdb0;
+	Node0x55f5dd16cd30 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#dc5d4a70",label="{if.then5:                                         \l  %1 = load i32, i32* %v, align 4\l  %cmp6 = icmp eq i32 %1, 5\l  br i1 %cmp6, label %if.then7, label %if.end8\l|{<s0>T|<s1>F}}"];
+	Node0x55f5dd16cd30:s0 -> Node0x55f5dd16d050;
+	Node0x55f5dd16cd30:s1 -> Node0x55f5dd16d0d0;
+	Node0x55f5dd16d050 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#abc8fd70",label="{if.then7:                                         \l  br label %while.end\l}"];
+	Node0x55f5dd16d050 -> Node0x55f5dd16d250;
+	Node0x55f5dd16d0d0 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#de614d70",label="{if.end8:                                          \l  %2 = load i32, i32* %x, align 4\l  %call9 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([9 x i8],\l... [9 x i8]* @.str.1, i64 0, i64 0), i32 %2)\l  %3 = load i32, i32* %w, align 4\l  store i32 %3, i32* %v, align 4\l  br label %if.end11\l}"];
+	Node0x55f5dd16d0d0 -> Node0x55f5dd16d9a0;
+	Node0x55f5dd16cdb0 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#dc5d4a70",label="{if.else:                                          \l  %4 = load i32, i32* %w, align 4\l  %add10 = add nsw i32 %4, 1\l  store i32 %add10, i32* %y, align 4\l  br label %if.end11\l}"];
+	Node0x55f5dd16cdb0 -> Node0x55f5dd16d9a0;
+	Node0x55f5dd16d9a0 [shape=record,color="#b70d28ff", style=filled, fillcolor="#b70d2870",label="{if.end11:                                         \l  %5 = load i32, i32* %v, align 4\l  %cmp12 = icmp sgt i32 %5, 0\l  br i1 %cmp12, label %if.then13, label %if.else15\l|{<s0>T|<s1>F}}"];
+	Node0x55f5dd16d9a0:s0 -> Node0x55f5dd16de20;
+	Node0x55f5dd16d9a0:s1 -> Node0x55f5dd16de70;
+	Node0x55f5dd16de20 [shape=record,color="#b70d28ff", style=filled, fillcolor="#bb1b2c70",label="{if.then13:                                        \l  %call14 = call i32 @rand() #3\l  store i32 %call14, i32* %w, align 4\l  %6 = load i32, i32* %w, align 4\l  %mul = mul nsw i32 2, %6\l  store i32 %mul, i32* %x, align 4\l  br label %if.end17\l}"];
+	Node0x55f5dd16de20 -> Node0x55f5dd16e320;
+	Node0x55f5dd16de70 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#cbd8ee70",label="{if.else15:                                        \l  %7 = load i32, i32* %x, align 4\l  %8 = load i32, i32* %y, align 4\l  %add16 = add nsw i32 %7, %8\l  store i32 %add16, i32* %z, align 4\l  br label %while.end\l}"];
+	Node0x55f5dd16de70 -> Node0x55f5dd16d250;
+	Node0x55f5dd16e320 [shape=record,color="#b70d28ff", style=filled, fillcolor="#bb1b2c70",label="{if.end17:                                         \l  br label %while.body\l}"];
+	Node0x55f5dd16e320 -> Node0x55f5dd16c9d0;
+	Node0x55f5dd16d250 [shape=record,color="#3d50c3ff", style=filled, fillcolor="#dedcdb70",label="{while.end:                                        \l  %9 = load i32, i32* %w, align 4\l  %10 = load i32, i32* %y, align 4\l  %add18 = add nsw i32 %9, %10\l  %11 = load i32, i32* %v, align 4\l  %add19 = add nsw i32 %add18, %11\l  %12 = load i32, i32* %x, align 4\l  %add20 = add nsw i32 %add19, %12\l  %13 = load i32, i32* %z, align 4\l  %add21 = add nsw i32 %add20, %13\l  %call22 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([15 x i8],\l... [15 x i8]* @.str.2, i64 0, i64 0), i32 %add21)\l  ret i32 0\l}"];
+}

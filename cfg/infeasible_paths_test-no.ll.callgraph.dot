@@ -1,0 +1,9 @@
+digraph "Call graph: ../llvm/lib/Transforms/InfeasiblePath/test/ir/infeasible_paths_test-no.ll" {
+	label="Call graph: ../llvm/lib/Transforms/InfeasiblePath/test/ir/infeasible_paths_test-no.ll";
+
+	Node0x55563ec70eb0 [shape=record,label="{main}"];
+	Node0x55563ec70eb0 -> Node0x55563ec70f60;
+	Node0x55563ec70eb0 -> Node0x55563ec71420;
+	Node0x55563ec70f60 [shape=record,label="{rand}"];
+	Node0x55563ec71420 [shape=record,label="{printf}"];
+}

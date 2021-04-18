@@ -7,6 +7,9 @@ https://stackoverflow.com/questions/41959551/how-do-i-print-out-an-instruction-i
 3. CMU LLVM Crash
 http://www.cs.cmu.edu/afs/cs/academic/class/15745-s15/public/lectures/L6-LLVM2-1up.pdf
 
+4. Generate CFG and call graph
+
+
 
 ## Command
 1. Build
@@ -38,6 +41,10 @@ bin/opt -load lib/LLVMInfeasiblePath.so -MetaInfo -disable-output ../llvm/lib/Tr
 
 bin/opt -load lib/LLVMInfeasiblePath.so -InfeasiblePath -disable-output ../llvm/lib/Transforms/InfeasiblePath/test/src/spec_bzip2_src/spec-bzip-final.ll 2> ../llvm/lib/Transforms/InfeasiblePath/spec.results
 bin/opt -load lib/LLVMInfeasiblePath.so -MetaInfo -disable-output ../llvm/lib/Transforms/InfeasiblePath/test/src/spec_bzip2_src/spec-bzip-final.ll 2> ../llvm/lib/Transforms/InfeasiblePath/spec.meta
+
+4. Generate CFG
+bin/opt -dot-callgraph ../llvm/lib/Transforms/InfeasiblePath/test/ir/infeasible_paths_test-no.ll
+dot infeasible_paths_test-no.ll.callgraph.dot -Tpng -o infeasible.png
 
 ## Addition Tests
 - Hash Test
