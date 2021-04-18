@@ -853,10 +853,10 @@ std::size_t infeasiblePath(Instruction* InitialInst, Query& InitialQuery, Query:
                 if (AnswerMap.find(Answer) != AnswerMap.end()) {
                     if (AnswerMap.size() == 1) {
                         // as start node, print current worklist
-                        workList.push_back({PreInst, Check});
+                        //workList.push_back({PreInst, Check});
                         printInfeasiblePath(workList);
                         PathCount++;
-                        workList.pop_back();
+                        //workList.pop_back();
                         continue;
                     }
                     // not as start node, proceed
