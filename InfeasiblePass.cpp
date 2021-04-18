@@ -8,6 +8,7 @@
 #include "llvm/Support/raw_ostream.h"
 #include <llvm/IR/Instructions.h>
 #include <sstream>
+#include <iomanip>
 #include <unordered_map>
 #include <unordered_set>
 using namespace llvm;
@@ -753,17 +754,54 @@ bool checkExist(Instruction* Inst, Query& Q, std::unordered_map<Instruction*, st
     return true;
 }
 
-// find infeasible path
-void infeasiblePath(Instruction* InitialInst, Query& InitialQuery, Query::QueryAnswer Answer, InstQueryAnswerMap& CurInstQueryAnswerMap, InstQuerySubstituteMap& CurInstQuerySubstituteReverseMap) {
+struct InstQueryPair {
+  Instruction* InstCheck;
+  Query QueryCheck;
+};
 
-    if (CurInstQueryAnswerMap.find(InitialInst) == CurInstQueryAnswerMap.end()) {
-        return;
+struct InfeasiblePathSummary {
+  std::size_t GenQC;
+  std::size_t ResolveQC;
+  std::size_t TrueIPC;
+  std::size_t FalseIPC;
+};
+
+void printInfeasiblePath(std::vector<InstQueryPair> &Path) {
+    std::string PathPrint;
+    raw_string_ostream Stream(PathPrint);
+    /*
+    Stream << "Path:" << "\n";
+    for (int I = Path.size() - 1; I > -1; I--) {
+      Stream << "([ " << *(Path[I].InstCheck) << " ] , " << Query::queryString(Path[I].QueryCheck) << ")\n";
+    }
+     */
+    std::vector<BasicBlock*> BB;
+    BB.reserve(50);
+    for (int I = Path.size() - 1; I > -1; I--) {
+        if (BB.size() > 0) {
+            if ((Path[I].InstCheck)->getParent() == BB[BB.size() - 1]) {
+                continue;
+            }
+        }
+        BB.push_back((Path[I].InstCheck)->getParent());
     }
 
-    struct InstQueryPair {
-        Instruction* InstCheck;
-        Query QueryCheck;
-    };
+    for (std::size_t I = 0; I < BB.size(); I++) {
+      Stream << BB[I]->getName().str() << ", ";
+    }
+
+    Stream << "\n";
+    errs() << "\t\t" << PathPrint;
+}
+
+// find infeasible path
+std::size_t infeasiblePath(Instruction* InitialInst, Query& InitialQuery, Query::QueryAnswer Answer, InstQueryAnswerMap& CurInstQueryAnswerMap, InstQuerySubstituteMap& CurInstQuerySubstituteReverseMap) {
+
+    std::size_t PathCount = 0;
+
+    if (CurInstQueryAnswerMap.find(InitialInst) == CurInstQueryAnswerMap.end()) {
+        return PathCount;
+    }
 
     std::vector<InstQueryPair> workList;
     workList.reserve(100);
@@ -807,16 +845,10 @@ void infeasiblePath(Instruction* InitialInst, Query& InitialQuery, Query::QueryA
                 if (AnswerMap.find(Answer) != AnswerMap.end()) {
                     if (AnswerMap.size() == 1) {
                         // as start node, print current worklist
-                        std::string Path;
-                        raw_string_ostream Stream(Path);
-                        outs() << "WorkList Size: " << workList.size();
                         workList.push_back({PreInst, Check});
-                        for (int I = workList.size() - 1; I > -1; I--) {
-                            Stream << "([ " << *(workList[I].InstCheck) << " ] , " << Query::queryString(workList[I].QueryCheck) << ") -- ";
-                        }
+                        printInfeasiblePath(workList);
+                        PathCount++;
                         workList.pop_back();
-                        Stream << "\n";
-                        errs() << Path;
                         continue;
                     }
                     // not as start node, proceed
@@ -838,14 +870,16 @@ void infeasiblePath(Instruction* InitialInst, Query& InitialQuery, Query::QueryA
             workList.pop_back();
         }
     }
+
+    return PathCount;
 }
 
 // Infeasible Pass - The first implementation, without getAnalysisUsage.
-struct InfeasiblePath : public FunctionPass {
+struct InfeasiblePath : public ModulePass {
     static char ID; // Pass identification, replacement for typeid
-    InfeasiblePath() : FunctionPass(ID) {}
+    InfeasiblePath() : ModulePass(ID) {}
 
-    static void correlationDetect(Function *F, CmpInst* CompInst) {
+    static InfeasiblePathSummary correlationDetect(Function *F, CmpInst* CompInst) {
 
       // swap for initial query
       Value* Operand1 = CompInst->getOperand(0);
@@ -860,7 +894,8 @@ struct InfeasiblePath : public FunctionPass {
 
       Query TestQuery = {Operand1, Operand2, CompPredicate};
       //outs() << "Start" << "\n";
-      //outs() << "Query: " << Query::queryString(TestQuery) << "\n\n";
+      errs() << " ----------------------------------- " << "\n";
+      errs() << "\t\tPredicate: " << Query::queryString(TestQuery) << "\n";
 
       // step 1: query correlation detection
 
@@ -976,7 +1011,8 @@ struct InfeasiblePath : public FunctionPass {
           }
       }
 
-      errs() << "Total Query: " << TotalQuery.size() << " , " << "Resolved: " << ResolveQuery.size() << "\n";
+      errs() << "\t\tTotal Generate Query: " << TotalQuery.size() << "\n";
+      errs() << "\t\tResolved: " << ResolveQuery.size() << "\n";
 
       /*
       for (auto& Q : TotalQuery) {
@@ -1098,54 +1134,97 @@ struct InfeasiblePath : public FunctionPass {
       */
 
       // step 3: generate infeasible path
-      if (CurInstQueryAnswerMap.find(CompInst) == CurInstQueryAnswerMap.end()) {
-          errs() << "No Infeasible Path Found" << "\n";
-          return;
-      }
 
-      auto& QASet = CurInstQueryAnswerMap[CompInst][TestQuery];
-      errs() << "False Infeasible Path:" << "\n";
-      if (QASet.find(Query::TRUE) != QASet.end()) {
-          infeasiblePath(CompInst, TestQuery, Query::QueryAnswer::TRUE, CurInstQueryAnswerMap, CurReverseInstQuerySubstituteMap);
+      std::size_t TrueIP = 0;
+      std::size_t FalseIP = 0;
+
+      if (CurInstQueryAnswerMap.find(CompInst) == CurInstQueryAnswerMap.end()) {
+          errs() << "\t\tNo Infeasible Path Found" << "\n";
+      } else {
+          auto& QASet = CurInstQueryAnswerMap[CompInst][TestQuery];
+          errs() << "\t\tFalse Infeasible Path:" << "\n";
+          if (QASet.find(Query::TRUE) != QASet.end()) {
+              FalseIP = infeasiblePath(CompInst, TestQuery, Query::QueryAnswer::TRUE, CurInstQueryAnswerMap, CurReverseInstQuerySubstituteMap);
+          }
+          errs() << "\n";
+          errs() << "\t\tTrue Infeasible Path:" << "\n";
+          if (QASet.find(Query::FALSE) != QASet.end()) {
+              TrueIP = infeasiblePath(CompInst, TestQuery, Query::QueryAnswer::FALSE, CurInstQueryAnswerMap, CurReverseInstQuerySubstituteMap);
+          }
       }
-      errs() << "True Infeasible Path:" << "\n";
-      if (QASet.find(Query::FALSE) != QASet.end()) {
-        infeasiblePath(CompInst, TestQuery, Query::QueryAnswer::TRUE, CurInstQueryAnswerMap, CurReverseInstQuerySubstituteMap);
-      }
+      errs() << " ----------------------------------- " << "\n\n";
+
+      return {TotalQuery.size(), ResolveQuery.size(), TrueIP, FalseIP};
     }
 
-    bool runOnFunction(Function &F) override {
-        errs() << "Infeasible Path Pass:" << "\n";
-        errs().write_escaped(F.getName()) << '\n';
+    bool runOnModule(Module &M) override {
 
-        // all target instruction
-        std::vector<CmpInst*> TargetCmpInst;
-        for (Function::iterator BB = F.begin(), BBE = F.end(); BB != BBE; ++BB) {
-            for (BasicBlock::iterator IN = BB->begin(), INE = BB->end(); IN != INE; ++IN) {
+        errs() << "Infeasible Path Pass:" << "\n";
+
+        std::size_t TotalPredicate = 0;
+        std::size_t CorrelatedPredicate = 0;
+
+        for (Module::iterator F = M.begin(), FE = M.end(); F != FE; ++F) {
+            errs().write_escaped((&*F)->getName()) << '\n';
+
+            InfeasiblePathSummary FuncSummary;
+
+            // all target instruction
+            std::vector<CmpInst*> TargetCmpInst;
+            for (Function::iterator BB = F->begin(), BBE = F->end(); BB != BBE; ++BB) {
+              for (BasicBlock::iterator IN = BB->begin(), INE = BB->end(); IN != INE; ++IN) {
                 Instruction* InstInBlock = &*IN;
                 if (!whetherTargetCompInst(InstInBlock)) {
-                    continue;
+                  continue;
                 }
                 CmpInst* CompInst = cast<CmpInst>(InstInBlock);
                 TargetCmpInst.push_back(CompInst);
+              }
             }
+
+            // get all used compare branch, detect correlated query//outs() .write_escaped(F.getName()) << '\n';
+            for (auto& Inst : TargetCmpInst) {
+                //outs() << *Inst << '\n';
+                //outs() << "Used:" << '\n';
+                for (auto *U : Inst->users()) {
+                  if (!isa<Instruction>(&*U)) {
+                    //outs() << "Not A Instruction: " << *U << '\n';
+                    continue;
+                  }
+                  //outs() << *cast<Instruction>(&*U) << '\n';
+                }
+                //outs() << "End Used" << '\n' << '\n';
+                InfeasiblePathSummary PredicateSummary = correlationDetect(&*F, Inst);
+                FuncSummary.GenQC = FuncSummary.GenQC + PredicateSummary.GenQC;
+                FuncSummary.ResolveQC = FuncSummary.ResolveQC + PredicateSummary.GenQC;
+                FuncSummary.TrueIPC = FuncSummary.TrueIPC + PredicateSummary.TrueIPC;
+                FuncSummary.FalseIPC = FuncSummary.FalseIPC + PredicateSummary.FalseIPC;
+
+                TotalPredicate ++;
+                if (PredicateSummary.ResolveQC > 0) {
+                    CorrelatedPredicate ++;
+                }
+            }
+
+            errs() << "\n\n";
+            errs() << "=========================================================" << "\n";
+            errs() << "Function Summary:\n";
+            errs() << "\t\tTotal Query Gen:\t" << FuncSummary.GenQC << "\n";
+            errs() << "\t\tResolve Query:\t" << FuncSummary.ResolveQC << "\n";
+            errs() << "\t\tTrue Infeasible Path:\t" << FuncSummary.TrueIPC << "\n";
+            errs() << "\t\tTrue Infeasible Path:\t" << FuncSummary.FalseIPC << "\n";
+            errs() << "=========================================================" << "\n\n\n";
         }
 
-        // get all used compare branch, detect correlated query//outs() .write_escaped(F.getName()) << '\n';
-        for (auto& Inst : TargetCmpInst) {
-          //outs() << *Inst << '\n';
-          //outs() << "Used:" << '\n';
-            for (auto *U : Inst->users()) {
-                if (!isa<Instruction>(&*U)) {
-                  //outs() << "Not A Instruction: " << *U << '\n';
-                    continue;
-                }
-                //outs() << *cast<Instruction>(&*U) << '\n';
-            }
-            //outs() << "End Used" << '\n' << '\n';
-            correlationDetect(&F, Inst);
-        }
-        //outs() << "\n" << "\n";
+        double Percentage = (double(CorrelatedPredicate)/double(TotalPredicate)) * 100;
+
+        errs() << "\n\n\n";
+        errs() << "**********************************************************" << "\n";
+        errs() << "Module Summary:\n";
+        errs() << "\t\tTotal Predicate:\t" << TotalPredicate << "\n";
+        errs() << "\t\tCorrelated Predicate:\t" << CorrelatedPredicate << "\n";
+        errs() << "\t\tPercentage:\t" << Percentage << "%\n";
+        errs() << "**********************************************************" << "\n";
         return false;
     }
 };
