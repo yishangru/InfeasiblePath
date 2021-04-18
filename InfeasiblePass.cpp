@@ -406,20 +406,25 @@ typedef std::unordered_map<Instruction*, std::unordered_map<Instruction*, Substi
 // inst -> query -> query
 typedef std::unordered_map<Instruction*, std::unordered_set<Query, Query::QueryHashFunction>> Step1WorkList;
 
+// initial query answer
+void initialQueryAnswerMap(Query& SubstituteQuery, Instruction* CandidateInst, InstQueryAnswerMap& CurInstQueryAnswerMap) {
+  if (CurInstQueryAnswerMap.find(CandidateInst) == CurInstQueryAnswerMap.end()) {
+    CurInstQueryAnswerMap[CandidateInst] = QueryAnswerMap();
+  }
+  QueryAnswerMap& CandidateQueryAnswerMap = CurInstQueryAnswerMap[CandidateInst];
+  if (CandidateQueryAnswerMap.find(SubstituteQuery) == CandidateQueryAnswerMap.end()) {
+    CandidateQueryAnswerMap[SubstituteQuery] = QueryAnswerSet();
+  }
+}
 
 // update query answer
 void updateQueryAnswerMap(Query& SubstituteQuery, Query::QueryAnswer Answer, Instruction* CandidateInst, InstQueryAnswerMap& CurInstQueryAnswerMap) {
     assert(Answer != Query::QueryAnswer::UNAVAIL);
-    if (CurInstQueryAnswerMap.find(CandidateInst) == CurInstQueryAnswerMap.end()) {
-      CurInstQueryAnswerMap[CandidateInst] = QueryAnswerMap();
-    }
-    QueryAnswerMap& CandidateQueryAnswerMap = CurInstQueryAnswerMap[CandidateInst];
-    if (CandidateQueryAnswerMap.find(SubstituteQuery) == CandidateQueryAnswerMap.end()) {
-      CandidateQueryAnswerMap[SubstituteQuery] = QueryAnswerSet();
-    }
-    CandidateQueryAnswerMap[SubstituteQuery].insert(Answer);
+    initialQueryAnswerMap(SubstituteQuery, CandidateInst, CurInstQueryAnswerMap);
+    CurInstQueryAnswerMap[CandidateInst][SubstituteQuery].insert(Answer);
 }
 
+// update query answer
 
 // update worklist and query answer map
 void updateStep1Worklist(Query& SubstituteQuery, Instruction* CandidateInst, InstQueryAnswerMap& CurInstQueryAnswerMap, Step1WorkList& CurWorkList) {
@@ -601,7 +606,7 @@ void substituteQuery(Function *F,
 
   } else {
       // instruction is at the boundary - entry (no previous block) or br
-      if (CurrentInst->getParent() == (&F->getEntryBlock())) {
+      if (CurrentInst->getParent() == &(F->getEntryBlock())) {
 
         //outs() << "Current Inst As Entry, Not Forward" << '\n';
           // undef current query
@@ -725,7 +730,8 @@ void substituteQuery(Function *F,
                     }
 
                     updateQuerySubstituteRelation(Q, QueryUpdate, CurrentInst, PredTerminator, CurrentInstQuerySubstituteMap, CurrentInstQuerySubstituteReverseMap);
-                    updateQuerySubstituteRelation(Q, QueryUpdate, PredTerminator, ConditionInst, CurrentInstQuerySubstituteMap, CurrentInstQuerySubstituteReverseMap);
+                    updateQuerySubstituteRelation(QueryUpdate, QueryUpdate, PredTerminator, ConditionInst, CurrentInstQuerySubstituteMap, CurrentInstQuerySubstituteReverseMap);
+                    initialQueryAnswerMap(QueryUpdate, PredTerminator, CurrentInstQueryAnswerMap);
                     updateStep1Worklist(QueryUpdate, ConditionInst, CurrentInstQueryAnswerMap, CurrentStep1WorkList);
                 } else {
                     updateQuerySubstituteRelation(Q, QueryUpdate, CurrentInst, PredTerminator, CurrentInstQuerySubstituteMap, CurrentInstQuerySubstituteReverseMap);
@@ -735,6 +741,103 @@ void substituteQuery(Function *F,
       }
   }
   return;
+}
+
+bool checkExist(Instruction* Inst, Query& Q, std::unordered_map<Instruction*, std::unordered_set<Query, Query::QueryHashFunction>>& visitedInstQuery) {
+    if (visitedInstQuery.find(Inst) == visitedInstQuery.end()) {
+        return false;
+    }
+    if (visitedInstQuery[Inst].find(Q) == visitedInstQuery[Inst].end()) {
+        return false;
+    }
+    return true;
+}
+
+// find infeasible path
+void infeasiblePath(Instruction* InitialInst, Query& InitialQuery, Query::QueryAnswer Answer, InstQueryAnswerMap& CurInstQueryAnswerMap, InstQuerySubstituteMap& CurInstQuerySubstituteReverseMap) {
+
+    if (CurInstQueryAnswerMap.find(InitialInst) == CurInstQueryAnswerMap.end()) {
+        return;
+    }
+
+    struct InstQueryPair {
+        Instruction* InstCheck;
+        Query QueryCheck;
+    };
+
+    std::vector<InstQueryPair> workList;
+    workList.reserve(100);
+    std::unordered_map<Instruction*, std::unordered_set<Query, Query::QueryHashFunction>> visitedInstQuery;
+
+    workList.push_back({InitialInst, InitialQuery});
+
+    while (!workList.empty()) {
+        std::size_t CurSize = workList.size();
+        InstQueryPair& Visiting = workList[CurSize - 1];
+
+        // check whether all sub are visited
+        Instruction* VisitInst = Visiting.InstCheck;
+        Query& VisitQuery = Visiting.QueryCheck;
+
+        // update visited query
+        if (visitedInstQuery.find(VisitInst) == visitedInstQuery.end()) {
+            visitedInstQuery[VisitInst] = std::unordered_set<Query, Query::QueryHashFunction>();
+        }
+        visitedInstQuery[VisitInst].insert(VisitQuery);
+
+        bool AllVisited = true;
+        for (auto& InstPreInst : CurInstQuerySubstituteReverseMap[VisitInst]) {
+
+            Instruction* PreInst = InstPreInst.first;
+            auto& QMap = CurInstQuerySubstituteReverseMap[VisitInst][PreInst];
+            if (QMap.find(VisitQuery) == QMap.end()) {
+                continue;
+            }
+
+            for (auto& Q : QMap[VisitQuery]) {
+                Query Check = Q;
+                if (checkExist(PreInst, Check, visitedInstQuery)) {
+                    continue;
+                }
+
+                // check infeasible path criteria
+                auto& AnswerMap = CurInstQueryAnswerMap[PreInst][Check];
+                assert(AnswerMap.size() > 0);
+
+                if (AnswerMap.find(Answer) != AnswerMap.end()) {
+                    if (AnswerMap.size() == 1) {
+                        // as start node, print current worklist
+                        std::string Path;
+                        raw_string_ostream Stream(Path);
+                        outs() << "WorkList Size: " << workList.size();
+                        workList.push_back({PreInst, Check});
+                        for (int I = workList.size() - 1; I > -1; I--) {
+                            Stream << "([ " << *(workList[I].InstCheck) << " ] , " << Query::queryString(workList[I].QueryCheck) << ") -- ";
+                        }
+                        workList.pop_back();
+                        Stream << "\n";
+                        errs() << Path;
+                        continue;
+                    }
+                    // not as start node, proceed
+                } else {
+                    continue;
+                }
+
+                AllVisited = false;
+                workList.push_back({PreInst, Q});
+                break;
+            }
+
+            if (!AllVisited) {
+                break;
+            }
+        }
+
+        if (AllVisited) {
+            workList.pop_back();
+        }
+    }
 }
 
 // Infeasible Pass - The first implementation, without getAnalysisUsage.
@@ -770,6 +873,7 @@ struct InfeasiblePath : public FunctionPass {
       Query::QueryAnswer IniQueryAnswer = Query::resolveQuery(TestQuery);
       if (IniQueryAnswer == Query::QueryAnswer::UNAVAIL) {
         //outs() << "Raise Query" << "\n";
+        initialQueryAnswerMap(TestQuery, CompInst, CurInstQueryAnswerMap);
         substituteQuery(F, TestQuery, CompInst, CurInstQueryAnswerMap, CurStep1WorkList, CurInstQuerySubstituteMap, CurReverseInstQuerySubstituteMap);
       } else {
         //outs() << "Query Already Resolved (" << QueryAnswerStringMap[IniQueryAnswer] << ")\n";
@@ -778,8 +882,6 @@ struct InfeasiblePath : public FunctionPass {
 
       //outs() << "\n";
       //outs() << "Finish Initial Raise Query" << "\n";
-
-      std::size_t Counter = 100;
 
       while (!CurStep1WorkList.empty()) {
           // pick one
@@ -849,23 +951,6 @@ struct InfeasiblePath : public FunctionPass {
 
       //outs() << "WorkList Cleared, Step 1 Finish" << '\n';
 
-      // generate successor map based on previous query records
-      std::unordered_map<Instruction*, std::unordered_set<Instruction*>> SuccessorMap;
-      for (auto& InsQueryPair : CurInstQuerySubstituteMap) {
-          Instruction* Successor = InsQueryPair.first;
-          auto& PredcessorQueryMap = InsQueryPair.second;
-          for (auto& PredcessorQueryPair : PredcessorQueryMap) {
-              Instruction* Predcessor = PredcessorQueryPair.first;
-              if (SuccessorMap.find(Predcessor) == SuccessorMap.end()) {
-                  SuccessorMap[Predcessor] = std::unordered_set<Instruction*>();
-              }
-              SuccessorMap[Predcessor].insert(Successor);
-          }
-      }
-
-      // generate resolved query records
-      std::unordered_set<Instruction*> QueryResolveNodes;
-
       std::unordered_set<Query, Query::QueryHashFunction> TotalQuery;
       std::unordered_set<Query, Query::QueryHashFunction> ResolveQuery;
 
@@ -893,15 +978,64 @@ struct InfeasiblePath : public FunctionPass {
 
       errs() << "Total Query: " << TotalQuery.size() << " , " << "Resolved: " << ResolveQuery.size() << "\n";
 
-      //outs() << "\n\n";
+      /*
+      for (auto& Q : TotalQuery) {
+          std::string Qstr = Query::queryString(Q);
+          if (ResolveQuery.find(Q) != ResolveQuery.end()) {
+              Qstr += " --- Solved";
+          }
+          outs() << Qstr << "\n";
+      }
+      outs() << "\n\n";
+      */
 
       // step 2: global query answer
 
       //outs() << "Step 2 Start" << "\n";
 
+      // generate successor map based on previous query records
+      std::unordered_map<Instruction*, std::unordered_set<Instruction*>> SuccessorMap;
+      for (auto& InsQueryPair : CurInstQuerySubstituteMap) {
+          Instruction* Successor = InsQueryPair.first;
+          auto& PredcessorQueryMap = InsQueryPair.second;
+          for (auto& PredcessorQueryPair : PredcessorQueryMap) {
+              Instruction* Predcessor = PredcessorQueryPair.first;
+              if (SuccessorMap.find(Predcessor) == SuccessorMap.end()) {
+                SuccessorMap[Predcessor] = std::unordered_set<Instruction*>();
+              }
+              SuccessorMap[Predcessor].insert(Successor);
+          }
+      }
+
+      // generate resolved query records
+      std::unordered_set<Instruction*> QueryResolveNodes;
+      for (auto& InstQuerysPair : CurInstQueryAnswerMap) {
+        auto& Queries = InstQuerysPair.second;
+        //std::string ResolvedQuery;
+        for (auto& QueryAnswerPair : Queries) {
+          auto& Answers = QueryAnswerPair.second;
+          if (Answers.size() > 0) {
+            assert(Answers.size() == 1);
+            QueryResolveNodes.insert(InstQuerysPair.first);
+          }
+        }
+      }
+
+      /*
+      for (auto& InstPair : CurInstQuerySubstituteMap) {
+          outs() << *(InstPair.first) << " ---- " << "\n";
+          for (auto& InstQuerys : CurInstQuerySubstituteMap[InstPair.first]) {
+              outs() << *(InstQuerys.first) << "\n";
+              outs() << InstQuerys.second.size() << "\n";
+          }
+      }
+      */
+
       std::unordered_set<Instruction*> CurStep2WorkList;
       for (auto& Inst : QueryResolveNodes) {
-          assert(SuccessorMap.find(Inst) != SuccessorMap.end());
+          if (SuccessorMap.find(Inst) == SuccessorMap.end()) {
+              continue;
+          }
           for (auto& Succ : SuccessorMap[Inst]) {
               CurStep2WorkList.insert(Succ);
           }
@@ -915,11 +1049,69 @@ struct InfeasiblePath : public FunctionPass {
           }
           CurStep2WorkList.erase(CandInst);
 
+          if (CurInstQueryAnswerMap.find(CandInst) == CurInstQueryAnswerMap.end()) {
+              continue;
+          }
+
+          if (CurReverseInstQuerySubstituteMap.find(CandInst) == CurInstQuerySubstituteMap.end()) {
+              continue;
+          }
+
+          bool WhetherChange = false;
+          for (auto& Pred : CurReverseInstQuerySubstituteMap[CandInst]) {
+              for (auto& QMap : CurReverseInstQuerySubstituteMap[CandInst][Pred.first]) {
+                  Query SucQ = QMap.first;
+                  auto& SucQueryAnswers = CurInstQueryAnswerMap[CandInst][SucQ];
+                  for (auto& Q : QMap.second) {
+                      for (auto& Answer: CurInstQueryAnswerMap[Pred.first][Q]) {
+                          if (SucQueryAnswers.find(Answer) == SucQueryAnswers.end()) {
+                              SucQueryAnswers.insert(Answer);
+                              WhetherChange = true;
+                          }
+                      }
+                  }
+              }
+          }
+
+          if (WhetherChange) {
+              if (SuccessorMap.find(CandInst) == SuccessorMap.end()) {
+                  continue;
+              }
+              for (auto& Succ : SuccessorMap[CandInst]) {
+                  CurStep2WorkList.insert(Succ);
+              }
+          }
       }
 
+      /*
+      for (auto& InstQuery : CurInstQueryAnswerMap) {
+          outs() << *(InstQuery.first) << "\n";
+          for (auto& QueryAnswers : CurInstQueryAnswerMap[InstQuery.first]) {
+              std::string Answers = "[";
+              for (auto& Answer : QueryAnswers.second) {
+                  Answers += (QueryAnswerStringMap[Answer] + " , ");
+              }
+              Answers += "]";
+              outs() << Query::queryString(QueryAnswers.first) << " : " << Answers << "\n\n";
+          }
+      }
+      */
+
       // step 3: generate infeasible path
+      if (CurInstQueryAnswerMap.find(CompInst) == CurInstQueryAnswerMap.end()) {
+          errs() << "No Infeasible Path Found" << "\n";
+          return;
+      }
 
-
+      auto& QASet = CurInstQueryAnswerMap[CompInst][TestQuery];
+      errs() << "False Infeasible Path:" << "\n";
+      if (QASet.find(Query::TRUE) != QASet.end()) {
+          infeasiblePath(CompInst, TestQuery, Query::QueryAnswer::TRUE, CurInstQueryAnswerMap, CurReverseInstQuerySubstituteMap);
+      }
+      errs() << "True Infeasible Path:" << "\n";
+      if (QASet.find(Query::FALSE) != QASet.end()) {
+        infeasiblePath(CompInst, TestQuery, Query::QueryAnswer::TRUE, CurInstQueryAnswerMap, CurReverseInstQuerySubstituteMap);
+      }
     }
 
     bool runOnFunction(Function &F) override {
