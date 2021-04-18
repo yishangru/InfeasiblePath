@@ -85,6 +85,7 @@ struct CheckMetaFuncInfo : public ModulePass {
   bool runOnModule(Module &M) override {
     errs() << "CheckMetaFuncInfo Pass: " << "\n";
 
+    uint32_t FuncCount = 0;
     uint32_t ModuleBranchCount = 0;
     uint32_t ModuleIntBranchCount = 0;
     uint32_t ModuleIntTargetBranchCount = 0;
@@ -153,6 +154,7 @@ struct CheckMetaFuncInfo : public ModulePass {
         ModulePredicateBranchCount[Pair.first] += Pair.second;
       }
 
+      FuncCount++;
       errs() << "\n";
       errs() << "=========================================================" << "\n";
       errs().write_escaped(F->getName()) << '\n';
@@ -164,6 +166,7 @@ struct CheckMetaFuncInfo : public ModulePass {
     errs() << "\n\n\n";
     errs() << "**********************************************************" << "\n";
     errs() << "Module Summary:" << '\n';
+    errs() << "Total Func:\t" << FuncCount << "\n";
     printInfo(ModuleBranchCount, ModuleIntBranchCount, ModuleIntTargetBranchCount, ModulePredicateBranchCount);
     errs() << "**********************************************************" << "\n";
 
@@ -796,7 +799,7 @@ void printInfeasiblePath(std::vector<InstQueryPair> &Path) {
     }
 
     Stream << "\n";
-    errs() << "\t" << PathPrint;
+    errs() << "\t\t\t" << PathPrint;
 }
 
 // find infeasible path
