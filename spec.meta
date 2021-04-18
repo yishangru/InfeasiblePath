@@ -1,0 +1,1358 @@
+CheckMetaFuncInfo Pass: 
+
+=========================================================
+BZ2_blockSort
+	Func Branch: 11
+	Func Integer Branch: 11
+	Func Target Integer Branch: 10
+	Equal: 2
+	Greater Or Equal: 2
+	Greater: 1
+	Less: 3
+	NOT Equal: 2
+=========================================================
+
+=========================================================
+llvm.lifetime.start.p0i8
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+fallbackSort
+	Func Branch: 35
+	Func Integer Branch: 35
+	Func Target Integer Branch: 24
+	Equal: 4
+	Greater Or Equal: 4
+	NOT Equal: 9
+	Less: 7
+=========================================================
+
+=========================================================
+mainSort
+	Func Branch: 40
+	Func Integer Branch: 40
+	Func Target Integer Branch: 32
+	Greater: 1
+	Less or Equal: 9
+	Equal: 1
+	Greater Or Equal: 10
+	NOT Equal: 5
+	Less: 6
+=========================================================
+
+=========================================================
+fprintf
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+llvm.lifetime.end.p0i8
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+mainQSort3
+	Func Branch: 20
+	Func Integer Branch: 20
+	Func Target Integer Branch: 11
+	Equal: 2
+	Greater: 5
+	Less: 4
+=========================================================
+
+=========================================================
+mainSimpleSort
+	Func Branch: 13
+	Func Integer Branch: 13
+	Func Target Integer Branch: 6
+	NOT Equal: 3
+	Less: 2
+	Greater Or Equal: 1
+=========================================================
+
+=========================================================
+mmed3
+	Func Branch: 3
+	Func Integer Branch: 3
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+mainGtU
+	Func Branch: 59
+	Func Integer Branch: 59
+	Func Target Integer Branch: 1
+	Greater Or Equal: 1
+=========================================================
+
+=========================================================
+fallbackQSort3
+	Func Branch: 18
+	Func Integer Branch: 18
+	Func Target Integer Branch: 11
+	Equal: 4
+	Greater: 4
+	Less: 3
+=========================================================
+
+=========================================================
+fallbackSimpleSort
+	Func Branch: 8
+	Func Integer Branch: 8
+	Func Target Integer Branch: 1
+	Greater: 1
+=========================================================
+
+=========================================================
+fopen_output_safely
+	Func Branch: 2
+	Func Integer Branch: 2
+	Func Target Integer Branch: 1
+	Equal: 1
+=========================================================
+
+=========================================================
+open
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+fdopen
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+close
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+main
+	Func Branch: 73
+	Func Integer Branch: 73
+	Func Target Integer Branch: 57
+	Greater: 2
+	NOT Equal: 12
+	Equal: 43
+=========================================================
+
+=========================================================
+mySIGSEGVorSIGBUScatcher
+	Func Branch: 2
+	Func Integer Branch: 2
+	Func Target Integer Branch: 2
+	Equal: 2
+=========================================================
+
+=========================================================
+signal
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+copyFileName
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+addFlagsFromEnvVar
+	Func Branch: 8
+	Func Integer Branch: 8
+	Func Target Integer Branch: 6
+	Greater: 2
+	Equal: 1
+	NOT Equal: 3
+=========================================================
+
+=========================================================
+snocString
+	Func Branch: 2
+	Func Integer Branch: 2
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+strcmp
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+strlen
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+strstr
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+license
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+usage
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+exit
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+redundant
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+strncmp
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+mySignalCatcher
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+compress
+	Func Branch: 37
+	Func Integer Branch: 37
+	Func Target Integer Branch: 30
+	Greater: 2
+	Greater Or Equal: 1
+	Equal: 8
+	NOT Equal: 18
+	Less: 1
+=========================================================
+
+=========================================================
+uncompress
+	Func Branch: 43
+	Func Integer Branch: 43
+	Func Target Integer Branch: 36
+	Greater: 2
+	Greater Or Equal: 3
+	Equal: 9
+	NOT Equal: 21
+	Less: 1
+=========================================================
+
+=========================================================
+setExit
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+testf
+	Func Branch: 15
+	Func Integer Branch: 15
+	Func Target Integer Branch: 13
+	NOT Equal: 10
+	Greater Or Equal: 2
+	Equal: 1
+=========================================================
+
+=========================================================
+free
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+panic
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+containsDubiousChars
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+fileExists
+	Func Branch: 2
+	Func Integer Branch: 2
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+__errno_location
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+strerror
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+stat
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+fileno
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+isatty
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+fopen
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+pad
+	Func Branch: 2
+	Func Integer Branch: 2
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+fflush
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+testStream
+	Func Branch: 18
+	Func Integer Branch: 18
+	Func Target Integer Branch: 15
+	NOT Equal: 8
+	Greater Or Equal: 1
+	Equal: 6
+=========================================================
+
+=========================================================
+ferror
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+myfeof
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	Equal: 1
+=========================================================
+
+=========================================================
+fclose
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+configError
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+ioError
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+outOfMemory
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+showFileNames
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	NOT Equal: 1
+=========================================================
+
+=========================================================
+cleanUpAndFail
+	Func Branch: 10
+	Func Integer Branch: 10
+	Func Target Integer Branch: 8
+	Greater: 1
+	Equal: 2
+	NOT Equal: 5
+=========================================================
+
+=========================================================
+remove
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+perror
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+fgetc
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+ungetc
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+__xstat
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+mapSuffix
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	NOT Equal: 1
+=========================================================
+
+=========================================================
+strcat
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+notAStandardFile
+	Func Branch: 2
+	Func Integer Branch: 2
+	Func Target Integer Branch: 2
+	Equal: 1
+	NOT Equal: 1
+=========================================================
+
+=========================================================
+countHardLinks
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	NOT Equal: 1
+=========================================================
+
+=========================================================
+saveInputFileMetaInfo
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	NOT Equal: 1
+=========================================================
+
+=========================================================
+uncompressStream
+	Func Branch: 32
+	Func Integer Branch: 32
+	Func Target Integer Branch: 27
+	Greater: 2
+	NOT Equal: 16
+	Greater Or Equal: 1
+	Equal: 8
+=========================================================
+
+=========================================================
+applySavedMetaInfoToOutputFile
+	Func Branch: 2
+	Func Integer Branch: 2
+	Func Target Integer Branch: 2
+	NOT Equal: 2
+=========================================================
+
+=========================================================
+chmod
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+utime
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+chown
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+fwrite
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+rewind
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+fread
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+crcError
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+compressedStreamEOF
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	NOT Equal: 1
+=========================================================
+
+=========================================================
+cadvise
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	NOT Equal: 1
+=========================================================
+
+=========================================================
+lstat
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+__lxstat
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+hasSuffix
+	Func Branch: 2
+	Func Integer Branch: 2
+	Func Target Integer Branch: 1
+	Equal: 1
+=========================================================
+
+=========================================================
+compressStream
+	Func Branch: 18
+	Func Integer Branch: 18
+	Func Target Integer Branch: 17
+	Greater: 1
+	NOT Equal: 9
+	Equal: 5
+	Greater Or Equal: 2
+=========================================================
+
+=========================================================
+uInt64_from_UInt32s
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+uInt64_to_double
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	Less: 1
+=========================================================
+
+=========================================================
+uInt64_toAscii
+	Func Branch: 2
+	Func Integer Branch: 2
+	Func Target Integer Branch: 1
+	NOT Equal: 1
+=========================================================
+
+=========================================================
+llvm.memcpy.p0i8.p0i8.i64
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+uInt64_qrm10
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	Greater Or Equal: 1
+=========================================================
+
+=========================================================
+uInt64_isZero
+	Func Branch: 2
+	Func Integer Branch: 2
+	Func Target Integer Branch: 2
+	NOT Equal: 1
+	Less: 1
+=========================================================
+
+=========================================================
+mkCell
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+myMalloc
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+strcpy
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+malloc
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+getenv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+__ctype_b_loc
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+strncpy
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+BZ2_bz__AssertH__fail
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	Equal: 1
+=========================================================
+
+=========================================================
+BZ2_bzlibVersion
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+BZ2_bzCompressInit
+	Func Branch: 17
+	Func Integer Branch: 17
+	Func Target Integer Branch: 6
+	Equal: 1
+	Greater: 2
+	NOT Equal: 1
+	Less: 2
+=========================================================
+
+=========================================================
+bz_config_ok
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+default_bzalloc
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+default_bzfree
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+init_RL
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+prepare_new_block
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	Less: 1
+=========================================================
+
+=========================================================
+BZ2_bzCompress
+	Func Branch: 18
+	Func Integer Branch: 18
+	Func Target Integer Branch: 9
+	NOT Equal: 6
+	Equal: 3
+=========================================================
+
+=========================================================
+handle_compress
+	Func Branch: 16
+	Func Integer Branch: 16
+	Func Target Integer Branch: 14
+	NOT Equal: 5
+	Equal: 9
+=========================================================
+
+=========================================================
+isempty_RL
+	Func Branch: 2
+	Func Integer Branch: 2
+	Func Target Integer Branch: 1
+	Greater: 1
+=========================================================
+
+=========================================================
+copy_output_until_stop
+	Func Branch: 3
+	Func Integer Branch: 3
+	Func Target Integer Branch: 2
+	Equal: 2
+=========================================================
+
+=========================================================
+copy_input_until_stop
+	Func Branch: 18
+	Func Integer Branch: 18
+	Func Target Integer Branch: 10
+	Equal: 10
+=========================================================
+
+=========================================================
+flush_RL
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+add_pair_to_block
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+BZ2_bzCompressEnd
+	Func Branch: 6
+	Func Integer Branch: 6
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+BZ2_bzDecompressInit
+	Func Branch: 9
+	Func Integer Branch: 9
+	Func Target Integer Branch: 5
+	Greater: 1
+	NOT Equal: 3
+	Less: 1
+=========================================================
+
+=========================================================
+BZ2_indexIntoF
+	Func Branch: 2
+	Func Integer Branch: 2
+	Func Target Integer Branch: 1
+	NOT Equal: 1
+=========================================================
+
+=========================================================
+BZ2_bzDecompress
+	Func Branch: 17
+	Func Integer Branch: 17
+	Func Target Integer Branch: 11
+	Greater Or Equal: 4
+	Equal: 4
+	NOT Equal: 3
+=========================================================
+
+=========================================================
+unRLE_obuf_to_output_SMALL
+	Func Branch: 38
+	Func Integer Branch: 38
+	Func Target Integer Branch: 22
+	Equal: 21
+	NOT Equal: 1
+=========================================================
+
+=========================================================
+unRLE_obuf_to_output_FAST
+	Func Branch: 40
+	Func Integer Branch: 40
+	Func Target Integer Branch: 23
+	Greater: 1
+	NOT Equal: 1
+	Equal: 21
+=========================================================
+
+=========================================================
+BZ2_bzDecompressEnd
+	Func Branch: 6
+	Func Integer Branch: 6
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+BZ2_bzWriteOpen
+	Func Branch: 23
+	Func Integer Branch: 23
+	Func Target Integer Branch: 9
+	Equal: 1
+	NOT Equal: 2
+	Less: 3
+	Greater: 3
+=========================================================
+
+=========================================================
+BZ2_bzWrite
+	Func Branch: 27
+	Func Integer Branch: 27
+	Func Target Integer Branch: 7
+	Equal: 2
+	Less: 1
+	NOT Equal: 4
+=========================================================
+
+=========================================================
+BZ2_bzWriteClose
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+BZ2_bzWriteClose64
+	Func Branch: 36
+	Func Integer Branch: 36
+	Func Target Integer Branch: 11
+	Equal: 2
+	NOT Equal: 9
+=========================================================
+
+=========================================================
+BZ2_bzReadOpen
+	Func Branch: 26
+	Func Integer Branch: 26
+	Func Target Integer Branch: 10
+	Greater: 3
+	NOT Equal: 5
+	Less: 2
+=========================================================
+
+=========================================================
+BZ2_bzReadClose
+	Func Branch: 9
+	Func Integer Branch: 9
+	Func Target Integer Branch: 2
+	NOT Equal: 2
+=========================================================
+
+=========================================================
+BZ2_bzRead
+	Func Branch: 37
+	Func Integer Branch: 37
+	Func Target Integer Branch: 14
+	Equal: 6
+	Less: 1
+	NOT Equal: 7
+=========================================================
+
+=========================================================
+myfeof.123
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	Equal: 1
+=========================================================
+
+=========================================================
+BZ2_bzReadGetUnused
+	Func Branch: 12
+	Func Integer Branch: 12
+	Func Target Integer Branch: 1
+	NOT Equal: 1
+=========================================================
+
+=========================================================
+BZ2_bzBuffToBuffCompress
+	Func Branch: 13
+	Func Integer Branch: 13
+	Func Target Integer Branch: 10
+	Equal: 2
+	NOT Equal: 2
+	Less: 3
+	Greater: 3
+=========================================================
+
+=========================================================
+BZ2_bzBuffToBuffDecompress
+	Func Branch: 11
+	Func Integer Branch: 11
+	Func Target Integer Branch: 7
+	Equal: 1
+	Greater: 1
+	NOT Equal: 4
+	Less: 1
+=========================================================
+
+=========================================================
+BZ2_bzopen
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+bzopen_or_bzdopen
+	Func Branch: 15
+	Func Integer Branch: 15
+	Func Target Integer Branch: 9
+	Greater: 1
+	Less: 1
+	NOT Equal: 5
+	Equal: 2
+=========================================================
+
+=========================================================
+llvm.memset.p0i8.i64
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+BZ2_bzdopen
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+BZ2_bzread
+	Func Branch: 3
+	Func Integer Branch: 3
+	Func Target Integer Branch: 3
+	Equal: 3
+=========================================================
+
+=========================================================
+BZ2_bzwrite
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	Equal: 1
+=========================================================
+
+=========================================================
+BZ2_bzflush
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+BZ2_bzclose
+	Func Branch: 5
+	Func Integer Branch: 5
+	Func Target Integer Branch: 2
+	NOT Equal: 2
+=========================================================
+
+=========================================================
+BZ2_bzerror
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	Greater: 1
+=========================================================
+
+=========================================================
+BZ2_bsInitWrite
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+BZ2_compressBlock
+	Func Branch: 7
+	Func Integer Branch: 7
+	Func Target Integer Branch: 7
+	NOT Equal: 1
+	Greater: 3
+	Equal: 1
+	Greater Or Equal: 2
+=========================================================
+
+=========================================================
+bsPutUChar
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+bsPutUInt32
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+bsW
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	Greater Or Equal: 1
+=========================================================
+
+=========================================================
+generateMTFValues
+	Func Branch: 12
+	Func Integer Branch: 12
+	Func Target Integer Branch: 7
+	NOT Equal: 2
+	Less: 3
+	Greater: 2
+=========================================================
+
+=========================================================
+sendMTFValues
+	Func Branch: 78
+	Func Integer Branch: 78
+	Func Target Integer Branch: 38
+	Less or Equal: 1
+	Greater: 3
+	Equal: 8
+	Greater Or Equal: 7
+	NOT Equal: 5
+	Less: 14
+=========================================================
+
+=========================================================
+bsFinishWrite
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	Greater: 1
+=========================================================
+
+=========================================================
+makeMaps_e
+	Func Branch: 2
+	Func Integer Branch: 2
+	Func Target Integer Branch: 2
+	NOT Equal: 1
+	Less: 1
+=========================================================
+
+=========================================================
+BZ2_decompress
+	Func Branch: 241
+	Func Integer Branch: 241
+	Func Target Integer Branch: 205
+	Less or Equal: 5
+	Greater: 10
+	Less: 14
+	NOT Equal: 21
+	Equal: 108
+	Greater Or Equal: 47
+=========================================================
+
+=========================================================
+makeMaps_d
+	Func Branch: 2
+	Func Integer Branch: 2
+	Func Target Integer Branch: 2
+	NOT Equal: 1
+	Less: 1
+=========================================================
+
+=========================================================
+BZ2_hbMakeCodeLengths
+	Func Branch: 22
+	Func Integer Branch: 22
+	Func Target Integer Branch: 6
+	Greater: 1
+	Greater Or Equal: 1
+	Equal: 1
+	NOT Equal: 1
+	Less: 2
+=========================================================
+
+=========================================================
+BZ2_hbAssignCodes
+	Func Branch: 3
+	Func Integer Branch: 3
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+BZ2_hbCreateDecodeTables
+	Func Branch: 9
+	Func Integer Branch: 9
+	Func Target Integer Branch: 3
+	Less: 3
+=========================================================
+
+=========================================================
+ran
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	Greater: 1
+=========================================================
+
+=========================================================
+spec_init
+	Func Branch: 4
+	Func Integer Branch: 4
+	Func Target Integer Branch: 2
+	Less: 2
+=========================================================
+
+=========================================================
+printf
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+spec_random_load
+	Func Branch: 6
+	Func Integer Branch: 6
+	Func Target Integer Branch: 5
+	Less: 5
+=========================================================
+
+=========================================================
+spec_load
+	Func Branch: 7
+	Func Integer Branch: 7
+	Func Target Integer Branch: 4
+	Equal: 1
+	Less: 3
+=========================================================
+
+=========================================================
+read
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+spec_read
+	Func Branch: 6
+	Func Integer Branch: 6
+	Func Target Integer Branch: 4
+	Greater: 1
+	Less: 3
+=========================================================
+
+=========================================================
+spec_fread
+	Func Branch: 6
+	Func Integer Branch: 6
+	Func Target Integer Branch: 4
+	Greater: 1
+	Less: 3
+=========================================================
+
+=========================================================
+spec_getc
+	Func Branch: 5
+	Func Integer Branch: 5
+	Func Target Integer Branch: 4
+	Greater: 1
+	Less: 3
+=========================================================
+
+=========================================================
+spec_ungetc
+	Func Branch: 5
+	Func Integer Branch: 5
+	Func Target Integer Branch: 4
+	Less or Equal: 1
+	Less: 2
+	Greater: 1
+=========================================================
+
+=========================================================
+spec_rewind
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+spec_reset
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+spec_write
+	Func Branch: 3
+	Func Integer Branch: 3
+	Func Target Integer Branch: 3
+	Greater: 1
+	Less: 2
+=========================================================
+
+=========================================================
+spec_fwrite
+	Func Branch: 3
+	Func Integer Branch: 3
+	Func Target Integer Branch: 3
+	Greater: 1
+	Less: 2
+=========================================================
+
+=========================================================
+spec_putc
+	Func Branch: 2
+	Func Integer Branch: 2
+	Func Target Integer Branch: 2
+	Greater: 1
+	Less: 1
+=========================================================
+
+
+
+**********************************************************
+Module Summary:
+	Func Branch: 1336
+	Func Integer Branch: 1336
+	Func Target Integer Branch: 827
+	Less or Equal: 16
+	NOT Equal: 228
+	Less: 109
+	Greater: 69
+	Equal: 314
+	Greater Or Equal: 91
+**********************************************************

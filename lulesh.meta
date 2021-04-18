@@ -1,0 +1,2378 @@
+CheckMetaFuncInfo Pass: 
+
+=========================================================
+_ZN6DomainC2Eiiiiiiiii
+	Func Branch: 9
+	Func Integer Branch: 9
+	Func Target Integer Branch: 3
+	Equal: 1
+	Less: 2
+=========================================================
+
+=========================================================
+__gxx_personality_v0
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt6vectorIdSaIdEEC2Ev
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt6vectorIiSaIiEEC2Ev
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+llvm.lifetime.start.p0i8
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain4costEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain7numElemEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+llvm.umul.with.overflow.i64
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_Znam
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain22AllocateElemPersistentEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain7numNodeEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain22AllocateNodePersistentEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain16SetupCommBuffersEi
+	Func Branch: 12
+	Func Integer Branch: 12
+	Func Target Integer Branch: 6
+	Equal: 6
+=========================================================
+
+=========================================================
+llvm.lifetime.end.p0i8
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain1eEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain1pEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain1qEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain2ssEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain1vEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain2xdEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain2ydEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain2zdEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain3xddEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain3yddEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain3zddEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain9nodalMassEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain9BuildMeshEiii
+	Func Branch: 6
+	Func Integer Branch: 6
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain21CreateRegionIndexSetsEii
+	Func Branch: 19
+	Func Integer Branch: 19
+	Func Target Integer Branch: 7
+	Less: 6
+	Equal: 1
+=========================================================
+
+=========================================================
+_ZN6Domain19SetupSymmetryPlanesEi
+	Func Branch: 5
+	Func Integer Branch: 5
+	Func Target Integer Branch: 3
+	Equal: 3
+=========================================================
+
+=========================================================
+_ZN6Domain26SetupElementConnectivitiesEi
+	Func Branch: 5
+	Func Integer Branch: 5
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain23SetupBoundaryConditionsEi
+	Func Branch: 16
+	Func Integer Branch: 16
+	Func Target Integer Branch: 10
+	Equal: 3
+	Less: 1
+	NOT Equal: 6
+=========================================================
+
+=========================================================
+_ZN6Domain7dtfixedEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain8stoptimeEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain15deltatimemultlbEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain15deltatimemultubEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain9dtcourantEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain7dthydroEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain5dtmaxEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain4timeEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain5cycleEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain8nodelistEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain1xEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain1yEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain1zEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain4voloEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain8elemMassEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+cbrt
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+sqrt
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain9deltatimeEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt6vectorIdSaIdEED2Ev
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt6vectorIiSaIiEED2Ev
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt12_Vector_baseIiSaIiEE19_M_get_Tp_allocatorEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt8_DestroyIPiiEvT_S1_RSaIT0_E
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt12_Vector_baseIiSaIiEED2Ev
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+__clang_call_terminate
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+__cxa_begin_catch
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt9terminatev
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt12_Vector_baseIiSaIiEE13_M_deallocateEPim
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN9__gnu_cxx13new_allocatorIiED2Ev
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt16allocator_traitsISaIiEE10deallocateERS0_Pim
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN9__gnu_cxx13new_allocatorIiE10deallocateEPim
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZdlPv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt8_DestroyIPiEvT_S1_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt12_Destroy_auxILb1EE9__destroyIPiEEvT_S3_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt12_Vector_baseIdSaIdEE19_M_get_Tp_allocatorEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt8_DestroyIPddEvT_S1_RSaIT0_E
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt12_Vector_baseIdSaIdEED2Ev
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt12_Vector_baseIdSaIdEE13_M_deallocateEPdm
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN9__gnu_cxx13new_allocatorIdED2Ev
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt16allocator_traitsISaIdEE10deallocateERS0_Pdm
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN9__gnu_cxx13new_allocatorIdE10deallocateEPdm
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt8_DestroyIPdEvT_S1_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt12_Destroy_auxILb1EE9__destroyIPdEEvT_S3_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt6vectorIdSaIdEEixEm
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt6vectorIiSaIiEEixEm
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain6elemBCEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain5sizeXEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain5sizeYEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain5sizeZEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain6lzetamEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain6lzetapEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain5letamEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain5letapEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain4lximEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain4lxipEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+srand
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain6numRegEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain10regNumListEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain11regElemSizeEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt3powIiiEN9__gnu_cxx11__promote_2IT_T0_NS0_9__promoteIS2_Xsr3std12__is_integerIS2_EE7__valueEE6__typeENS4_IS3_Xsr3std12__is_integerIS3_EE7__valueEE6__typeEE6__typeES2_S3_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+rand
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZdaPv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain11regElemlistEii
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+pow
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt6vectorIiSaIiEE6resizeEm
+	Func Branch: 2
+	Func Integer Branch: 2
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNKSt6vectorIiSaIiEE4sizeEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt6vectorIiSaIiEE17_M_default_appendEm
+	Func Branch: 3
+	Func Integer Branch: 3
+	Func Target Integer Branch: 1
+	NOT Equal: 1
+=========================================================
+
+=========================================================
+_ZNSt6vectorIiSaIiEE15_M_erase_at_endEPi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt27__uninitialized_default_n_aIPimiET_S1_T0_RSaIT1_E
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNKSt6vectorIiSaIiEE12_M_check_lenEmPKc
+	Func Branch: 3
+	Func Integer Branch: 3
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt12_Vector_baseIiSaIiEE11_M_allocateEm
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	NOT Equal: 1
+=========================================================
+
+=========================================================
+_ZSt34__uninitialized_move_if_noexcept_aIPiS0_SaIiEET0_T_S3_S2_RT1_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+__cxa_end_catch
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+__cxa_rethrow
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt32__make_move_if_noexcept_iteratorIiSt13move_iteratorIPiEET0_PT_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt22__uninitialized_copy_aISt13move_iteratorIPiES1_iET0_T_S4_S3_RSaIT1_E
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+llvm.memcpy.p0i8.p0i8.i64
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt18uninitialized_copyISt13move_iteratorIPiES1_ET0_T_S4_S3_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt20__uninitialized_copyILb1EE13__uninit_copyISt13move_iteratorIPiES3_EET0_T_S6_S5_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt4copyISt13move_iteratorIPiES1_ET0_T_S4_S3_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt12__miter_baseIPiEDTcl12__miter_basecldtfp_4baseEEESt13move_iteratorIT_E
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt14__copy_move_a2ILb1EPiS0_ET1_T0_S2_S1_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt12__niter_baseIPiET_S1_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt13__copy_move_aILb1EPiS0_ET1_T0_S2_S1_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt11__copy_moveILb1ELb1ESt26random_access_iterator_tagE8__copy_mIiEEPT_PKS3_S6_S4_
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	NOT Equal: 1
+=========================================================
+
+=========================================================
+llvm.memmove.p0i8.p0i8.i64
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNKSt13move_iteratorIPiE4baseEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt12__miter_baseIPiET_S1_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt13move_iteratorIPiEC2ES0_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt16allocator_traitsISaIiEE8allocateERS0_m
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN9__gnu_cxx13new_allocatorIiE8allocateEmPKv
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNK9__gnu_cxx13new_allocatorIiE8max_sizeEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt17__throw_bad_allocv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_Znwm
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNKSt6vectorIiSaIiEE8max_sizeEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt20__throw_length_errorPKc
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt3maxImERKT_S2_S2_
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNKSt12_Vector_baseIiSaIiEE19_M_get_Tp_allocatorEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt16allocator_traitsISaIiEE8max_sizeERKS0_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt25__uninitialized_default_nIPimET_S1_T0_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt27__uninitialized_default_n_1ILb1EE18__uninit_default_nIPimEET_S3_T0_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt6fill_nIPimiET_S1_T0_RKT1_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt10__fill_n_aIPimiEN9__gnu_cxx11__enable_ifIXsr11__is_scalarIT1_EE7__valueET_E6__typeES4_T0_RKS3_
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt6vectorIdSaIdEE6resizeEm
+	Func Branch: 2
+	Func Integer Branch: 2
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNKSt6vectorIdSaIdEE4sizeEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt6vectorIdSaIdEE17_M_default_appendEm
+	Func Branch: 3
+	Func Integer Branch: 3
+	Func Target Integer Branch: 1
+	NOT Equal: 1
+=========================================================
+
+=========================================================
+_ZNSt6vectorIdSaIdEE15_M_erase_at_endEPd
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt27__uninitialized_default_n_aIPdmdET_S1_T0_RSaIT1_E
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNKSt6vectorIdSaIdEE12_M_check_lenEmPKc
+	Func Branch: 3
+	Func Integer Branch: 3
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt12_Vector_baseIdSaIdEE11_M_allocateEm
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	NOT Equal: 1
+=========================================================
+
+=========================================================
+_ZSt34__uninitialized_move_if_noexcept_aIPdS0_SaIdEET0_T_S3_S2_RT1_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt32__make_move_if_noexcept_iteratorIdSt13move_iteratorIPdEET0_PT_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt22__uninitialized_copy_aISt13move_iteratorIPdES1_dET0_T_S4_S3_RSaIT1_E
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt18uninitialized_copyISt13move_iteratorIPdES1_ET0_T_S4_S3_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt20__uninitialized_copyILb1EE13__uninit_copyISt13move_iteratorIPdES3_EET0_T_S6_S5_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt4copyISt13move_iteratorIPdES1_ET0_T_S4_S3_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt12__miter_baseIPdEDTcl12__miter_basecldtfp_4baseEEESt13move_iteratorIT_E
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt14__copy_move_a2ILb1EPdS0_ET1_T0_S2_S1_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt12__niter_baseIPdET_S1_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt13__copy_move_aILb1EPdS0_ET1_T0_S2_S1_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt11__copy_moveILb1ELb1ESt26random_access_iterator_tagE8__copy_mIdEEPT_PKS3_S6_S4_
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	NOT Equal: 1
+=========================================================
+
+=========================================================
+_ZNKSt13move_iteratorIPdE4baseEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt12__miter_baseIPdET_S1_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt13move_iteratorIPdEC2ES0_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt16allocator_traitsISaIdEE8allocateERS0_m
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN9__gnu_cxx13new_allocatorIdE8allocateEmPKv
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNK9__gnu_cxx13new_allocatorIdE8max_sizeEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNKSt6vectorIdSaIdEE8max_sizeEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNKSt12_Vector_baseIdSaIdEE19_M_get_Tp_allocatorEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt16allocator_traitsISaIdEE8max_sizeERKS0_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt25__uninitialized_default_nIPdmET_S1_T0_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt27__uninitialized_default_n_1ILb1EE18__uninit_default_nIPdmEET_S3_T0_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt6fill_nIPdmdET_S1_T0_RKT1_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt10__fill_n_aIPdmdEN9__gnu_cxx11__enable_ifIXsr11__is_scalarIT1_EE7__valueET_E6__typeES4_T0_RKS3_
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt12_Vector_baseIiSaIiEEC2Ev
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt12_Vector_baseIiSaIiEE12_Vector_implC2Ev
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSaIiEC2Ev
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN9__gnu_cxx13new_allocatorIiEC2Ev
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt12_Vector_baseIdSaIdEEC2Ev
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt12_Vector_baseIdSaIdEE12_Vector_implC2Ev
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSaIdEC2Ev
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN9__gnu_cxx13new_allocatorIdEC2Ev
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6DomainD2Ev
+	Func Branch: 7
+	Func Integer Branch: 7
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain28SetupThreadSupportStructuresEv
+	Func Branch: 12
+	Func Integer Branch: 12
+	Func Target Integer Branch: 4
+	Less: 3
+	Greater: 1
+=========================================================
+
+=========================================================
+fprintf
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+exit
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_Z14InitMeshDecompiiPiS_S_S_
+	Func Branch: 3
+	Func Integer Branch: 3
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+printf
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_GLOBAL__sub_I_lulesh.cc
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+__cxx_global_var_init
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt8ios_base4InitC1Ev
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt8ios_base4InitD1Ev
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+__cxa_atexit
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_Z14CalcElemVolumePKdS0_S0_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL14CalcElemVolumedddddddddddddddddddddddd
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_Z22CalcKinematicsForElemsR6Domaindi
+	Func Branch: 3
+	Func Integer Branch: 3
+	Func Target Integer Branch: 2
+	Less: 2
+=========================================================
+
+=========================================================
+_ZL29CollectDomainNodesToElemNodesR6DomainPKiPdS3_S3_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain4vnewEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain4delvEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL28CalcElemCharacteristicLengthPKdS0_S0_d
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain6arealgEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL32CalcElemShapeFunctionDerivativesPKdS0_S0_PA8_dPd
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL24CalcElemVelocityGradientPKdS0_S0_PA8_S_dPd
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain3dxxEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain3dyyEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain3dzzEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL8AreaFacedddddddddddd
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt3maxIdERKT_S2_S2_
+	Func Branch: 1
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_Z4SQRTd
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+main
+	Func Branch: 11
+	Func Integer Branch: 10
+	Func Target Integer Branch: 8
+	NOT Equal: 2
+	Equal: 6
+=========================================================
+
+=========================================================
+_ZNSolsEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSolsEl
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+gettimeofday
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL13TimeIncrementR6Domain
+	Func Branch: 11
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	NOT Equal: 1
+=========================================================
+
+=========================================================
+_ZL16LagrangeLeapFrogR6Domain
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt10scientificRSt8ios_base
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt8ios_base6unsetfESt13_Ios_Fmtflags
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZStcoSt13_Ios_Fmtflags
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZStaNRSt13_Ios_FmtflagsS_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZStanSt13_Ios_FmtflagsS_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSo9_M_insertIdEERSoT_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt8ios_base4setfESt13_Ios_FmtflagsS0_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZStoRRSt13_Ios_FmtflagsS_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZStorSt13_Ios_FmtflagsS_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL13LagrangeNodalR6Domain
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL16LagrangeElementsR6Domaini
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL27CalcTimeConstraintsForElemsR6Domain
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain11regElemlistEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNK6Domain3qqcEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL29CalcCourantConstraintForElemsR6DomainiPidRd
+	Func Branch: 7
+	Func Integer Branch: 3
+	Func Target Integer Branch: 1
+	NOT Equal: 1
+=========================================================
+
+=========================================================
+_ZNK6Domain7dvovmaxEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL27CalcHydroConstraintForElemsR6DomainiPidRd
+	Func Branch: 6
+	Func Integer Branch: 3
+	Func Target Integer Branch: 1
+	NOT Equal: 1
+=========================================================
+
+=========================================================
+_ZN6Domain4vdovEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_Z4FABSd
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+llvm.fabs.f64
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL20CalcLagrangeElementsR6Domain
+	Func Branch: 3
+	Func Integer Branch: 2
+	Func Target Integer Branch: 1
+	Greater: 1
+=========================================================
+
+=========================================================
+_ZL13CalcQForElemsR6Domain
+	Func Branch: 4
+	Func Integer Branch: 3
+	Func Target Integer Branch: 2
+	Greater Or Equal: 1
+	NOT Equal: 1
+=========================================================
+
+=========================================================
+_ZL31ApplyMaterialPropertiesForElemsR6Domain
+	Func Branch: 17
+	Func Integer Branch: 8
+	Func Target Integer Branch: 1
+	NOT Equal: 1
+=========================================================
+
+=========================================================
+_ZNK6Domain5v_cutEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL21UpdateVolumesForElemsR6Domaindi
+	Func Branch: 3
+	Func Integer Branch: 2
+	Func Target Integer Branch: 1
+	NOT Equal: 1
+=========================================================
+
+=========================================================
+_ZNK6Domain7eosvminEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNK6Domain7eosvmaxEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_Z8AllocateIdEPT_m
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL15EvalEOSForElemsR6DomainPdiPii
+	Func Branch: 11
+	Func Integer Branch: 7
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_Z7ReleaseIdEvPPT_
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+free
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNK6Domain5e_cutEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNK6Domain5p_cutEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNK6Domain5ss4o3Ev
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNK6Domain5q_cutEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNK6Domain4pminEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNK6Domain4eminEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNK6Domain7refdensEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain2qqEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain2qlEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL18CalcEnergyForElemsPdS_S_S_S_S_S_S_S_S_S_S_S_dddddS_S_ddiPi
+	Func Branch: 17
+	Func Integer Branch: 5
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL22CalcSoundSpeedForElemsR6DomainPddS1_S1_S1_S1_diPi
+	Func Branch: 2
+	Func Integer Branch: 1
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL20CalcPressureForElemsPdS_S_S_S_S_dddiPi
+	Func Branch: 5
+	Func Integer Branch: 2
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+malloc
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain17AllocateGradientsEii
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL31CalcMonotonicQGradientsForElemsR6Domain
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL22CalcMonotonicQForElemsR6Domain
+	Func Branch: 2
+	Func Integer Branch: 2
+	Func Target Integer Branch: 1
+	Greater: 1
+=========================================================
+
+=========================================================
+_ZN6Domain19DeallocateGradientsEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNK6Domain5qstopEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL28CalcMonotonicQRegionForElemsR6Domainid
+	Func Branch: 17
+	Func Integer Branch: 1
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNK6Domain18monoq_limiter_multEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNK6Domain15monoq_max_slopeEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNK6Domain9qlc_monoqEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNK6Domain9qqc_monoqEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain7delv_xiEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain8delv_etaEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain9delv_zetaEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain7delx_xiEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain8delx_etaEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain9delx_zetaEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain15AllocateStrainsEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain17DeallocateStrainsEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNK6Domain5u_cutEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL17CalcForceForNodesR6Domain
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL24CalcAccelerationForNodesR6Domaini
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL43ApplyAccelerationBoundaryConditionsForNodesR6Domain
+	Func Branch: 6
+	Func Integer Branch: 6
+	Func Target Integer Branch: 3
+	NOT Equal: 3
+=========================================================
+
+=========================================================
+_ZL20CalcVelocityForNodesR6Domainddi
+	Func Branch: 4
+	Func Integer Branch: 1
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL20CalcPositionForNodesR6Domaindi
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain10symmXemptyEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain5symmXEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain10symmYemptyEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain5symmYEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain10symmZemptyEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain5symmZEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNKSt6vectorIiSaIiEE5emptyEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNKSt6vectorIiSaIiEE5beginEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNKSt6vectorIiSaIiEE3endEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN9__gnu_cxxeqIPKiSt6vectorIiSaIiEEEEbRKNS_17__normal_iteratorIT_T0_EESB_
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNK9__gnu_cxx17__normal_iteratorIPKiSt6vectorIiSaIiEEE4baseEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN9__gnu_cxx17__normal_iteratorIPKiSt6vectorIiSaIiEEEC2ERKS2_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain2fxEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain2fyEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain2fzEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL23CalcVolumeForceForElemsR6Domain
+	Func Branch: 3
+	Func Integer Branch: 2
+	Func Target Integer Branch: 1
+	NOT Equal: 1
+=========================================================
+
+=========================================================
+_ZNK6Domain6hgcoefEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL23InitStressTermsForElemsR6DomainPdS1_S1_i
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL23IntegrateStressForElemsR6DomainPdS1_S1_S1_ii
+	Func Branch: 7
+	Func Integer Branch: 7
+	Func Target Integer Branch: 4
+	Less: 1
+	Greater: 3
+=========================================================
+
+=========================================================
+_ZL28CalcHourglassControlForElemsR6DomainPdd
+	Func Branch: 4
+	Func Integer Branch: 2
+	Func Target Integer Branch: 1
+	Less: 1
+=========================================================
+
+=========================================================
+_ZL24CalcElemVolumeDerivativePdS_S_PKdS1_S1_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL28CalcFBHourglassForceForElemsR6DomainPdS1_S1_S1_S1_S1_S1_dii
+	Func Branch: 7
+	Func Integer Branch: 7
+	Func Target Integer Branch: 4
+	Less: 1
+	Greater: 3
+=========================================================
+
+=========================================================
+_Z4CBRTd
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL24CalcElemFBHourglassForcePdS_S_PA4_ddS_S_S_
+	Func Branch: 6
+	Func Integer Branch: 6
+	Func Target Integer Branch: 6
+	Less: 6
+=========================================================
+
+=========================================================
+_ZN6Domain13nodeElemCountEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZN6Domain18nodeElemCornerListEi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL7VoluDerddddddddddddddddddPdS_S_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL19CalcElemNodeNormalsPdS_S_PKdS1_S1_
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	Less: 1
+=========================================================
+
+=========================================================
+_ZL27SumElemStressesToNodeForcesPA8_KddddPdS2_S2_
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	Less: 1
+=========================================================
+
+=========================================================
+_ZL17SumElemFaceNormalPdS_S_S_S_S_S_S_S_S_S_S_dddddddddddd
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSo9_M_insertIlEERSoT_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt11char_traitsIcE6lengthEPKc
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+strlen
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZStorSt12_Ios_IostateS_
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt9basic_iosIcSt11char_traitsIcEE5clearESt12_Ios_Iostate
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_GLOBAL__sub_I_lulesh_util.cc
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+__cxx_global_var_init.10
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_Z23ParseCommandLineOptionsiPPciP11cmdLineOpts
+	Func Branch: 24
+	Func Integer Branch: 24
+	Func Target Integer Branch: 17
+	NOT Equal: 6
+	Greater: 1
+	Equal: 10
+=========================================================
+
+=========================================================
+strcmp
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZL10ParseErrorPKci
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	Equal: 1
+=========================================================
+
+=========================================================
+_Z8StrToIntIiEiPKcPT_
+	Func Branch: 4
+	Func Integer Branch: 4
+	Func Target Integer Branch: 2
+	Equal: 2
+=========================================================
+
+=========================================================
+_ZL23PrintCommandLineOptionsPci
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	Equal: 1
+=========================================================
+
+=========================================================
+sprintf
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+strtol
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_Z25VerifyAndWriteFinalOutputdR6Domainii
+	Func Branch: 4
+	Func Integer Branch: 2
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSolsEPFRSt8ios_baseS0_E
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt12setprecisioni
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZStlsIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_St13_Setprecision
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZSt4setwi
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZStlsIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_St5_Setw
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSolsEd
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt8ios_base5widthEl
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt8ios_base9precisionEl
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNSt9basic_iosIcSt11char_traitsIcEE8setstateESt12_Ios_Iostate
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_ZNKSt9basic_iosIcSt11char_traitsIcEE7rdstateEv
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+_Z11DumpToVisitR6Domainiii
+	Func Branch: 1
+	Func Integer Branch: 1
+	Func Target Integer Branch: 1
+	Equal: 1
+=========================================================
+
+
+
+**********************************************************
+Module Summary:
+	Func Branch: 324
+	Func Integer Branch: 249
+	Func Target Integer Branch: 101
+	Greater: 10
+	Greater Or Equal: 1
+	Equal: 35
+	NOT Equal: 30
+	Less: 25
+**********************************************************

@@ -1,0 +1,4921 @@
+Infeasible Path Pass:
+_ZN6DomainC2Eiiiiiiiii
+ ----------------------------------- 
+		Predicate: [ for.cond122:   %109 = load i32, i32* %lnode, align 4, !tbaa !6  (Less)  8 ]
+		Total Generate Query: 3
+		Resolved: 1
+		False Infeasible Path:
+	invoke.cont120, for.cond122, 
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ for.cond151:   %140 = load i32, i32* %j, align 4, !tbaa !6  (Less)  8 ]
+		Total Generate Query: 3
+		Resolved: 1
+		False Infeasible Path:
+	invoke.cont149, for.cond151, 
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ for.end171:   %add183 = add nsw i32 %add181, %181  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	7
+	Resolve Query:	2
+	True Infeasible Path:	0
+	True Infeasible Path:	2
+=========================================================
+
+
+__gxx_personality_v0
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt6vectorIdSaIdEEC2Ev
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt6vectorIiSaIiEEC2Ev
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+llvm.lifetime.start.p0i8
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain4costEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain7numElemEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+llvm.umul.with.overflow.i64
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_Znam
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain22AllocateElemPersistentEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain7numNodeEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain22AllocateNodePersistentEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain16SetupCommBuffersEi
+ ----------------------------------- 
+		Predicate: [ cond.end19:   %14 = load i32, i32* %m_rowLoc, align 8, !tbaa !14  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ cond.end19:   %19 = load i32, i32* %m_colLoc, align 4, !tbaa !18  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ cond.end19:   %24 = load i32, i32* %m_planeLoc, align 4, !tbaa !21  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ cond.end19:   %29 = load i32, i32* %m_colLoc46, align 4, !tbaa !18  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.end:   %32 = load i32, i32* %m_rowLoc50, align 8, !tbaa !14  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.end55:   %35 = load i32, i32* %m_planeLoc56, align 4, !tbaa !21  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	6
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+llvm.lifetime.end.p0i8
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain1eEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain1pEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain1qEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain2ssEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain1vEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain2xdEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain2ydEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain2zdEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain3xddEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain3yddEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain3zddEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain9nodalMassEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain9BuildMeshEiii
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain21CreateRegionIndexSetsEii
+ ----------------------------------- 
+		Predicate: [ entry:   %15 = load i32, i32* %call7, align 4, !tbaa !6  (Equal)  1 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ while.end56:   %69 = load i32, i32* %binSize, align 4, !tbaa !6  (Less)  773 ]
+		Total Generate Query: 2
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.else64:   %70 = load i32, i32* %binSize, align 4, !tbaa !6  (Less)  937 ]
+		Total Generate Query: 2
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.else70:   %71 = load i32, i32* %binSize, align 4, !tbaa !6  (Less)  970 ]
+		Total Generate Query: 2
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.else76:   %72 = load i32, i32* %binSize, align 4, !tbaa !6  (Less)  974 ]
+		Total Generate Query: 2
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.else82:   %73 = load i32, i32* %binSize, align 4, !tbaa !6  (Less)  978 ]
+		Total Generate Query: 2
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.else88:   %74 = load i32, i32* %binSize, align 4, !tbaa !6  (Less)  981 ]
+		Total Generate Query: 2
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	13
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain19SetupSymmetryPlanesEi
+ ----------------------------------- 
+		Predicate: [ for.body7:   %16 = load i32, i32* %m_planeLoc, align 4, !tbaa !8  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.end:   %20 = load i32, i32* %m_rowLoc, align 8, !tbaa !13  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.end14:   %24 = load i32, i32* %m_colLoc, align 4, !tbaa !14  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	3
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain26SetupElementConnectivitiesEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain23SetupBoundaryConditionsEi
+ ----------------------------------- 
+		Predicate: [ for.cond4:   %8 = load i32, i32* %i3, align 4, !tbaa !6  (Less)  6 ]
+		Total Generate Query: 3
+		Resolved: 1
+		False Infeasible Path:
+	for.end, for.cond4, 
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ for.end10:   %14 = load i32, i32* %m_planeMin, align 8, !tbaa !11  (NOT Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.end:   %19 = load i32, i32* %m_planeMax, align 4, !tbaa !16  (NOT Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.end23:   %24 = load i32, i32* %m_rowMin, align 8, !tbaa !17  (NOT Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.end31:   %29 = load i32, i32* %m_rowMax, align 4, !tbaa !18  (NOT Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.end39:   %34 = load i32, i32* %m_colMin, align 8, !tbaa !19  (NOT Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.end47:   %39 = load i32, i32* %m_colMax, align 4, !tbaa !20  (NOT Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ for.body63:   %56 = load i32, i32* %m_planeLoc, align 4, !tbaa !21  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.end104:   %90 = load i32, i32* %m_rowLoc, align 8, !tbaa !23  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.end146:   %124 = load i32, i32* %m_colLoc, align 4, !tbaa !24  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	12
+	Resolve Query:	1
+	True Infeasible Path:	0
+	True Infeasible Path:	1
+=========================================================
+
+
+_ZN6Domain7dtfixedEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain8stoptimeEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain15deltatimemultlbEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain15deltatimemultubEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain9dtcourantEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain7dthydroEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain5dtmaxEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain4timeEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain5cycleEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain8nodelistEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain1xEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain1yEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain1zEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain4voloEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain8elemMassEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+cbrt
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+sqrt
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain9deltatimeEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt6vectorIdSaIdEED2Ev
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt6vectorIiSaIiEED2Ev
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt12_Vector_baseIiSaIiEE19_M_get_Tp_allocatorEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt8_DestroyIPiiEvT_S1_RSaIT0_E
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt12_Vector_baseIiSaIiEED2Ev
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+__clang_call_terminate
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+__cxa_begin_catch
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt9terminatev
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt12_Vector_baseIiSaIiEE13_M_deallocateEPim
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN9__gnu_cxx13new_allocatorIiED2Ev
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt16allocator_traitsISaIiEE10deallocateERS0_Pim
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN9__gnu_cxx13new_allocatorIiE10deallocateEPim
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZdlPv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt8_DestroyIPiEvT_S1_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt12_Destroy_auxILb1EE9__destroyIPiEEvT_S3_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt12_Vector_baseIdSaIdEE19_M_get_Tp_allocatorEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt8_DestroyIPddEvT_S1_RSaIT0_E
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt12_Vector_baseIdSaIdEED2Ev
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt12_Vector_baseIdSaIdEE13_M_deallocateEPdm
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN9__gnu_cxx13new_allocatorIdED2Ev
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt16allocator_traitsISaIdEE10deallocateERS0_Pdm
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN9__gnu_cxx13new_allocatorIdE10deallocateEPdm
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt8_DestroyIPdEvT_S1_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt12_Destroy_auxILb1EE9__destroyIPdEEvT_S3_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt6vectorIdSaIdEEixEm
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt6vectorIiSaIiEEixEm
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain6elemBCEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain5sizeXEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain5sizeYEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain5sizeZEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain6lzetamEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain6lzetapEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain5letamEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain5letapEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain4lximEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain4lxipEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+srand
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain6numRegEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain10regNumListEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain11regElemSizeEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt3powIiiEN9__gnu_cxx11__promote_2IT_T0_NS0_9__promoteIS2_Xsr3std12__is_integerIS2_EE7__valueEE6__typeENS4_IS3_Xsr3std12__is_integerIS3_EE7__valueEE6__typeEE6__typeES2_S3_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+rand
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZdaPv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain11regElemlistEii
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+pow
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt6vectorIiSaIiEE6resizeEm
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNKSt6vectorIiSaIiEE4sizeEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt6vectorIiSaIiEE17_M_default_appendEm
+ ----------------------------------- 
+		Predicate: [ entry:   %0 = load i64, i64* %__n.addr, align 8, !tbaa !6  (NOT Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	1
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt6vectorIiSaIiEE15_M_erase_at_endEPi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt27__uninitialized_default_n_aIPimiET_S1_T0_RSaIT1_E
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNKSt6vectorIiSaIiEE12_M_check_lenEmPKc
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt12_Vector_baseIiSaIiEE11_M_allocateEm
+ ----------------------------------- 
+		Predicate: [ entry:   %0 = load i64, i64* %__n.addr, align 8, !tbaa !6  (NOT Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	1
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt34__uninitialized_move_if_noexcept_aIPiS0_SaIiEET0_T_S3_S2_RT1_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+__cxa_end_catch
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+__cxa_rethrow
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt32__make_move_if_noexcept_iteratorIiSt13move_iteratorIPiEET0_PT_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt22__uninitialized_copy_aISt13move_iteratorIPiES1_iET0_T_S4_S3_RSaIT1_E
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+llvm.memcpy.p0i8.p0i8.i64
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt18uninitialized_copyISt13move_iteratorIPiES1_ET0_T_S4_S3_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt20__uninitialized_copyILb1EE13__uninit_copyISt13move_iteratorIPiES3_EET0_T_S6_S5_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt4copyISt13move_iteratorIPiES1_ET0_T_S4_S3_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt12__miter_baseIPiEDTcl12__miter_basecldtfp_4baseEEESt13move_iteratorIT_E
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt14__copy_move_a2ILb1EPiS0_ET1_T0_S2_S1_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt12__niter_baseIPiET_S1_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt13__copy_move_aILb1EPiS0_ET1_T0_S2_S1_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt11__copy_moveILb1ELb1ESt26random_access_iterator_tagE8__copy_mIiEEPT_PKS3_S6_S4_
+ ----------------------------------- 
+		Predicate: [ entry:   %3 = load i64, i64* %_Num, align 8, !tbaa !6  (NOT Equal)  0 ]
+		Total Generate Query: 2
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	2
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+llvm.memmove.p0i8.p0i8.i64
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNKSt13move_iteratorIPiE4baseEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt12__miter_baseIPiET_S1_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt13move_iteratorIPiEC2ES0_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt16allocator_traitsISaIiEE8allocateERS0_m
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN9__gnu_cxx13new_allocatorIiE8allocateEmPKv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNK9__gnu_cxx13new_allocatorIiE8max_sizeEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt17__throw_bad_allocv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_Znwm
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNKSt6vectorIiSaIiEE8max_sizeEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt20__throw_length_errorPKc
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt3maxImERKT_S2_S2_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNKSt12_Vector_baseIiSaIiEE19_M_get_Tp_allocatorEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt16allocator_traitsISaIiEE8max_sizeERKS0_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt25__uninitialized_default_nIPimET_S1_T0_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt27__uninitialized_default_n_1ILb1EE18__uninit_default_nIPimEET_S3_T0_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt6fill_nIPimiET_S1_T0_RKT1_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt10__fill_n_aIPimiEN9__gnu_cxx11__enable_ifIXsr11__is_scalarIT1_EE7__valueET_E6__typeES4_T0_RKS3_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt6vectorIdSaIdEE6resizeEm
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNKSt6vectorIdSaIdEE4sizeEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt6vectorIdSaIdEE17_M_default_appendEm
+ ----------------------------------- 
+		Predicate: [ entry:   %0 = load i64, i64* %__n.addr, align 8, !tbaa !6  (NOT Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	1
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt6vectorIdSaIdEE15_M_erase_at_endEPd
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt27__uninitialized_default_n_aIPdmdET_S1_T0_RSaIT1_E
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNKSt6vectorIdSaIdEE12_M_check_lenEmPKc
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt12_Vector_baseIdSaIdEE11_M_allocateEm
+ ----------------------------------- 
+		Predicate: [ entry:   %0 = load i64, i64* %__n.addr, align 8, !tbaa !6  (NOT Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	1
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt34__uninitialized_move_if_noexcept_aIPdS0_SaIdEET0_T_S3_S2_RT1_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt32__make_move_if_noexcept_iteratorIdSt13move_iteratorIPdEET0_PT_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt22__uninitialized_copy_aISt13move_iteratorIPdES1_dET0_T_S4_S3_RSaIT1_E
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt18uninitialized_copyISt13move_iteratorIPdES1_ET0_T_S4_S3_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt20__uninitialized_copyILb1EE13__uninit_copyISt13move_iteratorIPdES3_EET0_T_S6_S5_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt4copyISt13move_iteratorIPdES1_ET0_T_S4_S3_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt12__miter_baseIPdEDTcl12__miter_basecldtfp_4baseEEESt13move_iteratorIT_E
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt14__copy_move_a2ILb1EPdS0_ET1_T0_S2_S1_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt12__niter_baseIPdET_S1_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt13__copy_move_aILb1EPdS0_ET1_T0_S2_S1_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt11__copy_moveILb1ELb1ESt26random_access_iterator_tagE8__copy_mIdEEPT_PKS3_S6_S4_
+ ----------------------------------- 
+		Predicate: [ entry:   %3 = load i64, i64* %_Num, align 8, !tbaa !6  (NOT Equal)  0 ]
+		Total Generate Query: 2
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	2
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNKSt13move_iteratorIPdE4baseEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt12__miter_baseIPdET_S1_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt13move_iteratorIPdEC2ES0_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt16allocator_traitsISaIdEE8allocateERS0_m
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN9__gnu_cxx13new_allocatorIdE8allocateEmPKv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNK9__gnu_cxx13new_allocatorIdE8max_sizeEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNKSt6vectorIdSaIdEE8max_sizeEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNKSt12_Vector_baseIdSaIdEE19_M_get_Tp_allocatorEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt16allocator_traitsISaIdEE8max_sizeERKS0_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt25__uninitialized_default_nIPdmET_S1_T0_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt27__uninitialized_default_n_1ILb1EE18__uninit_default_nIPdmEET_S3_T0_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt6fill_nIPdmdET_S1_T0_RKT1_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt10__fill_n_aIPdmdEN9__gnu_cxx11__enable_ifIXsr11__is_scalarIT1_EE7__valueET_E6__typeES4_T0_RKS3_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt12_Vector_baseIiSaIiEEC2Ev
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt12_Vector_baseIiSaIiEE12_Vector_implC2Ev
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSaIiEC2Ev
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN9__gnu_cxx13new_allocatorIiEC2Ev
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt12_Vector_baseIdSaIdEEC2Ev
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt12_Vector_baseIdSaIdEE12_Vector_implC2Ev
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSaIdEC2Ev
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN9__gnu_cxx13new_allocatorIdEC2Ev
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6DomainD2Ev
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain28SetupThreadSupportStructuresEv
+ ----------------------------------- 
+		Predicate: [ entry:   %1 = load i32, i32* %numthreads, align 4, !tbaa !6  (Greater)  1 ]
+		Total Generate Query: 2
+		Resolved: 1
+		False Infeasible Path:
+
+		True Infeasible Path:
+	entry, 
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ for.cond12:   %23 = load i32, i32* %j, align 4, !tbaa !6  (Less)  8 ]
+		Total Generate Query: 3
+		Resolved: 1
+		False Infeasible Path:
+	for.body10, for.cond12, 
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ for.cond77:   %75 = load i32, i32* %j76, align 4, !tbaa !6  (Less)  8 ]
+		Total Generate Query: 3
+		Resolved: 1
+		False Infeasible Path:
+	for.body73, for.cond77, 
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ for.body110:   %115 = load i32, i32* %clv, align 4, !tbaa !6  (Less)  0 ]
+		Total Generate Query: 2
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	10
+	Resolve Query:	3
+	True Infeasible Path:	1
+	True Infeasible Path:	2
+=========================================================
+
+
+fprintf
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+exit
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_Z14InitMeshDecompiiPiS_S_S_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+printf
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_GLOBAL__sub_I_lulesh.cc
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+__cxx_global_var_init
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt8ios_base4InitC1Ev
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt8ios_base4InitD1Ev
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+__cxa_atexit
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_Z14CalcElemVolumePKdS0_S0_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL14CalcElemVolumedddddddddddddddddddddddd
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_Z22CalcKinematicsForElemsR6Domaindi
+ ----------------------------------- 
+		Predicate: [ for.cond16:   %37 = load i32, i32* %lnode, align 4, !tbaa !8  (Less)  8 ]
+		Total Generate Query: 3
+		Resolved: 1
+		False Infeasible Path:
+	for.body, for.cond16, 
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ for.cond29:   %60 = load i32, i32* %j, align 4, !tbaa !8  (Less)  8 ]
+		Total Generate Query: 3
+		Resolved: 1
+		False Infeasible Path:
+	for.end, for.cond29, 
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	6
+	Resolve Query:	2
+	True Infeasible Path:	0
+	True Infeasible Path:	2
+=========================================================
+
+
+_ZL29CollectDomainNodesToElemNodesR6DomainPKiPdS3_S3_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain4vnewEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain4delvEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL28CalcElemCharacteristicLengthPKdS0_S0_d
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain6arealgEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL32CalcElemShapeFunctionDerivativesPKdS0_S0_PA8_dPd
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL24CalcElemVelocityGradientPKdS0_S0_PA8_S_dPd
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain3dxxEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain3dyyEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain3dzzEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL8AreaFacedddddddddddd
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt3maxIdERKT_S2_S2_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_Z4SQRTd
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+main
+ ----------------------------------- 
+		Predicate: [ entry:   %8 = load i32, i32* %myRank, align 4, !tbaa !2  (Equal)  0 ]
+		Total Generate Query: 2
+		Resolved: 1
+		False Infeasible Path:
+	entry, 
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ land.lhs.true:   %9 = load i32, i32* %quiet1, align 4, !tbaa !14  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ while.body:   %42 = load i32, i32* %showProg39, align 4, !tbaa !13  (NOT Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ land.lhs.true41:   %43 = load i32, i32* %quiet42, align 4, !tbaa !14  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ land.lhs.true44:   %44 = load i32, i32* %myRank, align 4, !tbaa !2  (Equal)  0 ]
+		Total Generate Query: 2
+		Resolved: 1
+		False Infeasible Path:
+	land.lhs.true44, 
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ while.end:   %72 = load i32, i32* %viz69, align 4, !tbaa !15  (NOT Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.end72:   %77 = load i32, i32* %myRank, align 4, !tbaa !2  (Equal)  0 ]
+		Total Generate Query: 2
+		Resolved: 1
+		False Infeasible Path:
+	if.end72, 
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ land.lhs.true74:   %78 = load i32, i32* %quiet75, align 4, !tbaa !14  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	11
+	Resolve Query:	3
+	True Infeasible Path:	0
+	True Infeasible Path:	3
+=========================================================
+
+
+_ZNSolsEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSolsEl
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+gettimeofday
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL13TimeIncrementR6Domain
+ ----------------------------------- 
+		Predicate: [ land.lhs.true:   %8 = load i32, i32* %call3, align 4, !tbaa !8  (NOT Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	1
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL16LagrangeLeapFrogR6Domain
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt10scientificRSt8ios_base
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt8ios_base6unsetfESt13_Ios_Fmtflags
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZStcoSt13_Ios_Fmtflags
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZStaNRSt13_Ios_FmtflagsS_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZStanSt13_Ios_FmtflagsS_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSo9_M_insertIdEERSoT_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt8ios_base4setfESt13_Ios_FmtflagsS0_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZStoRRSt13_Ios_FmtflagsS_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZStorSt13_Ios_FmtflagsS_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL13LagrangeNodalR6Domain
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL16LagrangeElementsR6Domaini
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL27CalcTimeConstraintsForElemsR6Domain
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain11regElemlistEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNK6Domain3qqcEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL29CalcCourantConstraintForElemsR6DomainiPidRd
+ ----------------------------------- 
+		Predicate: [ for.end46:   %78 = load i32, i32* %arrayidx47, align 4, !tbaa !6  (NOT Equal)  -1 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	1
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNK6Domain7dvovmaxEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL27CalcHydroConstraintForElemsR6DomainiPidRd
+ ----------------------------------- 
+		Predicate: [ for.end30:   %50 = load i32, i32* %arrayidx31, align 4, !tbaa !6  (NOT Equal)  -1 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	1
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain4vdovEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_Z4FABSd
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+llvm.fabs.f64
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL20CalcLagrangeElementsR6Domain
+ ----------------------------------- 
+		Predicate: [ entry:   %3 = load i32, i32* %numElem, align 4, !tbaa !6  (Greater)  0 ]
+		Total Generate Query: 2
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	2
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL13CalcQForElemsR6Domain
+ ----------------------------------- 
+		Predicate: [ entry:   %3 = load i32, i32* %numElem, align 4, !tbaa !6  (NOT Equal)  0 ]
+		Total Generate Query: 2
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ for.end:   %35 = load i32, i32* %idx, align 4, !tbaa !6  (Greater Or Equal)  0 ]
+		Total Generate Query: 5
+		Resolved: 2
+		False Infeasible Path:
+	if.then, for.cond, for.body, if.then18, cleanup, for.end, 
+
+		True Infeasible Path:
+	for.cond.cleanup, cleanup, for.end, 
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	7
+	Resolve Query:	2
+	True Infeasible Path:	1
+	True Infeasible Path:	1
+=========================================================
+
+
+_ZL31ApplyMaterialPropertiesForElemsR6Domain
+ ----------------------------------- 
+		Predicate: [ entry:   %3 = load i32, i32* %numElem, align 4, !tbaa !6  (NOT Equal)  0 ]
+		Total Generate Query: 2
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	2
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNK6Domain5v_cutEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL21UpdateVolumesForElemsR6Domaindi
+ ----------------------------------- 
+		Predicate: [ entry:   %0 = load i32, i32* %length.addr, align 4, !tbaa !8  (NOT Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	1
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNK6Domain7eosvminEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNK6Domain7eosvmaxEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_Z8AllocateIdEPT_m
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL15EvalEOSForElemsR6DomainPdiPii
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_Z7ReleaseIdEvPPT_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+free
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNK6Domain5e_cutEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNK6Domain5p_cutEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNK6Domain5ss4o3Ev
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNK6Domain5q_cutEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNK6Domain4pminEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNK6Domain4eminEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNK6Domain7refdensEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain2qqEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain2qlEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL18CalcEnergyForElemsPdS_S_S_S_S_S_S_S_S_S_S_S_dddddS_S_ddiPi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL22CalcSoundSpeedForElemsR6DomainPddS1_S1_S1_S1_diPi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL20CalcPressureForElemsPdS_S_S_S_S_dddiPi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+malloc
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain17AllocateGradientsEii
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL31CalcMonotonicQGradientsForElemsR6Domain
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL22CalcMonotonicQForElemsR6Domain
+ ----------------------------------- 
+		Predicate: [ for.body:   %8 = load i32, i32* %call1, align 4, !tbaa !8  (Greater)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	1
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain19DeallocateGradientsEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNK6Domain5qstopEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL28CalcMonotonicQRegionForElemsR6Domainid
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNK6Domain18monoq_limiter_multEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNK6Domain15monoq_max_slopeEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNK6Domain9qlc_monoqEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNK6Domain9qqc_monoqEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain7delv_xiEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain8delv_etaEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain9delv_zetaEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain7delx_xiEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain8delx_etaEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain9delx_zetaEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain15AllocateStrainsEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain17DeallocateStrainsEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNK6Domain5u_cutEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL17CalcForceForNodesR6Domain
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL24CalcAccelerationForNodesR6Domaini
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL43ApplyAccelerationBoundaryConditionsForNodesR6Domain
+ ----------------------------------- 
+		Predicate: [ entry:   %conv = zext i1 %lnot to i32  (NOT Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.end:   %conv8 = zext i1 %lnot7 to i32  (NOT Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.end21:   %conv24 = zext i1 %lnot23 to i32  (NOT Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	3
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL20CalcVelocityForNodesR6Domainddi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL20CalcPositionForNodesR6Domaindi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain10symmXemptyEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain5symmXEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain10symmYemptyEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain5symmYEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain10symmZemptyEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain5symmZEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNKSt6vectorIiSaIiEE5emptyEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNKSt6vectorIiSaIiEE5beginEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNKSt6vectorIiSaIiEE3endEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN9__gnu_cxxeqIPKiSt6vectorIiSaIiEEEEbRKNS_17__normal_iteratorIT_T0_EESB_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNK9__gnu_cxx17__normal_iteratorIPKiSt6vectorIiSaIiEEE4baseEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN9__gnu_cxx17__normal_iteratorIPKiSt6vectorIiSaIiEEEC2ERKS2_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain2fxEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain2fyEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain2fzEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL23CalcVolumeForceForElemsR6Domain
+ ----------------------------------- 
+		Predicate: [ entry:   %3 = load i32, i32* %numElem, align 4, !tbaa !6  (NOT Equal)  0 ]
+		Total Generate Query: 2
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	2
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNK6Domain6hgcoefEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL23InitStressTermsForElemsR6DomainPdS1_S1_i
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL23IntegrateStressForElemsR6DomainPdS1_S1_S1_ii
+ ----------------------------------- 
+		Predicate: [ entry:   %9 = load i32, i32* %numthreads, align 4, !tbaa !6  (Greater)  1 ]
+		Total Generate Query: 2
+		Resolved: 1
+		False Infeasible Path:
+
+		True Infeasible Path:
+	entry, 
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ for.body:   %28 = load i32, i32* %numthreads, align 4, !tbaa !6  (Greater)  1 ]
+		Total Generate Query: 2
+		Resolved: 1
+		False Infeasible Path:
+
+		True Infeasible Path:
+	for.body, 
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ for.cond50:   %54 = load i32, i32* %lnode, align 4, !tbaa !6  (Less)  8 ]
+		Total Generate Query: 3
+		Resolved: 1
+		False Infeasible Path:
+	if.else, for.cond50, 
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ for.end70:   %83 = load i32, i32* %numthreads, align 4, !tbaa !6  (Greater)  1 ]
+		Total Generate Query: 2
+		Resolved: 1
+		False Infeasible Path:
+
+		True Infeasible Path:
+	for.end70, 
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	9
+	Resolve Query:	4
+	True Infeasible Path:	3
+	True Infeasible Path:	1
+=========================================================
+
+
+_ZL28CalcHourglassControlForElemsR6DomainPdd
+ ----------------------------------- 
+		Predicate: [ for.cond21:   %33 = load i32, i32* %ii, align 4, !tbaa !8  (Less)  8 ]
+		Total Generate Query: 3
+		Resolved: 1
+		False Infeasible Path:
+	for.body, for.cond21, 
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	3
+	Resolve Query:	1
+	True Infeasible Path:	0
+	True Infeasible Path:	1
+=========================================================
+
+
+_ZL24CalcElemVolumeDerivativePdS_S_PKdS1_S1_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL28CalcFBHourglassForceForElemsR6DomainPdS1_S1_S1_S1_S1_S1_dii
+ ----------------------------------- 
+		Predicate: [ entry:   %6 = load i32, i32* %numthreads, align 4, !tbaa !8  (Greater)  1 ]
+		Total Generate Query: 2
+		Resolved: 1
+		False Infeasible Path:
+
+		True Infeasible Path:
+	entry, 
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ for.cond72:   %39 = load i32, i32* %i1, align 4, !tbaa !8  (Less)  4 ]
+		Total Generate Query: 3
+		Resolved: 1
+		False Infeasible Path:
+	for.body, for.cond72, 
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ for.end:   %406 = load i32, i32* %numthreads, align 4, !tbaa !8  (Greater)  1 ]
+		Total Generate Query: 2
+		Resolved: 1
+		False Infeasible Path:
+
+		True Infeasible Path:
+	for.end, 
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ for.end635:   %583 = load i32, i32* %numthreads, align 4, !tbaa !8  (Greater)  1 ]
+		Total Generate Query: 2
+		Resolved: 1
+		False Infeasible Path:
+
+		True Infeasible Path:
+	for.end635, 
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	9
+	Resolve Query:	4
+	True Infeasible Path:	3
+	True Infeasible Path:	1
+=========================================================
+
+
+_Z4CBRTd
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL24CalcElemFBHourglassForcePdS_S_PA4_ddS_S_S_
+ ----------------------------------- 
+		Predicate: [ for.cond:   %2 = load i32, i32* %i, align 4, !tbaa !8  (Less)  4 ]
+		Total Generate Query: 3
+		Resolved: 1
+		False Infeasible Path:
+	entry, for.cond, 
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ for.cond47:   %47 = load i32, i32* %i46, align 4, !tbaa !8  (Less)  8 ]
+		Total Generate Query: 3
+		Resolved: 1
+		False Infeasible Path:
+	for.end, for.cond47, 
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ for.cond81:   %70 = load i32, i32* %i80, align 4, !tbaa !8  (Less)  4 ]
+		Total Generate Query: 3
+		Resolved: 1
+		False Infeasible Path:
+	for.end79, for.cond81, 
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ for.cond138:   %115 = load i32, i32* %i137, align 4, !tbaa !8  (Less)  8 ]
+		Total Generate Query: 3
+		Resolved: 1
+		False Infeasible Path:
+	for.end136, for.cond138, 
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ for.cond172:   %138 = load i32, i32* %i171, align 4, !tbaa !8  (Less)  4 ]
+		Total Generate Query: 3
+		Resolved: 1
+		False Infeasible Path:
+	for.end170, for.cond172, 
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ for.cond229:   %183 = load i32, i32* %i228, align 4, !tbaa !8  (Less)  8 ]
+		Total Generate Query: 3
+		Resolved: 1
+		False Infeasible Path:
+	for.end227, for.cond229, 
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	18
+	Resolve Query:	6
+	True Infeasible Path:	0
+	True Infeasible Path:	6
+=========================================================
+
+
+_ZN6Domain13nodeElemCountEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZN6Domain18nodeElemCornerListEi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL7VoluDerddddddddddddddddddPdS_S_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL19CalcElemNodeNormalsPdS_S_PKdS1_S1_
+ ----------------------------------- 
+		Predicate: [ for.cond:   %1 = load i32, i32* %i, align 4, !tbaa !6  (Less)  8 ]
+		Total Generate Query: 3
+		Resolved: 1
+		False Infeasible Path:
+	entry, for.cond, 
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	3
+	Resolve Query:	1
+	True Infeasible Path:	0
+	True Infeasible Path:	1
+=========================================================
+
+
+_ZL27SumElemStressesToNodeForcesPA8_KddddPdS2_S2_
+ ----------------------------------- 
+		Predicate: [ for.cond:   %1 = load i32, i32* %i, align 4, !tbaa !8  (Less)  8 ]
+		Total Generate Query: 3
+		Resolved: 1
+		False Infeasible Path:
+	entry, for.cond, 
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	3
+	Resolve Query:	1
+	True Infeasible Path:	0
+	True Infeasible Path:	1
+=========================================================
+
+
+_ZL17SumElemFaceNormalPdS_S_S_S_S_S_S_S_S_S_S_dddddddddddd
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSo9_M_insertIlEERSoT_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt11char_traitsIcE6lengthEPKc
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+strlen
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZStorSt12_Ios_IostateS_
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt9basic_iosIcSt11char_traitsIcEE5clearESt12_Ios_Iostate
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_GLOBAL__sub_I_lulesh_util.cc
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+__cxx_global_var_init.10
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_Z23ParseCommandLineOptionsiPPciP11cmdLineOpts
+ ----------------------------------- 
+		Predicate: [ entry:   %0 = load i32, i32* %argc.addr, align 4, !tbaa !2  (Greater)  1 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ while.body:   %call = call i32 @strcmp(i8* %7, i8* getelementptr inbounds ([3 x i8], [3 x i8]* @.str.19, i64 0, i64 0)) #17  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.end:   %15 = load i32, i32* %ok, align 4, !tbaa !2  (NOT Equal)  0 ]
+		Total Generate Query: 2
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.else:   %call15 = call i32 @strcmp(i8* %20, i8* getelementptr inbounds ([3 x i8], [3 x i8]* @.str.3.22, i64 0, i64 0)) #17  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.end21:   %28 = load i32, i32* %ok, align 4, !tbaa !2  (NOT Equal)  0 ]
+		Total Generate Query: 2
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.else30:   %call33 = call i32 @strcmp(i8* %33, i8* getelementptr inbounds ([3 x i8], [3 x i8]* @.str.6.25, i64 0, i64 0)) #17  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.end39:   %41 = load i32, i32* %ok, align 4, !tbaa !2  (NOT Equal)  0 ]
+		Total Generate Query: 2
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.else48:   %call51 = call i32 @strcmp(i8* %46, i8* getelementptr inbounds ([3 x i8], [3 x i8]* @.str.9.28, i64 0, i64 0)) #17  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.end57:   %54 = load i32, i32* %ok, align 4, !tbaa !2  (NOT Equal)  0 ]
+		Total Generate Query: 2
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.else66:   %call69 = call i32 @strcmp(i8* %59, i8* getelementptr inbounds ([3 x i8], [3 x i8]* @.str.12.31, i64 0, i64 0)) #17  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.else72:   %call75 = call i32 @strcmp(i8* %64, i8* getelementptr inbounds ([3 x i8], [3 x i8]* @.str.13.32, i64 0, i64 0)) #17  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.else79:   %call82 = call i32 @strcmp(i8* %69, i8* getelementptr inbounds ([3 x i8], [3 x i8]* @.str.14.33, i64 0, i64 0)) #17  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.end88:   %77 = load i32, i32* %ok, align 4, !tbaa !2  (NOT Equal)  0 ]
+		Total Generate Query: 2
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.else97:   %call100 = call i32 @strcmp(i8* %82, i8* getelementptr inbounds ([3 x i8], [3 x i8]* @.str.17.36, i64 0, i64 0)) #17  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.end106:   %90 = load i32, i32* %ok, align 4, !tbaa !2  (NOT Equal)  0 ]
+		Total Generate Query: 2
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.else115:   %call118 = call i32 @strcmp(i8* %95, i8* getelementptr inbounds ([3 x i8], [3 x i8]* @.str.20, i64 0, i64 0)) #17  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.else122:   %call125 = call i32 @strcmp(i8* %100, i8* getelementptr inbounds ([3 x i8], [3 x i8]* @.str.22, i64 0, i64 0)) #17  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	23
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+strcmp
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL10ParseErrorPKci
+ ----------------------------------- 
+		Predicate: [ entry:   %0 = load i32, i32* %myRank.addr, align 4, !tbaa !6  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	1
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_Z8StrToIntIiEiPKcPT_
+ ----------------------------------- 
+		Predicate: [ land.lhs.true:   %conv2 = sext i8 %10 to i32  (Equal)  32 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ lor.lhs.false:   %conv4 = sext i8 %12 to i32  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	2
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZL23PrintCommandLineOptionsPci
+ ----------------------------------- 
+		Predicate: [ entry:   %0 = load i32, i32* %myRank.addr, align 4, !tbaa !6  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	1
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+sprintf
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+strtol
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_Z25VerifyAndWriteFinalOutputdR6Domainii
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSolsEPFRSt8ios_baseS0_E
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt12setprecisioni
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZStlsIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_St13_Setprecision
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZSt4setwi
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZStlsIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_St5_Setw
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSolsEd
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt8ios_base5widthEl
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt8ios_base9precisionEl
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNSt9basic_iosIcSt11char_traitsIcEE8setstateESt12_Ios_Iostate
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_ZNKSt9basic_iosIcSt11char_traitsIcEE7rdstateEv
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+_Z11DumpToVisitR6Domainiii
+ ----------------------------------- 
+		Predicate: [ entry:   %0 = load i32, i32* %myRank.addr, align 4, !tbaa !6  (Equal)  0 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	1
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+
+
+
+**********************************************************
+Module Summary:
+	Total Predicate:	101
+	Correlated Predicate:	29
+	Percentage:	2.871287e+01%
+**********************************************************

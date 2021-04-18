@@ -1,0 +1,88 @@
+Infeasible Path Pass:
+main
+ ----------------------------------- 
+		Predicate: [ entry:   %and = and i32 %call, 1  (Equal)  1 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ while.body:   %and3 = and i32 %call2, 1  (Equal)  1 ]
+		Total Generate Query: 1
+		Resolved: 0
+		False Infeasible Path:
+
+		True Infeasible Path:
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.then5:   %1 = load i32, i32* %v, align 4  (Equal)  5 ]
+		Total Generate Query: 6
+		Resolved: 3
+		False Infeasible Path:
+	if.then, if.end, while.body, if.then5, 
+
+		True Infeasible Path:
+	entry, if.end, while.body, if.then5, 
+	if.end, while.body, if.then5, if.end8, if.end11, if.then13, if.end17, while.body, if.then5, 
+ ----------------------------------- 
+
+ ----------------------------------- 
+		Predicate: [ if.end11:   %5 = load i32, i32* %v, align 4  (Greater)  0 ]
+		Total Generate Query: 6
+		Resolved: 3
+		False Infeasible Path:
+	if.end, while.body, if.then5, if.end8, if.end11, 
+	if.then, if.end, while.body, if.else, if.end11, 
+
+		True Infeasible Path:
+	entry, if.end, while.body, if.else, if.end11, 
+ ----------------------------------- 
+
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	14
+	Resolve Query:	6
+	True Infeasible Path:	3
+	True Infeasible Path:	3
+=========================================================
+
+
+rand
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+printf
+
+
+=========================================================
+Function Summary:
+	Total Query Gen:	0
+	Resolve Query:	0
+	True Infeasible Path:	0
+	True Infeasible Path:	0
+=========================================================
+
+
+
+
+
+**********************************************************
+Module Summary:
+	Total Predicate:	4
+	Correlated Predicate:	2
+	Percentage:	5.000000e+01%
+**********************************************************

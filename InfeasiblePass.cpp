@@ -74,11 +74,11 @@ struct CheckMetaFuncInfo : public ModulePass {
   CheckMetaFuncInfo() : ModulePass(ID) {}
 
   static void printInfo(uint32_t BranchCount, uint32_t IntBranchCount, uint32_t IntTargetBranchCount, std::unordered_map<CmpInst::Predicate, uint32_t, std::hash<unsigned int>> & PredicateBranchCount) {
-    errs() << "Func Branch: " << BranchCount << "\n";
-    errs() << "Func Integer Branch: " << IntBranchCount << "\n";
-    errs() << "Func Target Integer Branch: " << IntTargetBranchCount << "\n";
+    errs() << "\tFunc Branch: " << BranchCount << "\n";
+    errs() << "\tFunc Integer Branch: " << IntBranchCount << "\n";
+    errs() << "\tFunc Target Integer Branch: " << IntTargetBranchCount << "\n";
     for (auto& Pair : PredicateBranchCount) {
-      errs() << PredicateStringMap[Pair.first] << ": " << Pair.second << "\n";
+      errs() << "\t" << PredicateStringMap[Pair.first] << ": " << Pair.second << "\n";
     }
   }
 
@@ -153,14 +153,19 @@ struct CheckMetaFuncInfo : public ModulePass {
         ModulePredicateBranchCount[Pair.first] += Pair.second;
       }
 
+      errs() << "\n";
+      errs() << "=========================================================" << "\n";
+      errs().write_escaped(F->getName()) << '\n';
       printInfo(FuncBranchCount, FuncIntBranchCount, FuncIntTargetBranchCount, FuncPredicateBranchCount);
-      //outs() << "End of Function: " << F->getName() << '\n' << '\n';
+      errs() << "=========================================================" << "\n";
     }
 
     //outs() << '\n' << '\n';
-
+    errs() << "\n\n\n";
+    errs() << "**********************************************************" << "\n";
     errs() << "Module Summary:" << '\n';
     printInfo(ModuleBranchCount, ModuleIntBranchCount, ModuleIntTargetBranchCount, ModulePredicateBranchCount);
+    errs() << "**********************************************************" << "\n";
 
     return false;
   }
@@ -760,10 +765,10 @@ struct InstQueryPair {
 };
 
 struct InfeasiblePathSummary {
-  std::size_t GenQC;
-  std::size_t ResolveQC;
-  std::size_t TrueIPC;
-  std::size_t FalseIPC;
+  std::size_t GenQC = 0;
+  std::size_t ResolveQC = 0;
+  std::size_t TrueIPC = 0;
+  std::size_t FalseIPC = 0;
 };
 
 void printInfeasiblePath(std::vector<InstQueryPair> &Path) {
@@ -791,7 +796,7 @@ void printInfeasiblePath(std::vector<InstQueryPair> &Path) {
     }
 
     Stream << "\n";
-    errs() << "\t\t" << PathPrint;
+    errs() << "\t" << PathPrint;
 }
 
 // find infeasible path
@@ -1196,7 +1201,7 @@ struct InfeasiblePath : public ModulePass {
                 //outs() << "End Used" << '\n' << '\n';
                 InfeasiblePathSummary PredicateSummary = correlationDetect(&*F, Inst);
                 FuncSummary.GenQC = FuncSummary.GenQC + PredicateSummary.GenQC;
-                FuncSummary.ResolveQC = FuncSummary.ResolveQC + PredicateSummary.GenQC;
+                FuncSummary.ResolveQC = FuncSummary.ResolveQC + PredicateSummary.ResolveQC;
                 FuncSummary.TrueIPC = FuncSummary.TrueIPC + PredicateSummary.TrueIPC;
                 FuncSummary.FalseIPC = FuncSummary.FalseIPC + PredicateSummary.FalseIPC;
 
@@ -1209,10 +1214,10 @@ struct InfeasiblePath : public ModulePass {
             errs() << "\n\n";
             errs() << "=========================================================" << "\n";
             errs() << "Function Summary:\n";
-            errs() << "\t\tTotal Query Gen:\t" << FuncSummary.GenQC << "\n";
-            errs() << "\t\tResolve Query:\t" << FuncSummary.ResolveQC << "\n";
-            errs() << "\t\tTrue Infeasible Path:\t" << FuncSummary.TrueIPC << "\n";
-            errs() << "\t\tTrue Infeasible Path:\t" << FuncSummary.FalseIPC << "\n";
+            errs() << "\tTotal Query Gen:\t" << FuncSummary.GenQC << "\n";
+            errs() << "\tResolve Query:\t" << FuncSummary.ResolveQC << "\n";
+            errs() << "\tTrue Infeasible Path:\t" << FuncSummary.TrueIPC << "\n";
+            errs() << "\tTrue Infeasible Path:\t" << FuncSummary.FalseIPC << "\n";
             errs() << "=========================================================" << "\n\n\n";
         }
 
@@ -1221,9 +1226,9 @@ struct InfeasiblePath : public ModulePass {
         errs() << "\n\n\n";
         errs() << "**********************************************************" << "\n";
         errs() << "Module Summary:\n";
-        errs() << "\t\tTotal Predicate:\t" << TotalPredicate << "\n";
-        errs() << "\t\tCorrelated Predicate:\t" << CorrelatedPredicate << "\n";
-        errs() << "\t\tPercentage:\t" << Percentage << "%\n";
+        errs() << "\tTotal Predicate:\t" << TotalPredicate << "\n";
+        errs() << "\tCorrelated Predicate:\t" << CorrelatedPredicate << "\n";
+        errs() << "\tPercentage:\t" << Percentage << "%\n";
         errs() << "**********************************************************" << "\n";
         return false;
     }

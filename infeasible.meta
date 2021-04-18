@@ -1,0 +1,35 @@
+CheckMetaFuncInfo Pass: 
+
+=========================================================
+main
+	Func Branch: 4
+	Func Integer Branch: 4
+	Func Target Integer Branch: 4
+	Greater: 1
+	Equal: 3
+=========================================================
+
+=========================================================
+rand
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+=========================================================
+printf
+	Func Branch: 0
+	Func Integer Branch: 0
+	Func Target Integer Branch: 0
+=========================================================
+
+
+
+**********************************************************
+Module Summary:
+	Func Branch: 4
+	Func Integer Branch: 4
+	Func Target Integer Branch: 4
+	Equal: 3
+	Greater: 1
+**********************************************************
