@@ -13,7 +13,7 @@ https://blog.csdn.net/weixin_46222091/article/details/105420409
 
 ## Command
 1. Build
-cmake -DLLVM_ENABLE_PROJECTS=clang -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_ASSERTIONS=On -DLLVM_TARGETS_TO_BUILD=host ../llvm
+cmake -DLLVM_ENABLE_PROJECTS=clang -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_ASSERTIONS=On -DLLVM_TARGETS_TO_BUILD=host -DLLVM_ENABLE_STATS ../llvm
 
 2. LLVM generate IR
 bin/clang -S -emit-llvm -O1 -Xclang -disable-llvm-passes ../llvm/lib/Transforms/InfeasiblePath/test/src/sample.c -o ../llvm/lib/Transforms/InfeasiblePath/test/ir/sample.ll
@@ -23,11 +23,11 @@ bin/clang -S -emit-llvm ../llvm/lib/Transforms/InfeasiblePath/test/src/infeasibl
 
 ~/cs6241/llvm-project/build/bin/clang++ -S -emit-llvm -O1 -Xclang -disable-llvm-passes -DUSE_MPI=0 *.cc
 ~/cs6241/llvm-project/build/bin/llvm-link *.ll -o lulesh-single.ll
-bin/opt -reg2mem ../llvm/lib/Transforms/InfeasiblePath/test/src/LULESH/lulesh-single.ll > ../llvm/lib/Transforms/InfeasiblePath/test/src/LULESH/lulesh-final.ll
+bin/opt -reg2mem ../llvm/lib/Transforms/InfeasiblePath/test/src/LULESH/lulesh-single.ll -o ../llvm/lib/Transforms/InfeasiblePath/test/src/LULESH/lulesh-final.ll
 
-~/cs6241/llvm-project/build/bin/clang -S -emit-llvm *.cc
+~/cs6241/llvm-project/build/bin/clang -S -emit-llvm *.c
 ~/cs6241/llvm-project/build/bin/llvm-link *.ll -o spec-bzip-single.ll
-bin/opt -reg2mem ../llvm/lib/Transforms/InfeasiblePath/test/src/spec_bzip2_src/spec-bzip-single.ll > ../llvm/lib/Transforms/InfeasiblePath/test/src/spec_bzip2_src/spec-bzip-final.ll
+bin/opt -reg2mem ../llvm/lib/Transforms/InfeasiblePath/test/src/spec_bzip2_src/spec-bzip-single.ll -o ../llvm/lib/Transforms/InfeasiblePath/test/src/spec_bzip2_src/spec-bzip-final.ll
 
 3. LLVM run pass
 bin/opt -load lib/LLVMInfeasiblePath.so -MetaInfo -disable-output ../llvm/lib/Transforms/InfeasiblePath/test/ir/sample-no.ll
